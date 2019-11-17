@@ -1,15 +1,26 @@
 {
-  "name": "350-actions",
+  "name": "350-actions-client",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@date-io/date-fns": "^1.3.11",
+    "@material-ui/core": "^4.6.1",
+    "@material-ui/pickers": "^3.2.8",
+    "@tinymce/tinymce-react": "^3.3.2",
     "@types/jest": "24.0.23",
+    "@types/material-ui": "^0.21.7",
     "@types/node": "12.12.8",
     "@types/react": "16.9.11",
     "@types/react-dom": "16.9.4",
+    "@types/react-router-dom": "^5.1.2",
+    "@types/tinymce": "^4.5.23",
+    "date-fns": "^2.7.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
+    "react-router-dom": "^5.1.2",
     "react-scripts": "3.2.0",
+    "tinymce": "^5.1.1",
+    "typeface-roboto": "0.0.75",
     "typescript": "3.7.2"
   },
   "scripts": {
