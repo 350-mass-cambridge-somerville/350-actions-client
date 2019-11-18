@@ -1,15 +1,20 @@
 import React, { Component, ChangeEvent, ReactNode } from 'react';
-import { Paper } from '@material-ui/core';
+import { Paper, Button } from '@material-ui/core';
 import { ActionGeographyForm } from './ActionGeographyForm';
 import { GeographyType } from '../interfaces/GeographyType';
 import { ActionDateForm } from './ActionDateForm';
+import { ActionDescriptionForm } from './ActionDescriptionForm';
+import { ActionTagsForm } from './ActionTagsForm';
 import { DateType } from '../interfaces/DateType';
+
 type ActionFormState = {
 	geographyType: GeographyType, 
 	dateType: DateType, 
 	date: Date,
 	dateStart: Date,
-	dateEnd: Date
+	dateEnd: Date,
+	description: string,
+	tags: string[]
 };
 export class ActionForm extends Component {
 	state: ActionFormState = {
@@ -17,7 +22,9 @@ export class ActionForm extends Component {
 		dateType: DateType.ON,
 		date: new Date(),
 		dateStart: new Date(),
-		dateEnd: new Date()
+		dateEnd: new Date(),
+		description: '',
+		tags: []
 	};
 
 	constructor() {
@@ -28,6 +35,9 @@ export class ActionForm extends Component {
 		this.onDateChange = this.onDateChange.bind(this);
 		this.onDateStartChange = this.onDateStartChange.bind(this);
 		this.onDateEndChange = this.onDateEndChange.bind(this);
+		this.onDescriptionChange = this.onDescriptionChange.bind(this);
+		this.onTagsChange = this.onTagsChange.bind(this);
+		this.onSubmit = this.onSubmit.bind(this);
 	}
 
 	onGeographyTypeChange(event: ChangeEvent<{ name?: string | undefined; value: unknown; }>, child: ReactNode) {
@@ -48,6 +58,34 @@ export class ActionForm extends Component {
 
 	onDateEndChange(date: Date): void {
 		this.setState({dateEnd: date});
+	}
+
+	onDescriptionChange(description: string): void {
+		this.setState({description: description});
+	}
+
+	onTagsChange(tags: string[]): void {
+		this.setState({tags: tags});
+	}
+
+	onSubmit(): void {
+		const stateString: string = JSON.stringify(this.state);
+		console.log(`state string: ${stateString}`)
+		fetch('http://localhost:3000/actions', {
+			method: 'POST', // *GET, POST, PUT, DELETE, etc.
+			headers: {
+			  'Content-Type': 'application/json'
+			  // 'Content-Type': 'application/x-www-form-urlencoded',
+			},
+			body: JSON.stringify(this.state) // body data type must match "Content-Type" header
+		  }).then((response) => {
+			return response.json()
+		  }).then((json) => {
+			  console.log(`got response json: ${JSON.stringify(json)}`);
+		  })
+		  .catch((error) => {
+			  console.log(`submit failed with error: ${error}`);
+		  })
 	}
 
 	render() {
@@ -76,6 +114,9 @@ export class ActionForm extends Component {
 						 tags={this.state.tags}
 					 />
 				</form>
+				<Button variant="contained" onClick={this.onSubmit}>
+        			Submit
+      			</Button>
 			</Paper>
 		);
 	}
