@@ -2,18 +2,19 @@ import React, { Component, ChangeEvent, ReactNode } from "react";
 import { 
 	Select, 
 	MenuItem,
-	Typography
+	Typography,
+	FormControl,
+	Grid
  } from "@material-ui/core";
 
  import { 
-	DatePicker,
-	TimePicker,
+	KeyboardDatePicker,
 	MuiPickersUtilsProvider
 } from '@material-ui/pickers';
 import 'date-fns';
 import DateFnsUtils from '@date-io/date-fns';
 import { DateType } from '../interfaces/DateType';
-
+import { useStyles } from '../styles/style';
 
 type DateFormProps = {
 	dateType: DateType,
@@ -35,34 +36,81 @@ const DateTypeDisplay: Record<DateType, string> = {
 
 export function ActionDateForm(props: DateFormProps) 
 {
+	const classes = useStyles();
 	function generateDatePickers(props: DateFormProps): ReactNode {
 		switch(props.dateType) {
 			case DateType.ON:
-				return <DatePicker value={props.date ? props.date : new Date()} onChange={props.onDateChange}/>
 			case DateType.BEFORE:
-					return <DatePicker value={props.date ? props.date : new Date()} onChange={props.onDateChange}/>
+				return (
+					<Grid item xs={3}>
+						<KeyboardDatePicker 
+							disableToolbar
+							variant="inline"
+							format="MM/dd/yyyy"
+							margin="normal"
+							id="date-picker-inline"
+							label="date"
+							value={props.date ? props.date : new Date()} 
+							onChange={props.onDateChange}
+						/>
+					</Grid>)
 			case DateType.RANGE:
-					return (<div>
-							<DatePicker value={props.dateStart ? props.dateStart : new Date()} onChange={props.onDateStartChange}/>
-							<DatePicker value={props.dateEnd ? props.dateEnd : new Date()} onChange={props.onDateEndChange}/>
-						</div>);
+					return (
+						<Grid item xs={6}>
+							<Grid container>
+								<Grid item xs={3}>
+									<KeyboardDatePicker 
+										disableToolbar
+										variant="inline"
+										format="MM/dd/yyyy"
+										margin="normal"
+										id="date-picker-inline"
+										label="start date"
+										value={props.dateStart ? props.dateStart : new Date()} 
+										onChange={props.onDateStartChange}
+									/>
+								</Grid>
+								<Grid item xs={3}>
+									<Typography>and</Typography>
+								</Grid>
+								<Grid item xs={3}>
+									<KeyboardDatePicker
+										disableToolbar
+										variant="inline"
+										format="MM/dd/yyyy"
+										margin="normal"
+										id="date-picker-inline"
+										label="end date" 
+										value={props.dateEnd ? props.dateEnd : new Date()} 
+										onChange={props.onDateEndChange}
+									/>
+								</Grid>
+							</Grid>
+						</Grid>
+					);
 			default:
-				return <Typography>No date set.</Typography>
+				return (
+					<Grid item xs={3}>
+						<Typography align='center' variant='subtitle1'>No date set.</Typography>
+					</Grid>
+				);
 		}
 	}
 	return (
-		<div>
-			<Select onChange={props.onDateTypeChange} value={props.dateType}>
-				{Object.values(DateType).map((value) => {
-					//console.log(`DT value is ${value}`);
-					return <MenuItem value={value}>{DateTypeDisplay[value as DateType]}</MenuItem>;
-				})}
-			</Select>
-			<div>
-				<MuiPickersUtilsProvider utils={DateFnsUtils}>
-					{generateDatePickers(props)}
-				</MuiPickersUtilsProvider>
-			</div>
-		</div>
+		<Grid container spacing={3}>
+			<Grid item xs={3}>
+				<FormControl className={classes.formControl} variant="outlined">
+					<Select onChange={props.onDateTypeChange} value={props.dateType}>
+						{Object.values(DateType).map((value) => {
+							//console.log(`DT value is ${value}`);
+							return <MenuItem value={value}>{DateTypeDisplay[value as DateType]}</MenuItem>;
+						})}
+					</Select>
+				</FormControl>
+			</Grid>
+			<MuiPickersUtilsProvider utils={DateFnsUtils}>
+				{generateDatePickers(props)}
+			</MuiPickersUtilsProvider>
+		</Grid>
 	);
 }
