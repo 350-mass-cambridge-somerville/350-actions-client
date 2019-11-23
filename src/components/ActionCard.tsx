@@ -1,13 +1,15 @@
 import React, { useState, ReactNode } from 'react';
 import {Action} from '../interfaces/Action';
 import {
-	Card, 
-	CardActionArea,
-	CardContent, 
-	Switch, 
+	Paper,
+	Checkbox,
 	Typography,
+	Grid
 } from '@material-ui/core';
 import {makeStyles, useTheme} from '@material-ui/core/styles';
+import { ActionGeographyDisplay } from './ActionGeographyDisplay';
+import { ActionDateDisplay } from './ActionDateDisplay'
+import { ActionCountDisplay } from './ActionCountDisplay';
 
 const useStyles = makeStyles(theme => ({
 	card: {
@@ -26,16 +28,45 @@ export function ActionCard(props: {action: Action}) {
 	//const theme = useTheme();
 	const [done, setDone] = useState(false);
 
-	function onCheck(event: any, checked: boolean) {
-		setDone(checked);
+	function onCheck(event: any) {
+		setDone(event.target.checked);
 	};
 
-	return (<Card className={classes.card}>
-		<CardActionArea className={classes.done}>
-			<Switch checked={done} onChange={onCheck}/>
-		</CardActionArea>
-		<CardContent className={classes.content}>
-			<Typography dangerouslySetInnerHTML={{__html: props.action.description}}></Typography>
-		</CardContent>
-	</Card>);
+	return (
+	<Paper className={classes.card}>
+		<Grid container direction='column' alignItems='stretch'>
+			<Grid item>
+				<Grid container justify='space-between'>
+					<Grid item>
+						<ActionGeographyDisplay geographyType={props.action.geographyType}/>
+					</Grid>
+					<Grid item>
+						<ActionDateDisplay 
+							dateType={props.action.dateType} 
+							date={props.action.date}
+							dateStart={props.action.dateStart}
+							dateEnd={props.action.dateEnd}
+						/>
+					</Grid>
+				</Grid>
+			</Grid>
+			<Grid item>
+				<Grid container justify='space-between'>
+					<Grid item>
+						<Grid container>
+							<Grid item>
+								<Checkbox checked={done} onChange={onCheck}/>
+							</Grid>
+							<Grid item>
+								<Typography dangerouslySetInnerHTML={{__html: props.action.description}}></Typography>
+							</Grid>
+						</Grid>
+					</Grid>
+					<Grid item>
+						<ActionCountDisplay count={10}/>
+					</Grid>
+				</Grid>
+			</Grid>
+		</Grid>
+	</Paper>);
 }

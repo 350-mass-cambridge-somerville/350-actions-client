@@ -7,6 +7,6 @@ export function ActionGeographyDisplay(props: {geographyType: GeographyType})
 {
 	const classes = useStyles();
 	return ( 
-		<Typography>{props.geographyType}</Typography>
+		<Typography className={classes.geography}>{props.geographyType}</Typography>
 	);
 }

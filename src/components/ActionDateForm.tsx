@@ -4,13 +4,15 @@ import {
 	MenuItem,
 	Typography,
 	FormControl,
-	Grid
+	Grid,
+	Box
  } from "@material-ui/core";
 
  import { 
 	KeyboardDatePicker,
 	MuiPickersUtilsProvider
 } from '@material-ui/pickers';
+import {border} from '@material-ui/system';
 import 'date-fns';
 import DateFnsUtils from '@date-io/date-fns';
 import { DateType } from '../interfaces/DateType';
@@ -42,7 +44,7 @@ export function ActionDateForm(props: DateFormProps)
 			case DateType.ON:
 			case DateType.BEFORE:
 				return (
-					<Grid item xs={3}>
+					<Grid item xs={3} className={classes.gridItem}>
 						<KeyboardDatePicker 
 							disableToolbar
 							variant="inline"
@@ -56,9 +58,9 @@ export function ActionDateForm(props: DateFormProps)
 					</Grid>)
 			case DateType.RANGE:
 					return (
-						<Grid item xs={6}>
-							<Grid container>
-								<Grid item xs={3}>
+						<Grid item className={classes.gridItem}>
+							<Grid container spacing={1} justify='space-between' alignItems='flex-end'>
+								<Grid className={classes.gridItem}>
 									<KeyboardDatePicker 
 										disableToolbar
 										variant="inline"
@@ -70,10 +72,10 @@ export function ActionDateForm(props: DateFormProps)
 										onChange={props.onDateStartChange}
 									/>
 								</Grid>
-								<Grid item xs={3}>
+								<Grid item className={classes.gridItem}>
 									<Typography>and</Typography>
 								</Grid>
-								<Grid item xs={3}>
+								<Grid item className={classes.gridItem}>
 									<KeyboardDatePicker
 										disableToolbar
 										variant="inline"
@@ -90,15 +92,15 @@ export function ActionDateForm(props: DateFormProps)
 					);
 			default:
 				return (
-					<Grid item xs={3}>
+					<Grid item xs={3} className={classes.gridItem}>
 						<Typography align='center' variant='subtitle1'>No date set.</Typography>
 					</Grid>
 				);
 		}
 	}
 	return (
-		<Grid container spacing={3}>
-			<Grid item xs={3}>
+		<Grid container alignItems='center'>
+			<Grid item xs={3} className={classes.gridItem}>
 				<FormControl className={classes.formControl} variant="outlined">
 					<Select onChange={props.onDateTypeChange} value={props.dateType}>
 						{Object.values(DateType).map((value) => {
