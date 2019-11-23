@@ -1,5 +1,5 @@
 import React, { Component, ReactNode } from 'react';
-import { ActionCard } from './ActionCard';
+import { ActionDisplay } from './ActionDisplay';
 import { Action } from '../interfaces/Action';
 import { Paper, Typography } from '@material-ui/core';
 
@@ -34,7 +34,7 @@ export class CurrentActionView extends Component {
 				<Typography variant="h1" >Current Actions: {this.state.actions.length}</Typography>
 				<ul>
 					{this.state.actions.map((value, index) => {
-						return <li key={index}><ActionCard action={value}/></li>;
+						return <li key={index}><ActionDisplay action={value}/></li>;
 					})}
 				</ul>
 			</Paper>

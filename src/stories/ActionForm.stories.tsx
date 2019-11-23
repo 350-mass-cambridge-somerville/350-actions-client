@@ -1,7 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 
-import {ActionDisplay} from '../components/ActionDisplay';
+import {ActionForm} from '../components/ActionForm';
 import {Action} from '../interfaces/Action';
 import { DateType } from '../interfaces/DateType';
 import { GeographyType } from '../interfaces/GeographyType';
@@ -24,6 +24,5 @@ export const actionLong: Action = {
 	geographyType: GeographyType.LOCAL,
 }
 
-storiesOf('ActionDisplay', module)
-	.add('default', () => (<ActionDisplay action={action}/>))
-	.add('long action', () => (<ActionDisplay action={actionLong}/>))
+storiesOf('ActionForm', module)
+	.add('default', () => (<ActionForm />))

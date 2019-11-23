@@ -1,7 +1,7 @@
 import React, { useState, ReactNode } from 'react';
 import {Action} from '../interfaces/Action';
 import {
-	Paper,
+	Box,
 	Checkbox,
 	Typography,
 	Grid
@@ -10,8 +10,10 @@ import {makeStyles, useTheme} from '@material-ui/core/styles';
 import { ActionGeographyDisplay } from './ActionGeographyDisplay';
 import { ActionDateDisplay } from './ActionDateDisplay'
 import { ActionCountDisplay } from './ActionCountDisplay';
+import ActionChipDisplay from './ActionChipDisplay';
+import { useStyles, theme } from '../styles/style';
 
-const useStyles = makeStyles(theme => ({
+/**const useStyles = makeStyles(theme => ({
 	card: {
 	  display: 'flex',
 	},
@@ -21,11 +23,10 @@ const useStyles = makeStyles(theme => ({
 	done: {
 		width: '30%'
 	},
-  }));
+  }));**/
 
-export function ActionCard(props: {action: Action}) {
-	const classes = useStyles();
-	//const theme = useTheme();
+export function ActionDisplay(props: {action: Action}) {
+	const classes = useStyles(theme);
 	const [done, setDone] = useState(false);
 
 	function onCheck(event: any) {
@@ -33,7 +34,7 @@ export function ActionCard(props: {action: Action}) {
 	};
 
 	return (
-	<Paper className={classes.card}>
+	<Box>
 		<Grid container direction='column' alignItems='stretch'>
 			<Grid item>
 				<Grid container justify='space-between'>
@@ -67,6 +68,9 @@ export function ActionCard(props: {action: Action}) {
 					</Grid>
 				</Grid>
 			</Grid>
+			<Grid item>
+				<ActionChipDisplay tags={props.action.tags}/>
+			</Grid>
 		</Grid>
-	</Paper>);
+	</Box>);
 }

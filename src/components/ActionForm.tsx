@@ -114,7 +114,7 @@ export class ActionForm extends Component {
 						 tags={this.state.tags}
 					 />
 				</form>
-				<Button variant="contained" onClick={this.onSubmit}>
+				<Button variant="contained" color="secondary" onClick={this.onSubmit}>
         			Submit
       			</Button>
 			</Paper>

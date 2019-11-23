@@ -12,7 +12,6 @@ import {
 	KeyboardDatePicker,
 	MuiPickersUtilsProvider
 } from '@material-ui/pickers';
-import {border} from '@material-ui/system';
 import 'date-fns';
 import DateFnsUtils from '@date-io/date-fns';
 import { DateType } from '../interfaces/DateType';
@@ -59,7 +58,7 @@ export function ActionDateForm(props: DateFormProps)
 			case DateType.RANGE:
 					return (
 						<Grid item className={classes.gridItem}>
-							<Grid container spacing={1} justify='space-between' alignItems='flex-end'>
+							<Grid container justify='space-between' alignItems='flex-end'>
 								<Grid className={classes.gridItem}>
 									<KeyboardDatePicker 
 										disableToolbar
@@ -73,7 +72,7 @@ export function ActionDateForm(props: DateFormProps)
 									/>
 								</Grid>
 								<Grid item className={classes.gridItem}>
-									<Typography>and</Typography>
+									<Typography>&</Typography>
 								</Grid>
 								<Grid item className={classes.gridItem}>
 									<KeyboardDatePicker
