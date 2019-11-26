@@ -10,7 +10,9 @@ type ActionSurveyFormState = {
 };
 
 type ActionSurveyFormProps = {
-	surveyResponse: SurveyResponse, 
+	responderName: string,
+	onSubmit: () => void,
+	onResponderNameChange: (name: string) => void 
 }
 
 export class ActionSurveyForm extends Component<ActionSurveyFormProps, ActionSurveyFormState> {
@@ -19,6 +21,11 @@ export class ActionSurveyForm extends Component<ActionSurveyFormProps, ActionSur
 
 	constructor(props: ActionSurveyFormProps) {
 		super(props);
+		this.onResponderNameChange = this.onResponderNameChange.bind(this);
+	}
+
+	onResponderNameChange(event: any): void {
+		this.props.onResponderNameChange(event.target.value);
 	}
 
 	render() {
@@ -29,12 +36,16 @@ export class ActionSurveyForm extends Component<ActionSurveyFormProps, ActionSur
 					<TextField
           				id="standard-basic"
           				label="Name"
-						 margin="normal"
-						 value={this.props.surveyResponse.responderName}
+						margin="normal"
+						value={this.props.responderName}
+						onChange={this.onResponderNameChange}
         			/>
 					</Grid>
 					<Grid item>
-						<Button variant="contained" color="primary">
+						<Button variant="contained"
+						 color="primary"
+						 onClick={this.props.onSubmit}
+						 >
         					Track my actions!
       					</Button>
 					</Grid>

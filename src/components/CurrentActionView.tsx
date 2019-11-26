@@ -78,7 +78,7 @@ export class CurrentActionView extends Component {
 				{this.state.actionCard && 
 					<div>
 						<Typography variant="h1" >Current Actions: {this.state.actionCard.actions.length}</Typography>
-						<ActionSurveyDisplay actionCard={this.state.actionCard} surveyResponse={this.state.nextSurveyResponse}/>
+						<ActionSurveyDisplay actionCard={this.state.actionCard}/>
 					</div>
 				}
 			</Paper>

@@ -44,4 +44,4 @@ export const surveyResponse = {
 }
 
 storiesOf('ActionSurveyDisplay', module)
-	.add('default', () => (<ActionSurveyDisplay actionCard={actionCard} surveyResponse={surveyResponse} />))
+	.add('default', () => (<ActionSurveyDisplay actionCard={actionCard} />))
