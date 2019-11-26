@@ -5,7 +5,10 @@ import { GeographyType } from '../interfaces/GeographyType';
 import { ActionDateForm } from './ActionDateForm';
 import { ActionDescriptionForm } from './ActionDescriptionForm';
 import { ActionTagsForm } from './ActionTagsForm';
+import { ActionCardForm } from './ActionCardForm';
 import { DateType } from '../interfaces/DateType';
+
+const ACTION_CARD_URL='http://localhost:3000/action-cards';
 
 type ActionFormState = {
 	geographyType: GeographyType, 
@@ -14,9 +17,15 @@ type ActionFormState = {
 	dateStart: Date,
 	dateEnd: Date,
 	description: string,
-	tags: string[]
+	tags: string[],
+	actionCardDate: Date,
+	actionCardId: number
 };
-export class ActionForm extends Component {
+
+type ActionFormProps = {
+	ids: number[]
+}
+export class ActionForm extends Component<ActionFormProps, ActionFormState> {
 	state: ActionFormState = {
 		geographyType: GeographyType.LOCAL,
 		dateType: DateType.ON,
@@ -24,11 +33,13 @@ export class ActionForm extends Component {
 		dateStart: new Date(),
 		dateEnd: new Date(),
 		description: '',
-		tags: []
+		tags: [],
+		actionCardDate: new Date(),
+		actionCardId: 0
 	};
 
-	constructor() {
-		super({});
+	constructor(props: ActionFormProps) {
+		super({ids: props.ids});
 
 		this.onGeographyTypeChange = this.onGeographyTypeChange.bind(this);
 		this.onDateTypeChange = this.onDateTypeChange.bind(this);
@@ -38,14 +49,16 @@ export class ActionForm extends Component {
 		this.onDescriptionChange = this.onDescriptionChange.bind(this);
 		this.onTagsChange = this.onTagsChange.bind(this);
 		this.onSubmit = this.onSubmit.bind(this);
+		this.onActionCardDateChange = this.onActionCardDateChange.bind(this);
+		this.onActionCardIdChange = this.onActionCardIdChange.bind(this);
 	}
 
 	onGeographyTypeChange(event: ChangeEvent<{ name?: string | undefined; value: unknown; }>, child: ReactNode) {
-		this.setState({geographyType: event.target.value});
+		this.setState({geographyType: event.target.value as GeographyType});
 	}
 	
 	onDateTypeChange(event: ChangeEvent<{ name?: string | undefined; value: unknown; }>, child: ReactNode) {
-		this.setState({dateType: event.target.value});
+		this.setState({dateType: event.target.value as DateType});
 	}
 
 	onDateChange(date: Date): void {
@@ -68,16 +81,61 @@ export class ActionForm extends Component {
 		this.setState({tags: tags});
 	}
 
+	onActionCardDateChange(date: any): void {
+		this.setState({actionCardDate: date})
+	}
+
+	onActionCardIdChange(id: number): void {
+		this.setState({actionCardId: id})
+	}
+
 	onSubmit(): void {
 		const stateString: string = JSON.stringify(this.state);
 		console.log(`state string: ${stateString}`)
-		fetch('http://localhost:3000/actions', {
+
+		if(this.state.actionCardId === -1 ) {
+			console.log(`submitting action card with unknown id ${this.state.actionCardId}`)
+			// need to create new card before submitting action
+			fetch(ACTION_CARD_URL,{
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json'
+					// 'Content-Type': 'application/x-www-form-urlencoded',
+				  },
+				  body: JSON.stringify({
+					  date: this.state.actionCardDate, 
+				  }) // body data type must match "Content-Type" header
+			}).then((response: Response) => {
+				return response.json();
+			}).then((responseJson: any) => {
+				const actionCardId = responseJson.id;
+				return this.submitAction(actionCardId);
+			}).catch((error: any) => {
+				console.log(`action card submit failed with: ${error}`);
+			})
+		} else {
+			console.log(`submitting action with known id ${this.state.actionCardId}`);
+			this.submitAction(this.state.actionCardId);
+		}
+	}
+
+	submitAction(actionCardId: number): Promise<any> {
+		return fetch('http://localhost:3000/actions', {
 			method: 'POST', // *GET, POST, PUT, DELETE, etc.
 			headers: {
 			  'Content-Type': 'application/json'
 			  // 'Content-Type': 'application/x-www-form-urlencoded',
 			},
-			body: JSON.stringify(this.state) // body data type must match "Content-Type" header
+			body: JSON.stringify({
+				actionCardId: actionCardId,
+				description: this.state.description,
+				date: this.state.date,
+				dateStart: this.state.dateStart,
+				dateEnd: this.state.dateEnd,
+				tags: this.state.tags,
+				dateType: this.state.dateType,
+				geographyType: this.state.geographyType
+			}) // body data type must match "Content-Type" header
 		  }).then((response) => {
 			return response.json()
 		  }).then((json) => {
@@ -92,6 +150,13 @@ export class ActionForm extends Component {
 		return (
 			<Paper>
 				<form>
+					<ActionCardForm 
+						onIdChange={this.onActionCardIdChange}
+						ids={this.props.ids}
+						date={this.state.actionCardDate}
+						selectedId={this.state.actionCardId}
+						onDateChange={this.onActionCardDateChange}
+					/>
 					<ActionGeographyForm 
 						onChange={this.onGeographyTypeChange} 
 						selected={this.state.geographyType}/>

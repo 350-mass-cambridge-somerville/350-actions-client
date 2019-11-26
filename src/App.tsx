@@ -8,9 +8,9 @@ import {
 
 import {AppBar, Tabs, Tab} from '@material-ui/core';
 import {CurrentActionView} from './components/CurrentActionView';
-import {ActionTextInput} from './components/ActionTextInput';
+import {CreateActionView} from './components/CreateActionView';
 import 'typeface-roboto';
-import { ActionForm } from "./components/ActionForm";
+
 
 export default function App() {
   return (
@@ -20,7 +20,7 @@ export default function App() {
           <Tabs value={false} aria-label="simple tabs example" centered>
             <Tab label="Current" component={Link} to="/"/>
             <Tab label="Past"    component={Link} to="/past"/>
-            <Tab label="About"   component={Link} to="/about"/>
+            <Tab label="Create"   component={Link} to="/create"/>
           </Tabs>
         </AppBar>
       </div>
@@ -28,8 +28,8 @@ export default function App() {
         {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
         <Switch>
-          <Route path="/about">
-            <About />
+          <Route path="/create">
+            <Create />
           </Route>
           <Route path="/past">
             <Past />
@@ -47,10 +47,10 @@ function Current() {
   return <CurrentActionView/>;
 }
 
-function About() {
-  return <h2>About</h2>;
+function Create() {
+  return <CreateActionView/>;
 }
 
 function Past() {
-  return (<div><ActionForm/></div>);
+  return (<div></div>);
 }

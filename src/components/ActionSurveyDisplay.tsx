@@ -23,13 +23,22 @@ export class ActionSurveyDisplay extends Component<ActionSurveyDisplayProps, Act
 		super(props);
 	}
 
+	onActionDoneChange(actionId: number, done: boolean) {
+		// add or remove it from survey response list
+		return;
+	}
+
 	render() {
 		return (<Grid container direction='column' alignItems='stretch'>
 					<Grid item>
 						<ActionSurveyForm surveyResponse={this.props.surveyResponse}/>
 					</Grid>
 					<Grid item>
-						<ActionListDisplay actions={this.props.actionCard.actions} />
+						<ActionListDisplay actions={this.props.actionCard.actions}
+							doneActions={this.props.surveyResponse.doneActions}
+							onActionDoneChange={this.onActionDoneChange}
+							surveyResponses={this.props.actionCard.surveyResponses}
+						/>
 					</Grid>
 			</Grid>
 		);

@@ -13,24 +13,17 @@ import { ActionCountDisplay } from './ActionCountDisplay';
 import ActionChipDisplay from './ActionChipDisplay';
 import { useStyles, theme } from '../styles/style';
 
-/**const useStyles = makeStyles(theme => ({
-	card: {
-	  display: 'flex',
-	},
-	content: {
-	  flex: '1 0.33 auto',
-	},
-	done: {
-		width: '30%'
-	},
-  }));**/
 
-export function ActionDisplay(props: {action: Action}) {
+export function ActionDisplay(props: {action: Action, 
+	onActionDoneChange: (id: number, done: boolean) => void,
+	done: boolean,
+	count: number
+}) 
+{
 	const classes = useStyles(theme);
-	const [done, setDone] = useState(false);
-
+	console.log(`rendering action ${JSON.stringify(props.action)}`);
 	function onCheck(event: any) {
-		setDone(event.target.checked);
+		props.onActionDoneChange(props.action.id, event.target.checked)
 	};
 
 	return (
@@ -56,7 +49,7 @@ export function ActionDisplay(props: {action: Action}) {
 					<Grid item>
 						<Grid container>
 							<Grid item>
-								<Checkbox checked={done} onChange={onCheck}/>
+								<Checkbox checked={props.done} onChange={onCheck}/>
 							</Grid>
 							<Grid item>
 								<Typography dangerouslySetInnerHTML={{__html: props.action.description}}></Typography>
@@ -64,7 +57,7 @@ export function ActionDisplay(props: {action: Action}) {
 						</Grid>
 					</Grid>
 					<Grid item>
-						<ActionCountDisplay count={10}/>
+						<ActionCountDisplay count={props.count}/>
 					</Grid>
 				</Grid>
 			</Grid>

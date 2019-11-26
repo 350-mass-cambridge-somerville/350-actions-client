@@ -25,4 +25,4 @@ export const actionLong: Action = {
 }
 
 storiesOf('ActionForm', module)
-	.add('default', () => (<ActionForm />))
+	.add('default', () => (<ActionForm ids={[1,2,3]} />))

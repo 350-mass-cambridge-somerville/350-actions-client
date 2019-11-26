@@ -31,15 +31,15 @@ export const actionCard: ActionCard = {
 	date: new Date(),
 	number: 0,
 	actions: [action, actionLong],
-	surveyResponse: [{
+	surveyResponses: [{
 		actionCardId: 0,
-		actionIds: []
+		doneActions: []
 	}]
 }
 
 export const surveyResponse = {
 	actionCardId: 0,
-	actionIds: [2],
+	doneActions: [2],
 	responderName: 'katy'
 }
 

@@ -1,10 +1,19 @@
-import { SurveyResponse } from "./SurveyResponse";
-import { Action } from './Action';
-
+import { SurveyResponse, surveyResponseFromJson } from "./SurveyResponse";
+import { Action, actionFromJson } from './Action';
 export interface ActionCard {
 	id?: number,
 	date: Date,
 	number: number,
-	surveyResponse: SurveyResponse[],
+	surveyResponses: SurveyResponse[],
 	actions: Action[]
+}
+
+export function actionCardFromJson(json: any) {
+	return {
+		id: json.id,
+		date: new Date(json.date),
+		number: json.number,
+		actions: json.actions.map((actionJson: any) => {return actionFromJson(actionJson)}),
+		surveyResponses: json.surveyResponses.map((surveyJson: any) => {return surveyResponseFromJson(surveyJson)})
+	}
 }
