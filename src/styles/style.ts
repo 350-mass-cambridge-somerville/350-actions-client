@@ -22,13 +22,6 @@ export const useStyles = makeStyles((theme: Theme) =>
     {
       root:
       {
-        background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
-        border: 1,
-        borderRadius: 3,
-        boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
-        color: 'white',
-        height: 48,
-        padding: '0 30px',
       },
       formControl: {
 	      margin: theme.spacing(1),
@@ -70,6 +63,25 @@ export const useStyles = makeStyles((theme: Theme) =>
       },
       chip: {
         margin: '3px'
+      },
+      contentMain: {
+        width: 'auto',
+        backgroundColor: 'primary',
+        marginLeft: theme.spacing(1),
+        marginRight: theme.spacing(1),
+        marginTop: theme.spacing(1),
+        marginBottom: theme.spacing(1),
+        [theme.breakpoints.up(600 + theme.spacing(2) * 2)]: {
+          width: 700,
+          marginLeft: 'auto',
+          marginRight: 'auto',
+        },
+      },
+      contentTitle: {
+        color: 'primary'
+      },
+      appBar: {
+        color: 'primary'
       }
-})
+}), {defaultTheme: theme}
 );

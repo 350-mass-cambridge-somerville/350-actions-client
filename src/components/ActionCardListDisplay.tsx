@@ -11,20 +11,22 @@ export type ActionCardListDisplayProps = {
 export default function ActionTagsDisplay(props: ActionCardListDisplayProps) {
   const classes = useStyles();
 
-  return (
+  return <div></div>;
+  /** 
+  (
     <div className={classes.actionExpansionPanels}>
       {props.actionCards.map(actionCard => {
         return (
           <ExpansionPanelSummary>
-			  <Typography>Action Card {actionCard.id}</Typography>
-		  </ExpansionPanelSummary>
-		  <ExpansionPanelDetails>
-			  <ActionListDisplay
-			  	actions={actionCard.actions}
-			  />
-		  </ExpansionPanelDetails>
+			      <Typography>Action Card {actionCard.id}</Typography>
+		      </ExpansionPanelSummary>
+		      <ExpansionPanelDetails>
+            <ActionListDisplay
+              actions={actionCard.actions}
+            />
+		      </ExpansionPanelDetails>
         );
       })}
-    </dive>
-  );
+    </div>
+  );*/
 }

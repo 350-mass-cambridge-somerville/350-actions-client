@@ -10,13 +10,21 @@ import {AppBar, Tabs, Tab} from '@material-ui/core';
 import {CurrentActionView} from './components/CurrentActionView';
 import {CreateActionView} from './components/CreateActionView';
 import 'typeface-roboto';
-
+//import { classes } from "istanbul-lib-coverage";
+import { useStyles, theme } from './styles/style'
+import { useTheme, ThemeProvider } from '@material-ui/styles';
 
 export default function App() {
+  const theTheme = useTheme();
+  const classes = useStyles();
   return (
     <Router>
+      <ThemeProvider theme={theme}>
+      <div className={classes.root}>
       <div>
-        <AppBar position="sticky">
+        <AppBar 
+          className={classes.appBar}
+          position="sticky">
           <Tabs value={false} aria-label="simple tabs example" centered>
             <Tab label="Current" component={Link} to="/"/>
             <Tab label="Past"    component={Link} to="/past"/>
@@ -24,7 +32,7 @@ export default function App() {
           </Tabs>
         </AppBar>
       </div>
-      <div>
+      <main className={classes.contentMain}>
         {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
         <Switch>
@@ -38,7 +46,9 @@ export default function App() {
             <Current />
           </Route>
         </Switch>
+      </main>
       </div>
+      </ThemeProvider>
     </Router>
   );
 }

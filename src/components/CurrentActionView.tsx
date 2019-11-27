@@ -7,6 +7,7 @@ import { SurveyResponse } from '../interfaces/SurveyResponse';
 import { Paper, Typography } from '@material-ui/core';
 import { ActionSurveyDisplay } from './ActionSurveyDisplay';
 import { surveyResponse } from '../stories/ActionSurveyDisplay.stories';
+import { CurrentActionDisplay } from './CurrentActionDisplay';
 
 export class CurrentActionView extends Component {
 	state: {
@@ -74,14 +75,9 @@ export class CurrentActionView extends Component {
 	render(): ReactNode {
 		console.log(`Rendering with state: ${JSON.stringify(this.state)}`);
 		return (<div>
-			<Paper>
-				{this.state.actionCard && 
-					<div>
-						<Typography variant="h1" >Current Actions: {this.state.actionCard.actions.length}</Typography>
-						<ActionSurveyDisplay actionCard={this.state.actionCard}/>
-					</div>
-				}
-			</Paper>
+			{ this.state.actionCard != undefined && 
+				<CurrentActionDisplay actionCard={this.state.actionCard} />
+			}
 		</div>);
 	}
 }
