@@ -1,18 +1,29 @@
 import React from 'react';
 import { useStyles } from '../styles/style';
 import { Box, List, ListItem, Divider } from '@material-ui/core';
+import { ActionCheckDisplay } from './ActionCheckDisplay';
 import { ActionDisplay } from './ActionDisplay';
 import { Action } from '../interfaces/Action';
 import { SurveyResponse } from '../interfaces/SurveyResponse';
 
-export type ActionListDisplayProps = {
+export type ActionListDisplayPropsCheck = {
   actions: Action[],
   doneActions: number[],
   onActionDoneChange: (id: number, done: boolean) => void,
-  surveyResponses: SurveyResponse[]
+  surveyResponses: SurveyResponse[],
 }
-export function ActionListDisplay(props: ActionListDisplayProps) {
+
+export type ActionListDisplayPropsNoCheck = {
+  actions: Action[],
+  surveyResponses:  SurveyResponse[]
+}
+
+export function ActionListDisplay(props: ActionListDisplayPropsCheck | ActionListDisplayPropsNoCheck) {
   const classes = useStyles();
+
+  function hasCheckBox(props: ActionListDisplayPropsCheck | ActionListDisplayPropsNoCheck): props is ActionListDisplayPropsCheck {
+    return (props as ActionListDisplayPropsCheck).doneActions !== undefined;
+  };
 
   return (
     <List className={classes.chipBox}>
@@ -22,15 +33,23 @@ export function ActionListDisplay(props: ActionListDisplayProps) {
           count = count + response.doneActions.filter(id => id === action.id).length
         })
         return (
-		  <Box>
-			<ActionDisplay
-        action={action}
-        done={props.doneActions.includes(action.id)}
-        onActionDoneChange={props.onActionDoneChange}
-        count={count}
-			/>
-			<Divider/>
-		  </Box>
+              <Box>
+                {hasCheckBox(props) && 
+                  <ActionCheckDisplay
+                    action={action}
+                    done={props.doneActions.includes(action.id)}
+                    onActionDoneChange={props.onActionDoneChange}
+                    count={count}
+                  />
+                }
+                {!hasCheckBox(props) && 
+                  <ActionDisplay
+                    action={action}
+                    count={count}
+                  />
+                }
+                <Divider/>
+              </Box>
         );
       })}
     </List>

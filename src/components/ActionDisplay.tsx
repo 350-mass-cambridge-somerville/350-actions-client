@@ -15,16 +15,11 @@ import { useStyles, theme } from '../styles/style';
 
 
 export function ActionDisplay(props: {action: Action, 
-	onActionDoneChange: (id: number, done: boolean) => void,
-	done: boolean,
 	count: number
 }) 
 {
 	const classes = useStyles(theme);
 	console.log(`rendering action ${JSON.stringify(props.action)}`);
-	function onCheck(event: any) {
-		props.onActionDoneChange(props.action.id, event.target.checked)
-	};
 
 	return (
 	<Box>
@@ -47,14 +42,7 @@ export function ActionDisplay(props: {action: Action,
 			<Grid item>
 				<Grid container justify='space-between'>
 					<Grid item>
-						<Grid container>
-							<Grid item>
-								<Checkbox checked={props.done} onChange={onCheck}/>
-							</Grid>
-							<Grid item>
-								<Typography dangerouslySetInnerHTML={{__html: props.action.description}}></Typography>
-							</Grid>
-						</Grid>
+						<Typography dangerouslySetInnerHTML={{__html: props.action.description}}/>
 					</Grid>
 					<Grid item>
 						<ActionCountDisplay count={props.count}/>

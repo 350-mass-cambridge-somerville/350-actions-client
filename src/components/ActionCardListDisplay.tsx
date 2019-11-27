@@ -26,9 +26,7 @@ export function ActionCardListDisplay(props: ActionCardListDisplayProps) {
                   >
                     <Typography>Action Card #{actionCard.number}</Typography>
                   </ExpansionPanelSummary>
-                  <ExpansionPanelDetails>
-                      Hi
-                  </ExpansionPanelDetails>
+                  <ActionListDisplay actions={actionCard.actions} surveyResponses={actionCard.surveyResponses}/>
                 </ExpansionPanel>);
     })}
     </div>
