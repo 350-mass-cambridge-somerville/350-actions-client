@@ -1,5 +1,5 @@
 import React, { Component, ChangeEvent, ReactNode} from "react";
-import { Select, MenuItem, FormControl } from "@material-ui/core";
+import { Select, MenuItem, FormControl, FormHelperText } from "@material-ui/core";
 import { GeographyType } from '../interfaces/GeographyType';
 import { useStyles } from '../styles/style';
 
@@ -15,6 +15,7 @@ export function ActionGeographyForm(props: {selected: GeographyType,
 					return <MenuItem value={value}>{value}</MenuItem>;
 				})}
 			</Select>
+			<FormHelperText>Action geography</FormHelperText>
 		</FormControl>
 	);
 }

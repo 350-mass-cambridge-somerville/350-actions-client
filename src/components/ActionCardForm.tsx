@@ -1,12 +1,5 @@
 import React, { Component, ReactNode } from 'react';
-import { Grid, Select, MenuItem } from '@material-ui/core';
-import { useStyles, theme } from '../styles/style';
-import { 
-	KeyboardDatePicker,
-	MuiPickersUtilsProvider
-} from '@material-ui/pickers';
-import 'date-fns';
-import DateFnsUtils from '@date-io/date-fns';
+import { ActionCardFormDisplay } from './ActionCardFormDisplay';
 
 type ActionCardFormState = {
 	submitted: boolean,
@@ -17,6 +10,8 @@ type ActionCardFormProps = {
 	ids: number[],
 	selectedId: number,
 	date: Date,
+	number: number,
+	onNumberChange: (number: number) => void,
 	onDateChange: (date: any) => void,
 	onIdChange: (id: number) => void
 }
@@ -32,40 +27,18 @@ export class ActionCardForm extends Component<ActionCardFormProps, ActionCardFor
 		super(props);
 		//this.classes = useStyles(theme);
 		this.onIdChange = this.onIdChange.bind(this);
+		this.onNumberChange = this.onNumberChange.bind(this);
 	}
 
-	onIdChange(event: any, child: ReactNode): void {
+	onIdChange(event: any): void {
 		this.props.onIdChange(event.target.value);
 	}
 
+	onNumberChange(event: any): void {
+		this.props.onNumberChange(event.target.value);
+	}
+
 	render() {
-		return (<Grid container>
-			<Grid item>
-				<Select 
-					onChange={this.onIdChange} 
-					value={this.props.selectedId}>
-						{this.props.ids.map((id: number) => {
-							return <MenuItem value={id}>{id}</MenuItem>
-						})}
-						<MenuItem value={-1}>new card</MenuItem>
-				</Select>
-			</Grid>
-			{this.props.selectedId === -1 &&
-				<Grid item>
-					<MuiPickersUtilsProvider utils={DateFnsUtils}>
-						<KeyboardDatePicker
-							disableToolbar
-							variant="inline"
-							format="MM/dd/yyyy"
-							margin="normal"
-							id="date-picker-inline"
-							label="card date"
-							value={this.props.date} 
-							onChange={this.props.onDateChange}
-						/>
-					</MuiPickersUtilsProvider>
-				</Grid>
-			}
-		</Grid>);
+		return <ActionCardFormDisplay {...this.props} onNumberChange={this.onNumberChange} onIdChange={this.onIdChange}/>
 	}
 }

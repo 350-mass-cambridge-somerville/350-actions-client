@@ -8,6 +8,7 @@ import { Paper, Typography } from '@material-ui/core';
 import { ActionSurveyDisplay } from './ActionSurveyDisplay';
 import { surveyResponse } from '../stories/ActionSurveyDisplay.stories';
 import { ActionForm } from './ActionForm';
+import { MainContentHeader } from './MainContentHeader';
 
 export class CreateActionView extends Component {
 	state: {
@@ -47,6 +48,7 @@ export class CreateActionView extends Component {
 		//console.log(`Rendering with state: ${JSON.stringify(this.state)}`);
 		return (<div>
 			<Paper>
+				<MainContentHeader mainTitle="Create an action"/>
 				<ActionForm
 					ids={this.state.ids}
 				/>

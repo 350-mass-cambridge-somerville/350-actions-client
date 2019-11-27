@@ -4,6 +4,7 @@ import { ActionCard } from '../interfaces/ActionCard';
 import { Paper, Typography } from '@material-ui/core';
 import { useStyles, theme } from '../styles/style';
 
+import { MainContentHeader } from './MainContentHeader';
 import { ActionCardListDisplay } from './ActionCardListDisplay';
 
 type PastActionDisplayProps = {
@@ -13,9 +14,7 @@ export function PastActionDisplay(props: PastActionDisplayProps) {
 	const classes = useStyles(theme);
 	return (<div>
 		<Paper className={classes.contentMain}>
-			<Typography>
-              Sustained, Coordinated, Relentless, Collective Climate Action
-            </Typography>
+			<MainContentHeader mainTitle={"Past Actions"} />
 			<ActionCardListDisplay actionCards={props.actionCards}/>
 		</Paper>
 	</div>);

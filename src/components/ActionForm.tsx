@@ -19,7 +19,8 @@ type ActionFormState = {
 	description: string,
 	tags: string[],
 	actionCardDate: Date,
-	actionCardId: number
+	actionCardId: number,
+	actionCardNumber: number
 };
 
 type ActionFormProps = {
@@ -35,7 +36,8 @@ export class ActionForm extends Component<ActionFormProps, ActionFormState> {
 		description: '',
 		tags: [],
 		actionCardDate: new Date(),
-		actionCardId: 0
+		actionCardId: 1,
+		actionCardNumber: 0
 	};
 
 	constructor(props: ActionFormProps) {
@@ -51,6 +53,7 @@ export class ActionForm extends Component<ActionFormProps, ActionFormState> {
 		this.onSubmit = this.onSubmit.bind(this);
 		this.onActionCardDateChange = this.onActionCardDateChange.bind(this);
 		this.onActionCardIdChange = this.onActionCardIdChange.bind(this);
+		this.onActionCardNumberChange = this.onActionCardNumberChange.bind(this);
 	}
 
 	onGeographyTypeChange(event: ChangeEvent<{ name?: string | undefined; value: unknown; }>, child: ReactNode) {
@@ -87,6 +90,10 @@ export class ActionForm extends Component<ActionFormProps, ActionFormState> {
 
 	onActionCardIdChange(id: number): void {
 		this.setState({actionCardId: id})
+	}
+
+	onActionCardNumberChange(num: number): void {
+		this.setState({actionCardNumber: num})
 	}
 
 	onSubmit(): void {
@@ -154,8 +161,10 @@ export class ActionForm extends Component<ActionFormProps, ActionFormState> {
 						onIdChange={this.onActionCardIdChange}
 						ids={this.props.ids}
 						date={this.state.actionCardDate}
+						number={this.state.actionCardNumber}
 						selectedId={this.state.actionCardId}
 						onDateChange={this.onActionCardDateChange}
+						onNumberChange={this.onActionCardNumberChange}
 					/>
 					<ActionGeographyForm 
 						onChange={this.onGeographyTypeChange} 

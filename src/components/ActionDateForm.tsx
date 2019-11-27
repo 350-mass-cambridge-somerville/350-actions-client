@@ -5,7 +5,7 @@ import {
 	Typography,
 	FormControl,
 	Grid,
-	Box
+	FormHelperText
  } from "@material-ui/core";
 
  import { 
@@ -107,6 +107,7 @@ export function ActionDateForm(props: DateFormProps)
 							return <MenuItem value={value}>{DateTypeDisplay[value as DateType]}</MenuItem>;
 						})}
 					</Select>
+					<FormHelperText>Action Date(s)</FormHelperText>
 				</FormControl>
 			</Grid>
 			<MuiPickersUtilsProvider utils={DateFnsUtils}>
