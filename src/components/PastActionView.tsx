@@ -1,18 +1,11 @@
 import React, { Component, ReactNode } from 'react';
 import { ActionCard, actionCardFromJson } from '../interfaces/ActionCard';
-import { SurveyResponse } from '../interfaces/SurveyResponse';
-import { CurrentActionDisplay } from './CurrentActionDisplay';
-
-export class CurrentActionView extends Component {
+import { PastActionDisplay } from './PastActionDisplay';
+export class PastActionView extends Component {
 	state: {
-		actionCard?: ActionCard,
-		nextSurveyResponse: SurveyResponse
+		actionCards: ActionCard[],
 	} = {
-		nextSurveyResponse: {
-			responderName: '',
-			actionCardId: 0,
-			doneActions: []
-		}
+		actionCards: []
 	};
 
 	componentDidMount() {
@@ -26,12 +19,15 @@ export class CurrentActionView extends Component {
 			console.log(`surveyresponses are: ${JSON.stringify(surveyResponses)}`);
 			
 			if(actionCards.length > 0) {
-				let actionCardJson = actionCards[0];
-				actionCardJson.actions = actions.filter(action => action.actionCardId === actionCardJson.id);
-				actionCardJson.surveyResponses = surveyResponses.filter(surveyResponse => surveyResponse.actionCardId === actionCardJson.id);
-				let actionCard = actionCardFromJson(actionCardJson);
-				console.log(`action card is: ${actionCard}`);
-				this.setState({actionCard: actionCard});
+				let allActionCards: ActionCard[] = [];
+				actionCards.map((actionCardJson) => {
+					actionCardJson.actions = actions.filter(action => action.actionCardId === actionCardJson.id);
+					actionCardJson.surveyResponses = surveyResponses.filter(surveyResponse => surveyResponse.actionCardId === actionCardJson.id);
+					let actionCard = actionCardFromJson(actionCardJson);
+					console.log(`action card is: ${actionCard}`);
+					allActionCards.push(actionCard);
+				});
+				this.setState({actionCards: allActionCards});
 			}
 		})
 		.catch((err) => {
@@ -68,7 +64,6 @@ export class CurrentActionView extends Component {
 
 	render(): ReactNode {
 		//console.log(`Rendering with state: ${JSON.stringify(this.state)}`);
-		return (
-				<CurrentActionDisplay actionCard={this.state.actionCard} />);
+		return (<PastActionDisplay actionCards={this.state.actionCards}/>);
 	}
 }

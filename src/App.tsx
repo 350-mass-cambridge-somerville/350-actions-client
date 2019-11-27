@@ -6,9 +6,10 @@ import {
   Link
 } from "react-router-dom";
 
-import {AppBar, Tabs, Tab} from '@material-ui/core';
+import {AppBar, Tabs, Tab, Typography} from '@material-ui/core';
 import {CurrentActionView} from './components/CurrentActionView';
 import {CreateActionView} from './components/CreateActionView';
+import {PastActionView} from './components/PastActionView';
 import 'typeface-roboto';
 //import { classes } from "istanbul-lib-coverage";
 import { useStyles, theme } from './styles/style'
@@ -54,7 +55,9 @@ export default function App() {
 }
 
 function Current() {
-  return <CurrentActionView/>;
+  return (<React.Fragment>
+            <CurrentActionView/>
+  </React.Fragment>);
 }
 
 function Create() {
@@ -62,5 +65,5 @@ function Create() {
 }
 
 function Past() {
-  return (<div></div>);
+  return (<PastActionView/>);
 }

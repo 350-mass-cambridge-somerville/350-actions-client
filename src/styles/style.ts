@@ -22,16 +22,19 @@ export const useStyles = makeStyles((theme: Theme) =>
     {
       root:
       {
+        backgroundColor: theme.palette.primary.dark,
+        margin: 0,
+        minHeight: '100vh'
       },
       formControl: {
 	      margin: theme.spacing(1),
 	      minWidth: 120,
       },
       selectPrimary: {
-        color: theme.palette.primary.main,
+        color: 'primary',
       },
       selectSecondary: {
-        color: theme.palette.secondary.main
+        color: 'secondary'
       },
       gridItem: {
         //outline: '1px solid red',
@@ -82,6 +85,9 @@ export const useStyles = makeStyles((theme: Theme) =>
       },
       appBar: {
         color: 'primary'
+      },
+      actionExpansionPanels: {
+
       }
 }), {defaultTheme: theme}
 );

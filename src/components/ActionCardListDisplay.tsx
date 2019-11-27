@@ -1,32 +1,36 @@
 import React from 'react';
 import { useStyles } from '../styles/style';
-import { ExpansionPanel, ExpansionPanelDetails, ExpansionPanelSummary } from '@material-ui/core';
+import { ExpansionPanel, 
+  ExpansionPanelDetails, 
+  ExpansionPanelSummary,
+  Typography
+ } from '@material-ui/core';
 import { ActionListDisplay } from './ActionListDisplay'
 import { ActionCard } from '../interfaces/ActionCard'
-import { ActionList } from 'material-ui/svg-icons';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
-export type ActionCardListDisplayProps = {
+type ActionCardListDisplayProps = {
 	actionCards: ActionCard[]
-}
-export default function ActionTagsDisplay(props: ActionCardListDisplayProps) {
+};
+
+export function ActionCardListDisplay(props: ActionCardListDisplayProps) {
   const classes = useStyles();
 
-  return <div></div>;
-  /** 
-  (
-    <div className={classes.actionExpansionPanels}>
+  return (<div className={classes.actionExpansionPanels}>
       {props.actionCards.map(actionCard => {
-        return (
-          <ExpansionPanelSummary>
-			      <Typography>Action Card {actionCard.id}</Typography>
-		      </ExpansionPanelSummary>
-		      <ExpansionPanelDetails>
-            <ActionListDisplay
-              actions={actionCard.actions}
-            />
-		      </ExpansionPanelDetails>
-        );
-      })}
+        return (<ExpansionPanel>
+                  <ExpansionPanelSummary
+                    expandIcon={<ExpandMoreIcon />}
+                    aria-controls="panel1a-content"
+                    id="panel1a-header"
+                  >
+                    <Typography>Action Card #{actionCard.number}</Typography>
+                  </ExpansionPanelSummary>
+                  <ExpansionPanelDetails>
+                      Hi
+                  </ExpansionPanelDetails>
+                </ExpansionPanel>);
+    })}
     </div>
-  );*/
+  );
 }

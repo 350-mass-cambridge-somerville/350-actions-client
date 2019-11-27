@@ -44,7 +44,7 @@ export class CreateActionView extends Component {
 	}
 
 	render(): ReactNode {
-		console.log(`Rendering with state: ${JSON.stringify(this.state)}`);
+		//console.log(`Rendering with state: ${JSON.stringify(this.state)}`);
 		return (<div>
 			<Paper>
 				<ActionForm
