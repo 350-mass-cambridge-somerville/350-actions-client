@@ -1,5 +1,6 @@
 import React, { Component, ReactNode } from 'react';
 import { ActionCardFormDisplay } from './ActionCardFormDisplay';
+import { ActionCard } from '../interfaces/ActionCard';
 
 type ActionCardFormState = {
 	submitted: boolean,
@@ -7,7 +8,7 @@ type ActionCardFormState = {
 }
 
 type ActionCardFormProps = {
-	ids: number[],
+	cards: ActionCard[],
 	selectedId: number,
 	date: Date,
 	number: number,
@@ -35,7 +36,11 @@ export class ActionCardForm extends Component<ActionCardFormProps, ActionCardFor
 	}
 
 	onNumberChange(event: any): void {
-		this.props.onNumberChange(event.target.value);
+		this.props.onNumberChange(+event.target.value);
+	}
+
+	onDateChange(event: any ): void {
+		this.props.onDateChange(event.target.value);
 	}
 
 	render() {

@@ -1,34 +1,29 @@
 import React, { Component, ReactNode } from 'react';
-import { ActionDisplay } from './ActionDisplay';
-import { Action } from '../interfaces/Action';
 import { ActionCard, actionCardFromJson } from '../interfaces/ActionCard';
-import { SurveyResponse } from '../interfaces/SurveyResponse';
-
 import { Paper, Typography } from '@material-ui/core';
-import { ActionSurveyDisplay } from './ActionSurveyDisplay';
-import { surveyResponse } from '../stories/ActionSurveyDisplay.stories';
 import { ActionForm } from './ActionForm';
 import { MainContentHeader } from './MainContentHeader';
 
 export class CreateActionView extends Component {
 	state: {
-		ids: number[]
+		cards: ActionCard[]
 	} = {
-		ids: []
+		cards: []
 	};
 
 	componentDidMount() {
 		Promise.all([this.fetchActionCards()])
 		.then((vals) => {
+			console.log(`got value`, vals)
 			const actionCards = vals[0];
 			
 			console.log(`action cards are: ${JSON.stringify(actionCards)}`);
-			let ids: number[] = [];
-			actionCards.map((card: any) => {
-				ids.push(card.id);
+			let cards: ActionCard[] = [];
+			actionCards.map((json: any) => {
+				cards.push(actionCardFromJson(json));
 			})
 
-			this.setState({ids: ids})
+			this.setState({cards: cards})
 		})
 		.catch((err) => {
 			console.log(`Error fetching actions: ${err}`, err);
@@ -50,7 +45,7 @@ export class CreateActionView extends Component {
 			<Paper>
 				<MainContentHeader mainTitle="Create an action"/>
 				<ActionForm
-					ids={this.state.ids}
+					cards={this.state.cards}
 				/>
 			</Paper>
 		</div>);

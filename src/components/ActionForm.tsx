@@ -7,6 +7,7 @@ import { ActionDescriptionForm } from './ActionDescriptionForm';
 import { ActionTagsForm } from './ActionTagsForm';
 import { ActionCardForm } from './ActionCardForm';
 import { DateType } from '../interfaces/DateType';
+import { ActionCard } from '../interfaces/ActionCard';
 
 const ACTION_CARD_URL='http://localhost:3000/action-cards';
 
@@ -24,7 +25,7 @@ type ActionFormState = {
 };
 
 type ActionFormProps = {
-	ids: number[]
+	cards: ActionCard[]
 }
 export class ActionForm extends Component<ActionFormProps, ActionFormState> {
 	state: ActionFormState = {
@@ -41,7 +42,7 @@ export class ActionForm extends Component<ActionFormProps, ActionFormState> {
 	};
 
 	constructor(props: ActionFormProps) {
-		super({ids: props.ids});
+		super({cards: []});
 
 		this.onGeographyTypeChange = this.onGeographyTypeChange.bind(this);
 		this.onDateTypeChange = this.onDateTypeChange.bind(this);
@@ -111,6 +112,7 @@ export class ActionForm extends Component<ActionFormProps, ActionFormState> {
 				  },
 				  body: JSON.stringify({
 					  date: this.state.actionCardDate, 
+					  number: this.state.actionCardNumber
 				  }) // body data type must match "Content-Type" header
 			}).then((response: Response) => {
 				return response.json();
@@ -159,7 +161,7 @@ export class ActionForm extends Component<ActionFormProps, ActionFormState> {
 				<form>
 					<ActionCardForm 
 						onIdChange={this.onActionCardIdChange}
-						ids={this.props.ids}
+						cards={this.props.cards}
 						date={this.state.actionCardDate}
 						number={this.state.actionCardNumber}
 						selectedId={this.state.actionCardId}

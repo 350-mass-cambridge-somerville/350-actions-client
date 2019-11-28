@@ -13,7 +13,7 @@ export function actionCardFromJson(json: any) {
 		id: json.id,
 		date: new Date(json.date),
 		number: json.number,
-		actions: json.actions.map((actionJson: any) => {return actionFromJson(actionJson)}),
-		surveyResponses: json.surveyResponses.map((surveyJson: any) => {return surveyResponseFromJson(surveyJson)})
+		actions: json.actions ? json.actions.map((actionJson: any) => {return actionFromJson(actionJson)}): [],
+		surveyResponses: json.surveyResponses ? json.surveyResponses.map((surveyJson: any) => {return surveyResponseFromJson(surveyJson)}) : []
 	}
 }

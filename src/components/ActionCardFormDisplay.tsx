@@ -13,13 +13,14 @@ import {
 } from '@material-ui/pickers';
 import 'date-fns';
 import DateFnsUtils from '@date-io/date-fns';
+import { ActionCard } from '../interfaces/ActionCard';
 
 type ActionCardFormDisplayProps = {
-	ids: number[],
+	cards: ActionCard[],
 	selectedId: number,
 	date: Date,
 	number: number,
-	onNumberChange: (event: any) => void,
+	onNumberChange: (number: any) => void,
 	onDateChange: (date: any) => void,
 	onIdChange: (event: any) => void
 }
@@ -35,8 +36,8 @@ export function ActionCardFormDisplay(props: ActionCardFormDisplayProps) {
 					onChange={props.onIdChange} 
 					value={props.selectedId}
 					>
-						{props.ids.map((id: number) => {
-							return <MenuItem value={id}>{id}</MenuItem>
+						{props.cards.map((card: ActionCard) => {
+							return <MenuItem value={card.id}>{card.number}</MenuItem>
 						})}
 						<MenuItem value={-1}>new card</MenuItem>
 				</Select>
