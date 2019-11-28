@@ -179,13 +179,13 @@ export class ActionForm extends Component<ActionFormProps, ActionFormState> {
 						onDateEndChange={this.onDateEndChange}
 						dateEnd={this.state.dateEnd}
 					 />
+					<ActionTagsForm
+						 onTagsChange={this.onTagsChange}
+						 tags={this.state.tags}
+					 />
 					 <ActionDescriptionForm
 						 onDescriptionChange={this.onDescriptionChange}
 						 description={this.state.description}
-					 />
-					 <ActionTagsForm
-						 onTagsChange={this.onTagsChange}
-						 tags={this.state.tags}
 					 />
 				</form>
 				<Button variant="contained" color="secondary" onClick={this.onSubmit}>

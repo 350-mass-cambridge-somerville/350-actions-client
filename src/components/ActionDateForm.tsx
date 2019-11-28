@@ -44,47 +44,50 @@ export function ActionDateForm(props: DateFormProps)
 			case DateType.BEFORE:
 				return (
 					<Grid item xs={3} className={classes.gridItem}>
-						<KeyboardDatePicker 
-							disableToolbar
-							variant="inline"
-							format="MM/dd/yyyy"
-							margin="normal"
-							id="date-picker-inline"
-							label="date"
-							value={props.date ? props.date : new Date()} 
-							onChange={props.onDateChange}
-						/>
+						<FormControl>
+							<KeyboardDatePicker 
+								disableToolbar
+								variant="inline"
+								format="MM/dd/yyyy"
+								margin="normal"
+								id="date-picker-inline"
+								value={props.date ? props.date : new Date()} 
+								onChange={props.onDateChange}
+							/>
+						</FormControl>
+						<FormHelperText>date</FormHelperText>
 					</Grid>)
 			case DateType.RANGE:
 					return (
 						<Grid item className={classes.gridItem}>
-							<Grid container justify='space-between' alignItems='flex-end'>
+							<Grid container alignItems='flex-start'>
 								<Grid className={classes.gridItem}>
-									<KeyboardDatePicker 
-										disableToolbar
-										variant="inline"
-										format="MM/dd/yyyy"
-										margin="normal"
-										id="date-picker-inline"
-										label="start date"
-										value={props.dateStart ? props.dateStart : new Date()} 
-										onChange={props.onDateStartChange}
-									/>
+									<FormControl>
+										<KeyboardDatePicker 
+											disableToolbar
+											variant="inline"
+											format="MM/dd/yyyy"
+											margin="normal"
+											id="date-picker-inline"
+											value={props.dateStart ? props.dateStart : new Date()} 
+											onChange={props.onDateStartChange}
+										/>
+										<FormHelperText>start date</FormHelperText>
+									</FormControl>
 								</Grid>
 								<Grid item className={classes.gridItem}>
-									<Typography>&</Typography>
-								</Grid>
-								<Grid item className={classes.gridItem}>
-									<KeyboardDatePicker
-										disableToolbar
-										variant="inline"
-										format="MM/dd/yyyy"
-										margin="normal"
-										id="date-picker-inline"
-										label="end date" 
-										value={props.dateEnd ? props.dateEnd : new Date()} 
-										onChange={props.onDateEndChange}
-									/>
+									<FormControl>
+										<KeyboardDatePicker
+											disableToolbar
+											variant="inline"
+											format="MM/dd/yyyy"
+											margin="normal"
+											id="date-picker-inline"
+											value={props.dateEnd ? props.dateEnd : new Date()} 
+											onChange={props.onDateEndChange}
+										/>
+										<FormHelperText>end date</FormHelperText>
+									</FormControl>
 								</Grid>
 							</Grid>
 						</Grid>

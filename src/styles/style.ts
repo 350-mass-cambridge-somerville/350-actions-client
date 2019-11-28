@@ -32,12 +32,18 @@ export const useStyles = makeStyles((theme: Theme) =>
       },
       selectPrimary: {
         color: 'primary',
+        marginLeft: theme.spacing(1),
+        marginRight: theme.spacing(1),
       },
       selectSecondary: {
-        color: 'secondary'
+        color: 'secondary',
+        marginLeft: theme.spacing(1),
+        marginRight: theme.spacing(1),
       },
       gridItem: {
         //outline: '1px solid red',
+        marginLeft: theme.spacing(1),
+        marginRight: theme.spacing(1)
       },
       geography: {
         color: theme.palette.primary.main,

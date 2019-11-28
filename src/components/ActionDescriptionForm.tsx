@@ -14,7 +14,7 @@ export function ActionDescriptionForm(props: ActionDescriptionFormProps) {
 
 	return (
 		<Editor
-		initialValue={props.description}
+		initialValue={props.description ? props.description : 'Enter action description.'}
 		init={{
 			height: 500,
 			menubar: false,
