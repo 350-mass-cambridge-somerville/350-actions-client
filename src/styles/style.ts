@@ -87,13 +87,37 @@ export const useStyles = makeStyles((theme: Theme) =>
         },
       },
       contentTitle: {
-        color: 'primary'
+        color: 'primary',
+        textAlign: 'center'
+      },
+      contentTitleItalic: {
+        color: theme.palette.secondary.dark,
+        fontStyle: 'italic',
+        textAlign: 'center',
+        fontSize: '2rem',
+        fontWeight: 8
+      },
+      contentMainTitle: {
+        color: theme.palette.primary.dark,
+        textAlign: 'center',
+        display: 'block'
+      },
+      contentTitleDate: {
+        color: theme.palette.secondary.dark,
+        textAlign: 'center'
       },
       appBar: {
         color: 'primary'
       },
       actionExpansionPanels: {
 
+      },
+      snackbarSuccess: {
+        backgroundColor: theme.palette.secondary.light,
+        color: 'black'
+      },
+      snackbarError: {
+        backgroundColor: 'red'
       }
 }), {defaultTheme: theme}
 );

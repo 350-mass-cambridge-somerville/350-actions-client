@@ -17,6 +17,8 @@ export function actionFromJson(json: any) : Action {
 		description: json.description,
 		tags: json.tags,
 		date: new Date(json.date),
+		dateStart: json.dateStart? new Date(json.dateStart) : undefined,
+		dateEnd: json.dateEnd ? new Date(json.dateEnd) : undefined,
 		dateType: json.dateType,
 		geographyType: json.geographyType,
 	}

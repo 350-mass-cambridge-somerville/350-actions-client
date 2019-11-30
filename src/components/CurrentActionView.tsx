@@ -2,6 +2,7 @@ import React, { Component, ReactNode } from 'react';
 import { ActionCard, actionCardFromJson } from '../interfaces/ActionCard';
 import { SurveyResponse } from '../interfaces/SurveyResponse';
 import { CurrentActionDisplay } from './CurrentActionDisplay';
+import { ACTION_URL, ACTION_CARD_URL, SURVEY_RESPONSE_URL } from '../urls';
 
 export class CurrentActionView extends Component {
 	state: {
@@ -40,7 +41,7 @@ export class CurrentActionView extends Component {
 	}
 
 	fetchActions(): Promise<Array<any>> {
-		return fetch('http://localhost:3000/actions', {method: 'GET'})
+		return fetch(ACTION_URL, {method: 'GET'})
       		.then((data: Response) => {
 				  const dj = data.json();
 				  console.log(`got data! ${JSON.stringify(dj)}`, dj);
@@ -49,7 +50,7 @@ export class CurrentActionView extends Component {
 	}
 
 	fetchActionCards(): Promise<Array<any>> {
-		return fetch('http://localhost:3000/action-cards', {method: 'GET'})
+		return fetch(ACTION_CARD_URL, {method: 'GET'})
 		.then((data: Response) => {
 			const dj = data.json();
 			console.log(`got data! ${JSON.stringify(dj)}`, dj);
@@ -58,7 +59,7 @@ export class CurrentActionView extends Component {
 	}
 
 	fetchSurveyResponses(): Promise<Array<any>> {
-		return fetch('http://localhost:3000/survey-responses', {method: 'GET'})
+		return fetch(SURVEY_RESPONSE_URL, {method: 'GET'})
 		.then((data: Response) => {
 			const dj = data.json();
 			console.log(`got data! ${JSON.stringify(dj)}`, dj);

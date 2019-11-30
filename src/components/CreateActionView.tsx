@@ -3,6 +3,7 @@ import { ActionCard, actionCardFromJson } from '../interfaces/ActionCard';
 import { Paper, Typography } from '@material-ui/core';
 import { ActionForm } from './ActionForm';
 import { MainContentHeader } from './MainContentHeader';
+import { ACTION_CARD_URL } from '../urls';
 
 export class CreateActionView extends Component {
 	state: {
@@ -31,7 +32,7 @@ export class CreateActionView extends Component {
 	}
 
 	fetchActionCards(): Promise<Array<any>> {
-		return fetch('http://localhost:3000/action-cards', {method: 'GET'})
+		return fetch(ACTION_CARD_URL, {method: 'GET'})
 		.then((data: Response) => {
 			const dj = data.json();
 			console.log(`got data! ${JSON.stringify(dj)}`, dj);

@@ -40,7 +40,7 @@ export function ActionDisplay(props: {action: Action,
 				</Grid>
 			</Grid>
 			<Grid item>
-				<Grid container justify='space-between'>
+				<Grid container justify='space-between' wrap='nowrap'>
 					<Grid item>
 						<Typography dangerouslySetInnerHTML={{__html: props.action.description}}/>
 					</Grid>

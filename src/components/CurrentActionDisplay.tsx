@@ -5,6 +5,7 @@ import { Paper, Typography } from '@material-ui/core';
 import { useStyles, theme } from '../styles/style';
 
 import { ActionSurveyDisplay } from './ActionSurveyDisplay';
+import { MainContentHeader } from './MainContentHeader';
 
 type CurrentActionDisplayProps = {
 	actionCard?: ActionCard
@@ -13,13 +14,9 @@ export function CurrentActionDisplay(props: CurrentActionDisplayProps) {
 	const classes = useStyles(theme);
 	return (<div>
 		<Paper className={classes.contentMain}>
-			<Typography>
-              Sustained, Coordinated, Relentless, Collective Climate Action
-            </Typography>
 			{props.actionCard && 
 				<div>
-					<Typography className={classes.contentTitle} variant="h1" >Action Card #{props.actionCard.number}</Typography>
-					<Typography>{props.actionCard.date.toDateString()}</Typography>
+					<MainContentHeader mainTitle={`Action Card ${props.actionCard.number}`} date={props.actionCard.date}/>
 					<ActionSurveyDisplay actionCard={props.actionCard}/>
 				</div>
 			}

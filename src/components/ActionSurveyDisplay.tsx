@@ -6,7 +6,7 @@ import { Action } from '../interfaces/Action';
 import { ActionCard } from '../interfaces/ActionCard';
 import { SurveyResponse } from '../interfaces/SurveyResponse';
 import { surveyResponse } from '../stories/ActionSurveyDisplay.stories';
-
+import { SURVEY_RESPONSE_URL } from '../urls';
 type ActionSurveyDisplayState = {
 	responderName: string,
 	doneActions: number[],
@@ -15,8 +15,6 @@ type ActionSurveyDisplayState = {
 type ActionSurveyDisplayProps = {
 	actionCard: ActionCard
 }
-
-const SURVEY_RESPONSE_URL='http://localhost:3000/survey-responses';
 export class ActionSurveyDisplay extends Component<ActionSurveyDisplayProps, ActionSurveyDisplayState> {
 	state: ActionSurveyDisplayState = {
 		responderName: '',

@@ -8,8 +8,9 @@ import { ActionTagsForm } from './ActionTagsForm';
 import { ActionCardForm } from './ActionCardForm';
 import { DateType } from '../interfaces/DateType';
 import { ActionCard } from '../interfaces/ActionCard';
+import SimpleSnackbar from './SimpleSnackbar';
 
-const ACTION_CARD_URL='http://localhost:3000/action-cards';
+import {ACTION_CARD_URL, ACTION_URL} from '../urls';
 
 type ActionFormState = {
 	geographyType: GeographyType, 
@@ -21,7 +22,10 @@ type ActionFormState = {
 	tags: string[],
 	actionCardDate: Date,
 	actionCardId: number,
-	actionCardNumber: number
+	actionCardNumber: number,
+	showSnackbar: boolean,
+	snackbarMessage: string,
+	snackbarIsError: boolean
 };
 
 type ActionFormProps = {
@@ -38,7 +42,10 @@ export class ActionForm extends Component<ActionFormProps, ActionFormState> {
 		tags: [],
 		actionCardDate: new Date(),
 		actionCardId: 1,
-		actionCardNumber: 0
+		actionCardNumber: 0,
+		showSnackbar: false,
+		snackbarMessage: '',
+		snackbarIsError: false
 	};
 
 	constructor(props: ActionFormProps) {
@@ -55,6 +62,7 @@ export class ActionForm extends Component<ActionFormProps, ActionFormState> {
 		this.onActionCardDateChange = this.onActionCardDateChange.bind(this);
 		this.onActionCardIdChange = this.onActionCardIdChange.bind(this);
 		this.onActionCardNumberChange = this.onActionCardNumberChange.bind(this);
+		this.handleSnackbarClose = this.handleSnackbarClose.bind(this);
 	}
 
 	onGeographyTypeChange(event: ChangeEvent<{ name?: string | undefined; value: unknown; }>, child: ReactNode) {
@@ -97,6 +105,10 @@ export class ActionForm extends Component<ActionFormProps, ActionFormState> {
 		this.setState({actionCardNumber: num})
 	}
 
+	handleSnackbarClose(event: any): void {
+		this.setState({showSnackbar: false});
+	}
+
 	onSubmit(): void {
 		const stateString: string = JSON.stringify(this.state);
 		console.log(`state string: ${stateString}`)
@@ -116,6 +128,7 @@ export class ActionForm extends Component<ActionFormProps, ActionFormState> {
 				  }) // body data type must match "Content-Type" header
 			}).then((response: Response) => {
 				return response.json();
+				console.log(`response ok ${response.ok} status ${response.status} text ${response.statusText}`)
 			}).then((responseJson: any) => {
 				const actionCardId = responseJson.id;
 				return this.submitAction(actionCardId);
@@ -129,7 +142,7 @@ export class ActionForm extends Component<ActionFormProps, ActionFormState> {
 	}
 
 	submitAction(actionCardId: number): Promise<any> {
-		return fetch('http://localhost:3000/actions', {
+		return fetch(ACTION_URL, {
 			method: 'POST', // *GET, POST, PUT, DELETE, etc.
 			headers: {
 			  'Content-Type': 'application/json'
@@ -147,17 +160,21 @@ export class ActionForm extends Component<ActionFormProps, ActionFormState> {
 			}) // body data type must match "Content-Type" header
 		  }).then((response) => {
 			return response.json()
+			console.log(`response ok ${response.ok} status ${response.status} text ${response.statusText}`)
 		  }).then((json) => {
 			  console.log(`got response json: ${JSON.stringify(json)}`);
+			  this.setState({showSnackbar: true, snackbarIsError: false, snackbarMessage: `Success! ${JSON.stringify(json)}`})
 		  })
 		  .catch((error) => {
 			  console.log(`submit failed with error: ${error}`);
+			  this.setState({showSnackbar: true, snackbarIsError: true, snackbarMessage: 'Something went wrong. Try again later.'})
 		  })
 	}
 
 	render() {
 		return (
 			<Paper>
+				<SimpleSnackbar message={this.state.snackbarMessage} isError={this.state.snackbarIsError} open={this.state.showSnackbar} handleClose={this.handleSnackbarClose}/>
 				<form>
 					<ActionCardForm 
 						onIdChange={this.onActionCardIdChange}
