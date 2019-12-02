@@ -22,12 +22,21 @@ export class CurrentActionView extends Component {
 			const actions = vals[0];
 			const actionCards = vals[1];
 			const surveyResponses = vals[2];
-			console.log(`actions are: ${JSON.stringify(actions)}`);
-			console.log(`actioncards are: ${JSON.stringify(actionCards)}`);
-			console.log(`surveyresponses are: ${JSON.stringify(surveyResponses)}`);
+			//console.log(`actions are: ${JSON.stringify(actions)}`);
+			//console.log(`actioncards are: ${JSON.stringify(actionCards)}`);
+			//console.log(`surveyresponses are: ${JSON.stringify(surveyResponses)}`);
 			
 			if(actionCards.length > 0) {
-				let actionCardJson = actionCards[0];
+				let maxInd: number = 0;
+				let maxDate: Date = new Date(actionCards[0].date);
+				for(let i=0; i < actionCards.length; i++) {
+					let cardDate = new Date(actionCards[i]);
+					if (cardDate > maxDate) {
+						maxInd = i;
+						maxDate = cardDate;
+					}
+				}
+				let actionCardJson = actionCards[maxInd];
 				actionCardJson.actions = actions.filter(action => action.actionCardId === actionCardJson.id);
 				actionCardJson.surveyResponses = surveyResponses.filter(surveyResponse => surveyResponse.actionCardId === actionCardJson.id);
 				let actionCard = actionCardFromJson(actionCardJson);
@@ -44,7 +53,7 @@ export class CurrentActionView extends Component {
 		return fetch(ACTION_URL, {method: 'GET'})
       		.then((data: Response) => {
 				  const dj = data.json();
-				  console.log(`got data! ${JSON.stringify(dj)}`, dj);
+				  //console.log(`got data! ${JSON.stringify(dj)}`, dj);
 				  return dj;
 				})
 	}
@@ -53,7 +62,7 @@ export class CurrentActionView extends Component {
 		return fetch(ACTION_CARD_URL, {method: 'GET'})
 		.then((data: Response) => {
 			const dj = data.json();
-			console.log(`got data! ${JSON.stringify(dj)}`, dj);
+			//console.log(`got data! ${JSON.stringify(dj)}`, dj);
 			return dj;
 		  })
 	}
@@ -62,7 +71,7 @@ export class CurrentActionView extends Component {
 		return fetch(SURVEY_RESPONSE_URL, {method: 'GET'})
 		.then((data: Response) => {
 			const dj = data.json();
-			console.log(`got data! ${JSON.stringify(dj)}`, dj);
+			//console.log(`got data! ${JSON.stringify(dj)}`, dj);
 			return dj;
 		  })
 	}

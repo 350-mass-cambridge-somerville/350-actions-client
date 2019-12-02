@@ -46,8 +46,8 @@ export const useStyles = makeStyles((theme: Theme) =>
         marginRight: theme.spacing(1)
       },
       geography: {
-        color: theme.palette.primary.main,
-        fontWeight: 2
+        color: theme.palette.primary.dark,
+        fontWeight: 700
       },
       countDisplayBox:{
         border: 2,
@@ -94,13 +94,14 @@ export const useStyles = makeStyles((theme: Theme) =>
         color: theme.palette.secondary.dark,
         fontStyle: 'italic',
         textAlign: 'center',
-        fontSize: '2rem',
-        fontWeight: 8
+        fontSize: '1.5rem',
+        fontWeight: 200
       },
       contentMainTitle: {
         color: theme.palette.primary.dark,
         textAlign: 'center',
-        display: 'block'
+        display: 'block',
+        fontSize: '4rem'
       },
       contentTitleDate: {
         color: theme.palette.secondary.dark,

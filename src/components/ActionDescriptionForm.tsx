@@ -14,6 +14,7 @@ export function ActionDescriptionForm(props: ActionDescriptionFormProps) {
 
 	return (
 		<Editor
+		apiKey='ruxm5an3zwf6qpwnuxukv52k4sbqdzrfv2548zofud2i46k6'
 		initialValue={props.description ? props.description : 'Enter action description.'}
 		init={{
 			height: 500,
