@@ -14,7 +14,7 @@ export function ActionCountDisplay(props: CountDisplayProps)
 				<Typography variant='h2' className={classes.countDisplayTypography}>{props.count}</Typography>
 			</Grid>
 			<Grid item>
-				<Typography variant='subtitle1' className={classes.countDisplayTypography}>{props.count === 1 ? 'person has acted' : 'people have acted'}</Typography>
+				<Typography variant='subtitle1' align='center' className={classes.countDisplayTypography}>{props.count === 1 ? 'person has acted' : 'people have acted'}</Typography>
 			</Grid>
 		</Grid>);
 }

@@ -16,7 +16,16 @@ export class CurrentActionView extends Component {
 		}
 	};
 
+	constructor(props: any) {
+		super(props);
+		this.onChange = this.onChange.bind(this);
+	}
+
 	componentDidMount() {
+		this.getServerState();
+	}
+
+	getServerState(): void {
 		Promise.all([this.fetchActions(), this.fetchActionCards(), this.fetchSurveyResponses()])
 		.then((vals) => {
 			const actions = vals[0];
@@ -76,9 +85,13 @@ export class CurrentActionView extends Component {
 		  })
 	}
 
+	onChange(): void {
+		this.getServerState();
+	}
+
 	render(): ReactNode {
 		//console.log(`Rendering with state: ${JSON.stringify(this.state)}`);
 		return (
-				<CurrentActionDisplay actionCard={this.state.actionCard} />);
+			<CurrentActionDisplay actionCard={this.state.actionCard}  onChange={this.onChange}/>);
 	}
 }

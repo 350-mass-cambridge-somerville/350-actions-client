@@ -46,6 +46,8 @@ export const useStyles = makeStyles((theme: Theme) =>
         marginRight: theme.spacing(1)
       },
       geography: {
+        paddingLeft: '5px',
+        paddingRight: '5px',
         color: theme.palette.primary.dark,
         fontWeight: "700!important" as any
       },

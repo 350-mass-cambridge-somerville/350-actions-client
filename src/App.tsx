@@ -16,7 +16,7 @@ import { useStyles, theme } from './styles/style'
 import { useTheme, ThemeProvider } from '@material-ui/styles';
 
 export default function App() {
-  const theTheme = useTheme();
+  //const theTheme = useTheme();
   const classes = useStyles();
   return (
     <Router>
@@ -29,7 +29,7 @@ export default function App() {
           <Tabs value={false} aria-label="simple tabs example" centered>
             <Tab label="Current" component={Link} to="/"/>
             <Tab label="Past"    component={Link} to="/past"/>
-            <Tab label="Create"   component={Link} to="/create"/>
+            <Tab label="Create"  component={Link} to="/create" disabled/>
           </Tabs>
         </AppBar>
       </div>

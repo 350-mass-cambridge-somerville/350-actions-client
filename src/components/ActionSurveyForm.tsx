@@ -31,7 +31,7 @@ export class ActionSurveyForm extends Component<ActionSurveyFormProps, ActionSur
 	render() {
 		return (
 		<form>
-			<Grid container justify='space-between'>
+			<Grid container justify='space-around' alignItems='center'>
 					<Grid item>
 					<TextField
           				id="standard-basic"

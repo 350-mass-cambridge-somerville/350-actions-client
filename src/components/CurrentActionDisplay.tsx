@@ -8,7 +8,8 @@ import { ActionSurveyDisplay } from './ActionSurveyDisplay';
 import { MainContentHeader } from './MainContentHeader';
 
 type CurrentActionDisplayProps = {
-	actionCard?: ActionCard
+	actionCard?: ActionCard,
+	onChange: () => void
 }
 export function CurrentActionDisplay(props: CurrentActionDisplayProps) {
 	const classes = useStyles(theme);
@@ -17,7 +18,7 @@ export function CurrentActionDisplay(props: CurrentActionDisplayProps) {
 			{props.actionCard && 
 				<div>
 					<MainContentHeader mainTitle={`Action Card ${props.actionCard.number}`} date={props.actionCard.date}/>
-					<ActionSurveyDisplay actionCard={props.actionCard}/>
+					<ActionSurveyDisplay actionCard={props.actionCard} onChange={props.onChange}/>
 				</div>
 			}
 		</Paper>

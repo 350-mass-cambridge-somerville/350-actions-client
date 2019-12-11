@@ -5,20 +5,28 @@ import { ActionSurveyForm } from './ActionSurveyForm';
 import { Action } from '../interfaces/Action';
 import { ActionCard } from '../interfaces/ActionCard';
 import { SurveyResponse } from '../interfaces/SurveyResponse';
-import { surveyResponse } from '../stories/ActionSurveyDisplay.stories';
+import  SimpleSnackbar  from './SimpleSnackbar';
+
 import { SURVEY_RESPONSE_URL } from '../urls';
 type ActionSurveyDisplayState = {
 	responderName: string,
 	doneActions: number[],
+	snackbarMessage: string,
+	snackbarIsError: boolean,
+	showSnackbar: boolean
 };
 
 type ActionSurveyDisplayProps = {
-	actionCard: ActionCard
+	actionCard: ActionCard,
+	onChange: () => void
 }
 export class ActionSurveyDisplay extends Component<ActionSurveyDisplayProps, ActionSurveyDisplayState> {
 	state: ActionSurveyDisplayState = {
 		responderName: '',
 		doneActions: [],
+		snackbarIsError: false,
+		showSnackbar: false,
+		snackbarMessage: ''
 	}
 
 	constructor(props: ActionSurveyDisplayProps) {
@@ -26,6 +34,7 @@ export class ActionSurveyDisplay extends Component<ActionSurveyDisplayProps, Act
 		this.onResponderNameChange = this.onResponderNameChange.bind(this);
 		this.onSubmit = this.onSubmit.bind(this);
 		this.onActionDoneChange = this.onActionDoneChange.bind(this);
+		this.handleSnackbarClose = this.handleSnackbarClose.bind(this);
 	}
 
 	onActionDoneChange(actionId: number, done: boolean) {
@@ -46,6 +55,10 @@ export class ActionSurveyDisplay extends Component<ActionSurveyDisplayProps, Act
 		this.setState({responderName: name});
 	}
 
+	handleSnackbarClose(event: any): void {
+		this.setState({showSnackbar: false});
+	}
+
 	onSubmit() {
 		fetch(SURVEY_RESPONSE_URL,{
 			method: 'POST',
@@ -62,11 +75,20 @@ export class ActionSurveyDisplay extends Component<ActionSurveyDisplayProps, Act
 				return response.json()
 			}).then((json: string) => {
 				console.log(`got survey submit response ${json}`);
+				this.setState({showSnackbar: true, snackbarIsError: false, snackbarMessage: `Thanks ${this.state.responderName}, you have been counted!`})
+				this.props.onChange();
 			})
 	}
 
 	render() {
-		return (<Grid container direction='column' alignItems='stretch'>
+		return (
+		<React.Fragment>
+			<SimpleSnackbar message={this.state.snackbarMessage} 
+			isError={this.state.snackbarIsError} 
+			open={this.state.showSnackbar} 
+			handleClose={this.handleSnackbarClose}
+			/>
+			<Grid container direction='column' alignItems='stretch'>
 					<Grid item>
 						<ActionSurveyForm responderName={this.state.responderName}
 							onResponderNameChange={this.onResponderNameChange}
@@ -81,6 +103,7 @@ export class ActionSurveyDisplay extends Component<ActionSurveyDisplayProps, Act
 						/>
 					</Grid>
 			</Grid>
+		</React.Fragment>
 		);
 	}
 }
