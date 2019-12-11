@@ -1,4 +1,4 @@
-const baseUrl: string = 'https://actions-server-260415.appspot.com';
+const baseUrl: string = 'https://server-dot-actions-server-260415.appspot.com';
 
 export const ACTION_CARD_URL=`${baseUrl}/action-cards`;
 export const ACTION_URL=`${baseUrl}/actions`;

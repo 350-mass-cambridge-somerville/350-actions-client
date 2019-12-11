@@ -47,7 +47,7 @@ export const useStyles = makeStyles((theme: Theme) =>
       },
       geography: {
         color: theme.palette.primary.dark,
-        fontWeight: 700
+        fontWeight: "700!important" as any
       },
       countDisplayBox:{
         border: 2,
@@ -94,14 +94,14 @@ export const useStyles = makeStyles((theme: Theme) =>
         color: theme.palette.secondary.dark,
         fontStyle: 'italic',
         textAlign: 'center',
-        fontSize: '1.5rem',
+        fontSize: '1.5rem!important' as any,
         fontWeight: 200
       },
       contentMainTitle: {
         color: theme.palette.primary.dark,
         textAlign: 'center',
         display: 'block',
-        fontSize: '4rem'
+        fontSize: '4rem!important' as any
       },
       contentTitleDate: {
         color: theme.palette.secondary.dark,
