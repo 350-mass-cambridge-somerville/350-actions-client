@@ -39,7 +39,7 @@ export class CurrentActionView extends Component {
 				let maxInd: number = 0;
 				let maxDate: Date = new Date(actionCards[0].date);
 				for(let i=0; i < actionCards.length; i++) {
-					let cardDate = new Date(actionCards[i]);
+					let cardDate = new Date(actionCards[i].date);
 					if (cardDate > maxDate) {
 						maxInd = i;
 						maxDate = cardDate;
