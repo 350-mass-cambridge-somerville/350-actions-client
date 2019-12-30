@@ -1,8 +1,8 @@
 import React from 'react';
-import { ActionCard } from '../interfaces/ActionCard';
+import { ActionCard } from '../../interfaces/ActionCard';
 
 import { Paper, Typography } from '@material-ui/core';
-import { useStyles, theme } from '../styles/style';
+import { useStyles, theme } from '../../styles/style';
 
 import { ActionSurveyDisplay } from './ActionSurveyDisplay';
 import { MainContentHeader } from './MainContentHeader';

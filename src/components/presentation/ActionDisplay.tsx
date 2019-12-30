@@ -1,5 +1,5 @@
 import React, { useState, ReactNode } from 'react';
-import {Action} from '../interfaces/Action';
+import {Action} from '../../interfaces/Action';
 import {
 	Box,
 	Checkbox,
@@ -11,7 +11,7 @@ import { ActionGeographyDisplay } from './ActionGeographyDisplay';
 import { ActionDateDisplay } from './ActionDateDisplay'
 import { ActionCountDisplay } from './ActionCountDisplay';
 import ActionChipDisplay from './ActionChipDisplay';
-import { useStyles, theme } from '../styles/style';
+import { useStyles, theme } from '../../styles/style';
 
 
 export function ActionDisplay(props: {action: Action, 

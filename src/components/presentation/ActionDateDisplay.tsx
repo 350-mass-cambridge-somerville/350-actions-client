@@ -1,7 +1,7 @@
 import React, { ReactNode} from "react";
 import { Typography, Grid } from '@material-ui/core';
-import { DateType } from '../interfaces/DateType';
-import { useStyles } from '../styles/style';
+import { DateType } from '../../interfaces/DateType';
+import { useStyles } from '../../styles/style';
 
 export type DateDisplayProps = {
 	dateType: DateType,

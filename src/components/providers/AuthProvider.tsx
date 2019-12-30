@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 
 type AuthContextType = {
 	userData: UserData,
-	login: (req: any) => void,
+	login: (email: string, password: string) => void,
 	logout: (req: any) => void,
 	register: (req: any) => void
 }
@@ -22,7 +22,7 @@ const defaultUserData: UserData = {
 }
 const AuthContext = React.createContext({
 	userData: defaultUserData, 
-	login: (req: any) => {}, 
+	login: (email: string, password: string) => {}, 
 	logout: (req: any) => {},
 	register: (req: any) => {}
 });
@@ -31,7 +31,7 @@ type AuthProviderProps = {};
 
 function AuthProvider(props: AuthProviderProps) {
 	const [userData, setUserData] = useState(defaultUserData);
-	const login = (req: any) => { console.log(`Making login request ${req}`)} // make a login request
+	const login = (email: string, password: string) => { console.log(`Making login request for ${email}`)} // make a login request
 	const register = (req: any) => { console.log(`Making register request ${req}`)} // register the user
 	const logout = (req: any) => { console.log(`Making logout request ${logout}`)} // clear the token in localStorage and the user data
 	

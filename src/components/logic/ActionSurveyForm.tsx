@@ -1,9 +1,9 @@
 import React, { Component, } from 'react';
 import { Grid, TextField, Button } from '@material-ui/core';
-import { ActionListDisplay } from './ActionListDisplay';
-import { Action } from '../interfaces/Action';
-import { ActionCard } from '../interfaces/ActionCard';
-import { SurveyResponse } from '../interfaces/SurveyResponse';
+import { ActionListDisplay } from '../presentation/ActionListDisplay';
+import { Action } from '../../interfaces/Action';
+import { ActionCard } from '../../interfaces/ActionCard';
+import { SurveyResponse } from '../../interfaces/SurveyResponse';
 
 type ActionSurveyFormState = {
 

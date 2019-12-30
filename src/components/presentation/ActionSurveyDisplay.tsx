@@ -1,13 +1,13 @@
 import React, { Component, } from 'react';
 import { Grid } from '@material-ui/core';
 import { ActionListDisplay } from './ActionListDisplay';
-import { ActionSurveyForm } from './ActionSurveyForm';
-import { Action } from '../interfaces/Action';
-import { ActionCard } from '../interfaces/ActionCard';
-import { SurveyResponse } from '../interfaces/SurveyResponse';
+import { ActionSurveyForm } from '../logic/ActionSurveyForm';
+import { Action } from '../../interfaces/Action';
+import { ActionCard } from '../../interfaces/ActionCard';
+import { SurveyResponse } from '../../interfaces/SurveyResponse';
 import  SimpleSnackbar  from './SimpleSnackbar';
 
-import { SURVEY_RESPONSE_URL } from '../urls';
+import { SURVEY_RESPONSE_URL } from '../../urls';
 type ActionSurveyDisplayState = {
 	responderName: string,
 	doneActions: number[],

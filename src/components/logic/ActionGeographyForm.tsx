@@ -1,7 +1,7 @@
 import React, { Component, ChangeEvent, ReactNode} from "react";
 import { Select, MenuItem, FormControl, FormHelperText } from "@material-ui/core";
-import { GeographyType } from '../interfaces/GeographyType';
-import { useStyles } from '../styles/style';
+import { GeographyType } from '../../interfaces/GeographyType';
+import { useStyles } from '../../styles/style';
 
 export function ActionGeographyForm(props: {selected: GeographyType, 
 	onChange: (event: ChangeEvent<{ name?: string | undefined; value: unknown; }>, child: ReactNode) => void}) 

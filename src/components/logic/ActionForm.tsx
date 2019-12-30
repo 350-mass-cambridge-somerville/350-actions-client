@@ -1,16 +1,16 @@
 import React, { Component, ChangeEvent, ReactNode } from 'react';
 import { Paper, Button } from '@material-ui/core';
 import { ActionGeographyForm } from './ActionGeographyForm';
-import { GeographyType } from '../interfaces/GeographyType';
+import { GeographyType } from '../../interfaces/GeographyType';
 import { ActionDateForm } from './ActionDateForm';
 import { ActionDescriptionForm } from './ActionDescriptionForm';
 import { ActionTagsForm } from './ActionTagsForm';
 import { ActionCardForm } from './ActionCardForm';
-import { DateType } from '../interfaces/DateType';
-import { ActionCard } from '../interfaces/ActionCard';
-import SimpleSnackbar from './SimpleSnackbar';
+import { DateType } from '../../interfaces/DateType';
+import { ActionCard } from '../../interfaces/ActionCard';
+import SimpleSnackbar from '../presentation/SimpleSnackbar';
 
-import {ACTION_CARD_URL, ACTION_URL} from '../urls';
+import {ACTION_CARD_URL, ACTION_URL} from '../../urls';
 
 type ActionFormState = {
 	geographyType: GeographyType, 

@@ -14,8 +14,8 @@ import {
 } from '@material-ui/pickers';
 import 'date-fns';
 import DateFnsUtils from '@date-io/date-fns';
-import { DateType } from '../interfaces/DateType';
-import { useStyles } from '../styles/style';
+import { DateType } from '../../interfaces/DateType';
+import { useStyles } from '../../styles/style';
 
 type DateFormProps = {
 	dateType: DateType,

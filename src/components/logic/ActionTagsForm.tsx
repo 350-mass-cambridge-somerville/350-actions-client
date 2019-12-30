@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { FormControl, TextField, Chip, FormHelperText } from '@material-ui/core';
-import { useStyles } from '../styles/style';
+import { useStyles } from '../../styles/style';
 import ChipInput  from 'material-ui-chip-input'
 
 type ActionTagsProps = {tags: string[], onTagsChange: (tags: string[]) => void}

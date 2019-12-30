@@ -2,7 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
-import {ActionAppBar} from '../components/ActionAppBar';
+import {ActionAppBar} from '../components/logic/ActionAppBar';
 import { ThemeProvider } from '@material-ui/styles';
 import { theme } from '../styles/style'
 import { addThemeProvider } from './utils'

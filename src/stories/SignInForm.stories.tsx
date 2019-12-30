@@ -2,7 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
-import { SignInForm } from '../components/SignInForm';
+import { SignInFormDisplay } from '../components/presentation/SignInFormDisplay';
 import { ThemeProvider } from '@material-ui/styles';
 import { theme } from '../styles/style'
 
@@ -24,6 +24,6 @@ export const invalidRegistrationProps = {
 
 storiesOf('SignInForm', module)
 	.add('default', () => ((<ThemeProvider theme={theme}>
-			<SignInForm {...defaultRegistrationProps} {...actions} />
+			<SignInFormDisplay {...defaultRegistrationProps} {...actions} />
 		</ThemeProvider>)))
-	.add('invalid', () => (<ThemeProvider theme={theme}><SignInForm {...invalidRegistrationProps} {...actions} /></ThemeProvider>))
+	.add('invalid', () => (<ThemeProvider theme={theme}><SignInFormDisplay {...invalidRegistrationProps} {...actions} /></ThemeProvider>))

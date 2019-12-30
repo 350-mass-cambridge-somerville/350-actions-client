@@ -4,9 +4,8 @@ import {
 	BrowserRouter,
 	Link
   } from "react-router-dom";
-  import { useStyles, theme } from '../styles/style';
+  import { useStyles, theme } from '../../styles/style';
 import { SignInForm } from './SignInForm';
-import { SocialSentimentSatisfied } from 'material-ui/svg-icons';
 
 type ActionAppBarProps = {
 	isLoggedIn: boolean,
@@ -33,12 +32,7 @@ export function ActionAppBar(props: ActionAppBarProps) {
 
 	function generateLogoutLoginForm(): ReactNode {
 		return (
-			<SignInForm email="" 
-			password="" 
-			onEmailChange={setLoginEmail} 
-			onPasswordChange={setLoginPassword}
-			onSubmit={props.onLoginSubmit}
-			/>
+			<SignInForm />
 		);
 	}
 

@@ -1,6 +1,6 @@
 import React, { Component, ReactNode } from 'react';
-import { ActionCardFormDisplay } from './ActionCardFormDisplay';
-import { ActionCard } from '../interfaces/ActionCard';
+import { ActionCardFormDisplay } from '../presentation/ActionCardFormDisplay';
+import { ActionCard } from '../../interfaces/ActionCard';
 
 type ActionCardFormState = {
 	submitted: boolean,

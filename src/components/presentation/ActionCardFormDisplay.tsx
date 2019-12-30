@@ -6,14 +6,14 @@ import { Grid,
 		FormControl,
 		FormHelperText
 	 } from '@material-ui/core';
-import { useStyles, theme } from '../styles/style';
+import { useStyles, theme } from '../../styles/style';
 import { 
 	KeyboardDatePicker,
 	MuiPickersUtilsProvider
 } from '@material-ui/pickers';
 import 'date-fns';
 import DateFnsUtils from '@date-io/date-fns';
-import { ActionCard } from '../interfaces/ActionCard';
+import { ActionCard } from '../../interfaces/ActionCard';
 
 type ActionCardFormDisplayProps = {
 	cards: ActionCard[],

@@ -1,10 +1,10 @@
 import React from 'react';
-import { useStyles } from '../styles/style';
+import { useStyles } from '../../styles/style';
 import { Box, List, ListItem, Divider } from '@material-ui/core';
 import { ActionCheckDisplay } from './ActionCheckDisplay';
 import { ActionDisplay } from './ActionDisplay';
-import { Action } from '../interfaces/Action';
-import { SurveyResponse } from '../interfaces/SurveyResponse';
+import { Action } from '../../interfaces/Action';
+import { SurveyResponse } from '../../interfaces/SurveyResponse';
 
 export type ActionListDisplayPropsCheck = {
   actions: Action[],

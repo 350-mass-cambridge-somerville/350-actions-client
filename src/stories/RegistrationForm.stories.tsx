@@ -2,7 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
-import {RegistrationForm} from '../components/RegistrationForm';
+import {RegistrationForm} from '../components/logic/RegistrationForm';
 import { ThemeProvider } from '@material-ui/styles';
 import { theme } from '../styles/style'
 

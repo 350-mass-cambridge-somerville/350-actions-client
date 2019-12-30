@@ -1,6 +1,6 @@
 import {Grid, Typography} from '@material-ui/core';
 import React, {ReactNode} from 'react';
-import { useStyles, theme } from '../styles/style';
+import { useStyles, theme } from '../../styles/style';
 
 export type CountDisplayProps = {
 	count: number

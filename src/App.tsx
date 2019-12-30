@@ -7,9 +7,9 @@ import {
 } from "react-router-dom";
 
 import {AppBar, Tabs, Tab, Typography} from '@material-ui/core';
-import {CurrentActionView} from './components/CurrentActionView';
-import {CreateActionView} from './components/CreateActionView';
-import {PastActionView} from './components/PastActionView';
+import {CurrentActionView} from './components/logic/CurrentActionView';
+import {CreateActionView} from './components/logic/CreateActionView';
+import {PastActionView} from './components/logic/PastActionView';
 import 'typeface-roboto';
 //import { classes } from "istanbul-lib-coverage";
 import { useStyles, theme } from './styles/style'

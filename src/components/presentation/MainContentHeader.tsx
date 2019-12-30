@@ -1,6 +1,6 @@
 import React, { Component, ChangeEvent, ReactNode} from "react";
 import { Typography } from "@material-ui/core";
-import { useStyles } from '../styles/style';
+import { useStyles } from '../../styles/style';
 
 type MainContentHeaderProps = {
 	mainTitle: string,

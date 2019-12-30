@@ -22,7 +22,8 @@ export function SignInForm(props: SignInFormProps) {
 
 	function onSubmit(): void {
 		//todo add data
-		authContext.login({});
+		//todo should this return a promise? or have another state isFailed?
+		authContext.login(email, password);
 	}
 
 	return (

@@ -2,7 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
-import {ActionListDisplay} from '../components/ActionListDisplay';
+import {ActionListDisplay} from '../components/presentation/ActionListDisplay';
 
 import {Action} from '../interfaces/Action';
 import { DateType } from '../interfaces/DateType';

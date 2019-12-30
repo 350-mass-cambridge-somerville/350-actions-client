@@ -2,7 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
-import {ActionDateForm} from '../components/ActionDateForm';
+import {ActionDateForm} from '../components/logic/ActionDateForm';
 import {DateType} from '../interfaces/DateType';
 
 export const actions = {

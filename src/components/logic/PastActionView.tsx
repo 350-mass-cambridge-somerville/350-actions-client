@@ -1,7 +1,7 @@
 import React, { Component, ReactNode } from 'react';
-import { ActionCard, actionCardFromJson } from '../interfaces/ActionCard';
-import { PastActionDisplay } from './PastActionDisplay';
-import {ACTION_URL, ACTION_CARD_URL, SURVEY_RESPONSE_URL } from '../urls';
+import { ActionCard, actionCardFromJson } from '../../interfaces/ActionCard';
+import { PastActionDisplay } from '../presentation/PastActionDisplay';
+import {ACTION_URL, ACTION_CARD_URL, SURVEY_RESPONSE_URL } from '../../urls';
 
 export class PastActionView extends Component {
 	state: {

@@ -1,12 +1,12 @@
 import React from 'react';
-import { useStyles } from '../styles/style';
+import { useStyles } from '../../styles/style';
 import { ExpansionPanel, 
   ExpansionPanelDetails, 
   ExpansionPanelSummary,
   Typography
  } from '@material-ui/core';
-import { ActionListDisplay } from './ActionListDisplay'
-import { ActionCard } from '../interfaces/ActionCard'
+import { ActionListDisplay } from '../presentation/ActionListDisplay'
+import { ActionCard } from '../../interfaces/ActionCard'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 type ActionCardListDisplayProps = {

@@ -1,8 +1,8 @@
 import React, { Component, ReactNode } from 'react';
-import { ActionCard, actionCardFromJson } from '../interfaces/ActionCard';
-import { SurveyResponse } from '../interfaces/SurveyResponse';
-import { CurrentActionDisplay } from './CurrentActionDisplay';
-import { ACTION_URL, ACTION_CARD_URL, SURVEY_RESPONSE_URL } from '../urls';
+import { ActionCard, actionCardFromJson } from '../../interfaces/ActionCard';
+import { SurveyResponse } from '../../interfaces/SurveyResponse';
+import { CurrentActionDisplay } from '../presentation/CurrentActionDisplay';
+import { ACTION_URL, ACTION_CARD_URL, SURVEY_RESPONSE_URL } from '../../urls';
 
 export class CurrentActionView extends Component {
 	state: {

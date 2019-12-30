@@ -1,9 +1,9 @@
 import React, { Component, ReactNode } from 'react';
-import { ActionCard, actionCardFromJson } from '../interfaces/ActionCard';
+import { ActionCard, actionCardFromJson } from '../../interfaces/ActionCard';
 import { Paper, Typography } from '@material-ui/core';
 import { ActionForm } from './ActionForm';
-import { MainContentHeader } from './MainContentHeader';
-import { ACTION_CARD_URL } from '../urls';
+import { MainContentHeader } from '../presentation/MainContentHeader';
+import { ACTION_CARD_URL } from '../../urls';
 
 export class CreateActionView extends Component {
 	state: {

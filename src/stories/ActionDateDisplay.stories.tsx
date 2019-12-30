@@ -1,7 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 
-import {ActionDateDisplay, DateDisplayProps} from '../components/ActionDateDisplay';
+import {ActionDateDisplay, DateDisplayProps} from '../components/presentation/ActionDateDisplay';
 import {DateType} from '../interfaces/DateType';
 
 export const defaultDateProps: DateDisplayProps = {

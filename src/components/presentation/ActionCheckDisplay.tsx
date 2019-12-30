@@ -1,5 +1,5 @@
 import React, { useState, ReactNode } from 'react';
-import {Action} from '../interfaces/Action';
+import {Action} from '../../interfaces/Action';
 import {
 	Box,
 	Checkbox,
@@ -8,7 +8,7 @@ import {
 } from '@material-ui/core';
 import {makeStyles, useTheme} from '@material-ui/core/styles';
 import { ActionDisplay } from './ActionDisplay';
-import { useStyles, theme } from '../styles/style';
+import { useStyles, theme } from '../../styles/style';
 
 
 export function ActionCheckDisplay(props: {action: Action, 

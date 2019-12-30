@@ -1,5 +1,5 @@
 import React from 'react';
-import { useStyles } from '../styles/style';
+import { useStyles } from '../../styles/style';
 import { Chip, Box } from '@material-ui/core';
 
 export type TagsDisplayProps = {
