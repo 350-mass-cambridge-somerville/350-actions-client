@@ -18,6 +18,8 @@ import { useTheme, ThemeProvider } from '@material-ui/styles';
 export default function App() {
   //const theTheme = useTheme();
   const classes = useStyles();
+
+  //todo add state for logged in, pass logged in state
   return (
     <Router>
       <ThemeProvider theme={theme}>
@@ -26,7 +28,7 @@ export default function App() {
         <AppBar 
           className={classes.appBar}
           position="sticky">
-          <Tabs value={false} aria-label="simple tabs example" centered>
+          <Tabs value={false} aria-label="nav" centered>
             <Tab label="Current" component={Link} to="/"/>
             <Tab label="Past"    component={Link} to="/past"/>
             <Tab label="Create"  component={Link} to="/create" disabled/>
