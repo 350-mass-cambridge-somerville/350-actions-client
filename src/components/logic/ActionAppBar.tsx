@@ -6,20 +6,18 @@ import {
   } from "react-router-dom";
   import { useStyles, theme } from '../../styles/style';
 import { SignInForm } from './SignInForm';
+import { useAuth } from '../providers/AuthProvider';
 
 type ActionAppBarProps = {
-	isLoggedIn: boolean,
-	onLoginSubmit: () => void
 }
 
 export function ActionAppBar(props: ActionAppBarProps) {
 	const classes = useStyles(theme);
+	const authContext = useAuth();
 	const [popoverOpen, setPopoverOpen] = useState(true);
-	const [loginEmail, setLoginEmail] = useState('');
-	const [loginPassword, setLoginPassword] = useState('');
-
+	
 	function generateLogoutLogin(): ReactNode {
-		if (props.isLoggedIn) {
+		if (authContext.userData.isAuthorized) {
 			return (<React.Fragment>
 				<Button>Logout</Button>
 			</React.Fragment>);

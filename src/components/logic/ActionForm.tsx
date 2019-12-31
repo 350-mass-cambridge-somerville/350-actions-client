@@ -118,6 +118,7 @@ export class ActionForm extends Component<ActionFormProps, ActionFormState> {
 			// need to create new card before submitting action
 			fetch(ACTION_CARD_URL,{
 				method: 'POST',
+				mode: 'cors',
 				headers: {
 					'Content-Type': 'application/json'
 					// 'Content-Type': 'application/x-www-form-urlencoded',

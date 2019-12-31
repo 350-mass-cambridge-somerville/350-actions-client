@@ -2,7 +2,7 @@ import React, { Component, ReactNode } from 'react';
 import { ActionCard, actionCardFromJson } from '../../interfaces/ActionCard';
 import { SurveyResponse } from '../../interfaces/SurveyResponse';
 import { CurrentActionDisplay } from '../presentation/CurrentActionDisplay';
-import { ACTION_URL, ACTION_CARD_URL, SURVEY_RESPONSE_URL } from '../../urls';
+import { ACTION_URL, ACTION_CARD_URL, SURVEY_RESPONSE_URL, LATEST_ACTION_CARD_URL } from '../../urls';
 
 export class CurrentActionView extends Component {
 	state: {
@@ -26,58 +26,19 @@ export class CurrentActionView extends Component {
 	}
 
 	getServerState(): void {
-		Promise.all([this.fetchActions(), this.fetchActionCards(), this.fetchSurveyResponses()])
-		.then((vals) => {
-			const actions = vals[0];
-			const actionCards = vals[1];
-			const surveyResponses = vals[2];
-			//console.log(`actions are: ${JSON.stringify(actions)}`);
-			//console.log(`actioncards are: ${JSON.stringify(actionCards)}`);
-			//console.log(`surveyresponses are: ${JSON.stringify(surveyResponses)}`);
-			
-			if(actionCards.length > 0) {
-				let maxInd: number = 0;
-				let maxDate: Date = new Date(actionCards[0].date);
-				for(let i=0; i < actionCards.length; i++) {
-					let cardDate = new Date(actionCards[i].date);
-					if (cardDate > maxDate) {
-						maxInd = i;
-						maxDate = cardDate;
-					}
-				}
-				let actionCardJson = actionCards[maxInd];
-				actionCardJson.actions = actions.filter(action => action.actionCardId === actionCardJson.id);
-				actionCardJson.surveyResponses = surveyResponses.filter(surveyResponse => surveyResponse.actionCardId === actionCardJson.id);
-				let actionCard = actionCardFromJson(actionCardJson);
-				console.log(`action card is: ${actionCard}`);
-				this.setState({actionCard: actionCard});
-			}
+		this.fetchLatestActionCard()
+		.then((actionCardJson) => {
+			let actionCard = actionCardFromJson(actionCardJson);
+			console.log(`action card is: ${actionCard}`);
+			this.setState({actionCard: actionCard});
 		})
 		.catch((err) => {
 			console.log(`Error fetching actions: ${err}`, err);
 		})
 	}
-
-	fetchActions(): Promise<Array<any>> {
-		return fetch(ACTION_URL, {method: 'GET'})
-      		.then((data: Response) => {
-				  const dj = data.json();
-				  //console.log(`got data! ${JSON.stringify(dj)}`, dj);
-				  return dj;
-				})
-	}
-
-	fetchActionCards(): Promise<Array<any>> {
-		return fetch(ACTION_CARD_URL, {method: 'GET'})
-		.then((data: Response) => {
-			const dj = data.json();
-			//console.log(`got data! ${JSON.stringify(dj)}`, dj);
-			return dj;
-		  })
-	}
-
-	fetchSurveyResponses(): Promise<Array<any>> {
-		return fetch(SURVEY_RESPONSE_URL, {method: 'GET'})
+	
+	fetchLatestActionCard(): Promise<Array<any>> {
+		return fetch(LATEST_ACTION_CARD_URL, {method: 'GET'})
 		.then((data: Response) => {
 			const dj = data.json();
 			//console.log(`got data! ${JSON.stringify(dj)}`, dj);

@@ -16,9 +16,9 @@ export class PastActionView extends Component {
 			const actions = vals[0];
 			const actionCards = vals[1];
 			const surveyResponses = vals[2];
-			//console.log(`actions are: ${JSON.stringify(actions)}`);
-			//console.log(`actioncards are: ${JSON.stringify(actionCards)}`);
-			//console.log(`surveyresponses are: ${JSON.stringify(surveyResponses)}`);
+			console.log(`actions are: ${JSON.stringify(actions)}`);
+			console.log(`actioncards are: ${JSON.stringify(actionCards)}`);
+			console.log(`surveyresponses are: ${JSON.stringify(surveyResponses)}`);
 			
 			if(actionCards.length > 0) {
 				let allActionCards: ActionCard[] = [];
@@ -43,16 +43,20 @@ export class PastActionView extends Component {
 	}
 
 	fetchActions(): Promise<Array<any>> {
-		return fetch(ACTION_URL, {method: 'GET'})
-      		.then((data: Response) => {
-				  const dj = data.json();
-				  //console.log(`got data! ${JSON.stringify(dj)}`, dj);
-				  return dj;
-				})
+		return fetch(ACTION_URL, {
+			method: 'GET',
+			mode: 'cors'
+		}).then((data: Response) => {
+				console.log(`got actions response: ${JSON.stringify(data)}`);
+				//return [];
+				const dj = data.json();
+				//console.log(`got data! ${JSON.stringify(dj)}`, dj);
+				return dj;
+			})
 	}
 
 	fetchActionCards(): Promise<Array<any>> {
-		return fetch(ACTION_CARD_URL, {method: 'GET'})
+		return fetch(ACTION_CARD_URL, {method: 'GET', mode:'cors'})
 		.then((data: Response) => {
 			const dj = data.json();
 			//console.log(`got data! ${JSON.stringify(dj)}`, dj);
@@ -61,7 +65,7 @@ export class PastActionView extends Component {
 	}
 
 	fetchSurveyResponses(): Promise<Array<any>> {
-		return fetch(SURVEY_RESPONSE_URL, {method: 'GET'})
+		return fetch(SURVEY_RESPONSE_URL, {method: 'GET', mode: 'cors'})
 		.then((data: Response) => {
 			const dj = data.json();
 			//console.log(`got data! ${JSON.stringify(dj)}`, dj);

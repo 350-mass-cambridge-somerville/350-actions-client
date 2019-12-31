@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 
 import {AppBar, Tabs, Tab, Typography} from '@material-ui/core';
+import {ActionAppBar} from './components/logic/ActionAppBar';
 import {CurrentActionView} from './components/logic/CurrentActionView';
 import {CreateActionView} from './components/logic/CreateActionView';
 import {PastActionView} from './components/logic/PastActionView';
@@ -25,15 +26,7 @@ export default function App() {
       <ThemeProvider theme={theme}>
       <div className={classes.root}>
       <div>
-        <AppBar 
-          className={classes.appBar}
-          position="sticky">
-          <Tabs value={false} aria-label="nav" centered>
-            <Tab label="Current" component={Link} to="/"/>
-            <Tab label="Past"    component={Link} to="/past"/>
-            <Tab label="Create"  component={Link} to="/create" disabled/>
-          </Tabs>
-        </AppBar>
+        <ActionAppBar/>
       </div>
       <main className={classes.contentMain}>
         {/* A <Switch> looks through its children <Route>s and

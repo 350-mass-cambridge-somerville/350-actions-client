@@ -1,6 +1,7 @@
 export enum GeographyType {
-	LOCAL = "Local",
-	REGIONAL = "Regional",
-	STATE = "State",
-	NATIONAL = "National"
+	LOCAL = "LOCAL",
+	REGIONAL = "REGIONAL",
+	STATE = "STATE",
+	NATIONAL = "NATIONAL",
+	UNDEFINED = "UNDEFINED"
 }

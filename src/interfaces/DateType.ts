@@ -1,6 +1,6 @@
 export enum DateType {
-	ON = "on",
-	BEFORE = "before",
-	RANGE = "range",
-	NONE = "none"
+	ON = "ON",
+	BEFORE = "BEFORE",
+	RANGE = "RANGE",
+	NONE = "NONE"
 }
