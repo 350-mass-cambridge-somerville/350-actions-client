@@ -1,9 +1,6 @@
 import React, { Component, } from 'react';
-import { Grid, TextField, Button } from '@material-ui/core';
-import { ActionListDisplay } from '../presentation/ActionListDisplay';
-import { Action } from '../../interfaces/Action';
-import { ActionCard } from '../../interfaces/ActionCard';
-import { SurveyResponse } from '../../interfaces/SurveyResponse';
+import { Grid, TextField, Button, Typography } from '@material-ui/core';
+import { UserData } from '../../interfaces/UserData';
 
 type ActionSurveyFormState = {
 
@@ -11,6 +8,7 @@ type ActionSurveyFormState = {
 
 type ActionSurveyFormProps = {
 	responderName: string,
+	userData: UserData,
 	onSubmit: () => void,
 	onResponderNameChange: (name: string) => void 
 }
@@ -33,13 +31,18 @@ export class ActionSurveyForm extends Component<ActionSurveyFormProps, ActionSur
 		<form>
 			<Grid container justify='space-around' alignItems='center'>
 					<Grid item>
-					<TextField
-          				id="standard-basic"
-          				label="Name"
-						margin="normal"
-						value={this.props.responderName}
-						onChange={this.onResponderNameChange}
-        			/>
+						{!this.props.userData.isAuthorized && 
+							<TextField
+								id="standard-basic"
+								label="Name"
+								margin="normal"
+								value={this.props.responderName}
+								onChange={this.onResponderNameChange}
+							/>
+						}
+						{this.props.userData.isAuthorized &&
+							<Typography>{this.props.userData.name}</Typography>
+						}
 					</Grid>
 					<Grid item>
 						<Button variant="contained"

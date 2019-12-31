@@ -1,12 +1,12 @@
 import React, { Component, } from 'react';
 import { Grid } from '@material-ui/core';
-import { ActionListDisplay } from './ActionListDisplay';
-import { ActionSurveyForm } from '../logic/ActionSurveyForm';
+import { ActionListDisplay } from '../presentation/ActionListDisplay';
+import { ActionSurveyForm } from '../presentation/ActionSurveyForm';
 import { Action } from '../../interfaces/Action';
 import { ActionCard } from '../../interfaces/ActionCard';
 import { SurveyResponse } from '../../interfaces/SurveyResponse';
-import  SimpleSnackbar  from './SimpleSnackbar';
-
+import  SimpleSnackbar  from '../presentation/SimpleSnackbar';
+import { UserData } from '../../interfaces/UserData';
 import { SURVEY_RESPONSE_URL } from '../../urls';
 type ActionSurveyDisplayState = {
 	responderName: string,
@@ -18,6 +18,7 @@ type ActionSurveyDisplayState = {
 
 type ActionSurveyDisplayProps = {
 	actionCard: ActionCard,
+	userData: UserData,
 	onChange: () => void
 }
 export class ActionSurveyDisplay extends Component<ActionSurveyDisplayProps, ActionSurveyDisplayState> {
@@ -91,6 +92,7 @@ export class ActionSurveyDisplay extends Component<ActionSurveyDisplayProps, Act
 			<Grid container direction='column' alignItems='stretch'>
 					<Grid item>
 						<ActionSurveyForm responderName={this.state.responderName}
+							userData={this.props.userData}
 							onResponderNameChange={this.onResponderNameChange}
 							onSubmit={this.onSubmit}
 						/>

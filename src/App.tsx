@@ -11,6 +11,7 @@ import {ActionAppBar} from './components/logic/ActionAppBar';
 import {CurrentActionView} from './components/logic/CurrentActionView';
 import {CreateActionView} from './components/logic/CreateActionView';
 import {PastActionView} from './components/logic/PastActionView';
+import {AuthProvider} from './components/providers/AuthProvider';
 import 'typeface-roboto';
 //import { classes } from "istanbul-lib-coverage";
 import { useStyles, theme } from './styles/style'
@@ -22,30 +23,33 @@ export default function App() {
 
   //todo add state for logged in, pass logged in state
   return (
-    <Router>
-      <ThemeProvider theme={theme}>
-      <div className={classes.root}>
-      <div>
-        <ActionAppBar/>
-      </div>
-      <main className={classes.contentMain}>
-        {/* A <Switch> looks through its children <Route>s and
-            renders the first one that matches the current URL. */}
-        <Switch>
-          <Route path="/create">
-            <Create />
-          </Route>
-          <Route path="/past">
-            <Past />
-          </Route>
-          <Route path="/">
-            <Current />
-          </Route>
-        </Switch>
-      </main>
-      </div>
-      </ThemeProvider>
-    </Router>
+    <AuthProvider>
+      <Router>
+        <ThemeProvider theme={theme}>
+        <div className={classes.root}>
+        <div>
+          <ActionAppBar/>
+        </div>
+        <main className={classes.contentMain}>
+          {/* A <Switch> looks through its children <Route>s and
+              renders the first one that matches the current URL. */}
+          <Switch>
+            <Route path="/create">
+              <Create />
+            </Route>
+            <Route path="/past">
+              <Past />
+            </Route>
+            <Route path="/">
+              <Current />
+            </Route>
+          </Switch>
+        </main>
+        </div>
+        </ThemeProvider>
+      </Router>
+    </AuthProvider>
+    
   );
 }
 
