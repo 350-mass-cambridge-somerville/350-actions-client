@@ -5,9 +5,13 @@ type SnackbarContextType = {
 	queueMessage: (message: string, isError: boolean) => number,
 }
 
-const SnackbarContext = React.createContext({
-	queueMessage: (message: string, isError: boolean) => {return 0;}
-});
+const defaultSnackbarContext = {
+	queueMessage: function (message: string, isError: boolean) : number {
+		console.log(`Attempting to set message without proper context`);
+		return 0;
+	}
+}
+const SnackbarContext = React.createContext(defaultSnackbarContext);
 
 type SnackbarProviderProps = {children: any};
 

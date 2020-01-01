@@ -1,23 +1,22 @@
 import React, { Component, ReactNode } from 'react';
+import { Paper } from '@material-ui/core';
 import { ActionCard, actionCardFromJson } from '../../interfaces/ActionCard';
 import { SurveyResponse } from '../../interfaces/SurveyResponse';
 import { ACTION_URL, ACTION_CARD_URL, SURVEY_RESPONSE_URL, LATEST_ACTION_CARD_URL } from '../../urls';
 import { AuthContext} from '../providers/AuthProvider';
-import { ActionSurveyFormAuth } from '../presentation/ActionSurveyFormAuth';
-import { ActionSurveyForm } from '../presentation/ActionSurveyForm';
-import { MainContentHeader } from '../presentation/MainContentHeader';
+import { CurrentActionDisplay } from '../presentation/CurrentActionDisplay';
 
 export class CurrentActionView extends Component {
 	state: {
 		actionCard?: ActionCard,
-		nextSurveyResponse: SurveyResponse,
+		responderName: string,
+		doneActions: number[],
+		actionCardId: number,
 		canSubmit: boolean
 	} = {
-		nextSurveyResponse: {
-			responderName: '',
-			actionCardId: 0,
-			doneActions: []
-		},
+		responderName: '',
+		actionCardId: 0,
+		doneActions: [],
 		canSubmit: true
 	};
 
@@ -25,6 +24,7 @@ export class CurrentActionView extends Component {
 		super(props);
 		this.onChange = this.onChange.bind(this);
 		this.onSubmit = this.onSubmit.bind(this);
+		this.onActionDoneChange = this.onActionDoneChange.bind(this);
 		this.onResponderNameChange = this.onResponderNameChange.bind(this);
 	}
 
@@ -37,7 +37,7 @@ export class CurrentActionView extends Component {
 		.then((actionCardJson) => {
 			let actionCard = actionCardFromJson(actionCardJson);
 			console.log(`action card is: ${actionCard}`);
-			this.setState({actionCard: actionCard});
+			this.setState({actionCard: actionCard, actionCardId: actionCard.id});
 		})
 		.catch((err) => {
 			console.log(`Error fetching actions: ${err}`, err);
@@ -58,49 +58,54 @@ export class CurrentActionView extends Component {
 	}
 
 	onSubmit(): void {
-
+		fetch(SURVEY_RESPONSE_URL, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({
+			    responderName: this.state.responderName, 
+				doneActions: this.state.doneActions,
+				actionCardId: this.state.actionCardId
+			}) 
+		}).then(() => {
+			this.setState({canSubmit: false})
+		})
 	}
 
 	onResponderNameChange(name: string): void {
-		let newSurveyResponse: SurveyResponse = {
-			responderName: name,
-			actionCardId: this.state.nextSurveyResponse.actionCardId,
-			doneActions: this.state.nextSurveyResponse.doneActions.slice()
-		}
-		this.setState({nextSurveyResponse: newSurveyResponse})
+		this.setState({responderName: name})
 	}
 
-	generateSurveyForm() {
-		if(this.context.userData.isAuthorized) {
-			return <ActionSurveyFormAuth 
-			responderName={this.context.userData.username}
-			onSubmit={this.onSubmit}
-			submitAllowed={this.state.canSubmit}
-			/>
-		} else if (!this.state.canSubmit) {
-			return <ActionSurveyFormAuth 
-			responderName={this.state.nextSurveyResponse.responderName}
-			onSubmit={this.onSubmit}
-			submitAllowed={this.state.canSubmit}
-			/>
-		} else {
-			return <ActionSurveyForm 
-				responderName={this.state.nextSurveyResponse.responderName}
-				onSubmit={this.onSubmit}
-				onResponderNameChange={this.onResponderNameChange}
-			/>
+	onActionDoneChange(id: number, done: boolean): void {
+		console.log(`done actions: ${JSON.stringify(this.state.doneActions)}`)
+		if (done && !this.state.doneActions.includes(id)) {
+			const newDoneActions = this.state.doneActions.slice()
+			newDoneActions.push(id);
+			console.log(`1. newDoneActions: ${this.state.doneActions.slice()} ${JSON.stringify(newDoneActions)}`)
+			this.setState({doneActions: newDoneActions});
 		}
+		if (!done && this.state.doneActions.includes(id)) {
+			const newDoneActions = this.state.doneActions.slice().filter(i => i !== id)
+			console.log(`2. newDoneActions: ${this.state.doneActions.slice()} ${JSON.stringify(newDoneActions)}`)
+			this.setState({doneActions: newDoneActions});
+		}
+
 	}
+	
 	render(): ReactNode {
 		return (
-			<React.Fragment>
-				{this.state.actionCard && 
-					<div>
-						<MainContentHeader mainTitle={`Action Card ${this.state.actionCard.number}`} date={this.state.actionCard.date}/>
-						{this.generateSurveyForm()}
-					</div>
-				}
-			</React.Fragment>
+			<CurrentActionDisplay 
+				actionCard={this.state.actionCard}
+				responderName={this.state.responderName}
+				onResponderNameChange={this.onResponderNameChange}
+				username={this.context.userData.username}
+				isAuthorized={this.context.userData.isAuthorized}
+				canSubmit={this.state.canSubmit}
+				onSubmit={this.onSubmit}
+				doneActions={this.state.doneActions}
+				onActionDoneChange={this.onActionDoneChange}
+			/>
 		);
 	}
 }

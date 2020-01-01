@@ -40,7 +40,7 @@ export function ActionAppBar(props: ActionAppBarProps) {
 
 
 	return (
-		<BrowserRouter>
+		//<BrowserRouter>
 		<AppBar 
 		className={classes.appBar}
 		position="sticky">
@@ -58,6 +58,6 @@ export function ActionAppBar(props: ActionAppBarProps) {
 			{generateLogoutLoginForm()}
 		</Popover>
 	  </AppBar>
-	  </BrowserRouter>
-		);
+	  //</BrowserRouter>
+	);
 }

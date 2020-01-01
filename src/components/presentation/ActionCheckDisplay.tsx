@@ -14,7 +14,8 @@ import { useStyles, theme } from '../../styles/style';
 export function ActionCheckDisplay(props: {action: Action, 
 	onActionDoneChange: (id: number, done: boolean) => void,
 	done: boolean,
-	count: number
+	count: number,
+	canCheck: boolean
 }) 
 {
 	const classes = useStyles(theme);
@@ -28,7 +29,7 @@ export function ActionCheckDisplay(props: {action: Action,
 	<Box>
 		<Grid container direction='row' justify='flex-start'>
 			<Grid item xs={1}>
-				<Checkbox checked={props.done} onChange={onCheck}/>	
+				<Checkbox checked={props.done} onChange={onCheck} disabled={props.canCheck}/>	
 			</Grid>
 			<Grid item xs={11}>
 				<ActionDisplay action={props.action} count={props.count}/>

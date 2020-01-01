@@ -10,6 +10,7 @@ export type ActionListDisplayPropsCheck = {
   doneActions: number[],
   onActionDoneChange: (id: number, done: boolean) => void,
   surveyResponses: SurveyResponse[],
+  canSubmit: boolean
 }
 
 export function ActionCheckListDisplay(props: ActionListDisplayPropsCheck) {
@@ -23,15 +24,16 @@ export function ActionCheckListDisplay(props: ActionListDisplayPropsCheck) {
           count = count + response.doneActions.filter(id => id === action.id).length
         })
         return (
-              <ListItem>
+              <Box>
                   <ActionCheckDisplay
                     action={action}
                     done={props.doneActions.includes(action.id)}
                     onActionDoneChange={props.onActionDoneChange}
-                    count={count}
+					count={count}
+					canCheck={!props.canSubmit}
                   />
                 <Divider/>
-              </ListItem>
+              </Box>
         );
       })}
     </List>
