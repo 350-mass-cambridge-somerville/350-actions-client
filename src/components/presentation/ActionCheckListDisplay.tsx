@@ -1,17 +1,18 @@
 import React from 'react';
 import { useStyles } from '../../styles/style';
-import { List, ListItem, Divider } from '@material-ui/core';
-import { ActionDisplay } from './ActionDisplay';
+import { Box, List, ListItem, Divider } from '@material-ui/core';
+import { ActionCheckDisplay } from './ActionCheckDisplay';
 import { Action } from '../../interfaces/Action';
 import { SurveyResponse } from '../../interfaces/SurveyResponse';
 
-
-export type ActionListDisplayPropsNoCheck = {
+export type ActionListDisplayPropsCheck = {
   actions: Action[],
-  surveyResponses:  SurveyResponse[]
+  doneActions: number[],
+  onActionDoneChange: (id: number, done: boolean) => void,
+  surveyResponses: SurveyResponse[],
 }
 
-export function ActionListDisplay(props: ActionListDisplayPropsNoCheck) {
+export function ActionCheckListDisplay(props: ActionListDisplayPropsCheck) {
   const classes = useStyles();
 
   return (
@@ -23,8 +24,10 @@ export function ActionListDisplay(props: ActionListDisplayPropsNoCheck) {
         })
         return (
               <ListItem>
-                  <ActionDisplay
+                  <ActionCheckDisplay
                     action={action}
+                    done={props.doneActions.includes(action.id)}
+                    onActionDoneChange={props.onActionDoneChange}
                     count={count}
                   />
                 <Divider/>

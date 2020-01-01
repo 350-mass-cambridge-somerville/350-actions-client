@@ -1,5 +1,5 @@
 export interface SurveyResponse {
-	responderName?: string,
+	responderName: string,
 	id?: number,
 	actionCardId: number,
 	doneActions: number[]

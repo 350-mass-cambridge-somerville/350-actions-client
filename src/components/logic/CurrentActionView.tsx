@@ -1,24 +1,31 @@
 import React, { Component, ReactNode } from 'react';
 import { ActionCard, actionCardFromJson } from '../../interfaces/ActionCard';
 import { SurveyResponse } from '../../interfaces/SurveyResponse';
-import { CurrentActionDisplay } from '../presentation/CurrentActionDisplay';
 import { ACTION_URL, ACTION_CARD_URL, SURVEY_RESPONSE_URL, LATEST_ACTION_CARD_URL } from '../../urls';
 import { AuthContext} from '../providers/AuthProvider';
+import { ActionSurveyFormAuth } from '../presentation/ActionSurveyFormAuth';
+import { ActionSurveyForm } from '../presentation/ActionSurveyForm';
+import { MainContentHeader } from '../presentation/MainContentHeader';
+
 export class CurrentActionView extends Component {
 	state: {
 		actionCard?: ActionCard,
-		nextSurveyResponse: SurveyResponse
+		nextSurveyResponse: SurveyResponse,
+		canSubmit: boolean
 	} = {
 		nextSurveyResponse: {
 			responderName: '',
 			actionCardId: 0,
 			doneActions: []
-		}
+		},
+		canSubmit: true
 	};
 
 	constructor(props: any) {
 		super(props);
 		this.onChange = this.onChange.bind(this);
+		this.onSubmit = this.onSubmit.bind(this);
+		this.onResponderNameChange = this.onResponderNameChange.bind(this);
 	}
 
 	componentDidMount() {
@@ -50,10 +57,51 @@ export class CurrentActionView extends Component {
 		this.getServerState();
 	}
 
+	onSubmit(): void {
+
+	}
+
+	onResponderNameChange(name: string): void {
+		let newSurveyResponse: SurveyResponse = {
+			responderName: name,
+			actionCardId: this.state.nextSurveyResponse.actionCardId,
+			doneActions: this.state.nextSurveyResponse.doneActions.slice()
+		}
+		this.setState({nextSurveyResponse: newSurveyResponse})
+	}
+
+	generateSurveyForm() {
+		if(this.context.userData.isAuthorized) {
+			return <ActionSurveyFormAuth 
+			responderName={this.context.userData.username}
+			onSubmit={this.onSubmit}
+			submitAllowed={this.state.canSubmit}
+			/>
+		} else if (!this.state.canSubmit) {
+			return <ActionSurveyFormAuth 
+			responderName={this.state.nextSurveyResponse.responderName}
+			onSubmit={this.onSubmit}
+			submitAllowed={this.state.canSubmit}
+			/>
+		} else {
+			return <ActionSurveyForm 
+				responderName={this.state.nextSurveyResponse.responderName}
+				onSubmit={this.onSubmit}
+				onResponderNameChange={this.onResponderNameChange}
+			/>
+		}
+	}
 	render(): ReactNode {
-		//console.log(`Rendering with state: ${JSON.stringify(this.state)}`);
 		return (
-			<CurrentActionDisplay actionCard={this.state.actionCard}  onChange={this.onChange} userData={this.context.userData}/>);
+			<React.Fragment>
+				{this.state.actionCard && 
+					<div>
+						<MainContentHeader mainTitle={`Action Card ${this.state.actionCard.number}`} date={this.state.actionCard.date}/>
+						{this.generateSurveyForm()}
+					</div>
+				}
+			</React.Fragment>
+		);
 	}
 }
 CurrentActionView.contextType = AuthContext;
