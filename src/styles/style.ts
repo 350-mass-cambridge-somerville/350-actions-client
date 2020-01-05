@@ -121,6 +121,32 @@ export const useStyles = makeStyles((theme: Theme) =>
       },
       snackbarError: {
         backgroundColor: 'red'
-      }
+      },
+      registrationTitle: {
+        color: theme.palette.primary.dark,
+        textAlign: 'center',
+        display: 'block',
+        fontSize: '2rem',
+        margin: '2px'
+      },
+      registrationItem: {
+        margin: theme.spacing(1),
+        minWidth: 120
+      },
+      modal: {
+        //display: 'none', /* Hidden by default */
+        position: 'fixed', /* Stay in place */
+        zIndex: 1, /* Sit on top */
+        left: 0,
+        top: 0,
+        width: '100%', /* Full width */
+        height: '100%', /* Full height */
+        overflow: 'auto', /* Enable scroll if needed */
+      },
+    modalContent: {
+      margin: '15% auto', /* 15% from the top and centered */
+      padding: '20px',
+      width: '80%' /* Could be more or less, depending on screen size */
+    },
 }), {defaultTheme: theme}
 );

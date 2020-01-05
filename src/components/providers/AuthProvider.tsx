@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { SIGN_IN_URL, CURRENT_USER_URL } from '../../urls';
+import { SIGN_IN_URL, CURRENT_USER_URL, SIGN_OUT_URL } from '../../urls';
 import { UserData } from '../../interfaces/UserData';
 
 
@@ -7,7 +7,7 @@ type AuthContextType = {
 	userData: UserData,
 	token: string,
 	login: (email: string, password: string) => void,
-	logout: (req: any) => void,
+	logout: () => void,
 	register: (req: any) => void
 }
 
@@ -20,7 +20,7 @@ const AuthContext = React.createContext({
 	userData: defaultUserData,
 	token: '', 
 	login: (email: string, password: string) => {}, 
-	logout: (req: any) => {},
+	logout: () => {},
 	register: (req: any) => {}
 });
 
@@ -78,11 +78,19 @@ function AuthProvider(props: AuthProviderProps) {
 
 	const register = (req: any) => { console.log(`Making register request ${req}`)} // register the user
 	
-	const logout = (req: any) => { console.log(`Making logout request ${logout}`)} // clear the token in localStorage and the user data
+	const logout = () => { 
+		console.log(`Making logout request ${logout}`)
+		fetch(SIGN_OUT_URL, {
+			method: 'POST'
+		}).then(() => {
+			setUserData({isAuthorized: false, email: '', name: ''});
+			setToken('');
+		});
+	} // clear the token in localStorage and the user data
 	
 	// todo provide token??
 	return <AuthContext.Provider value={{login, register, logout, userData, token}} {...props}/>;
 }
 
 const useAuth = (): AuthContextType => React.useContext(AuthContext)
-export {AuthProvider, useAuth, AuthContext}
+export {AuthProvider, useAuth, AuthContext};

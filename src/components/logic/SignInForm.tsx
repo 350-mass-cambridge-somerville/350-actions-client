@@ -1,6 +1,5 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { useState } from 'react';
 import { SignInFormDisplay } from '../presentation/SignInFormDisplay';
-import { SIGN_IN_URL } from '../../urls';
 import {useAuth} from '../providers/AuthProvider';
 
 type SignInFormProps = {

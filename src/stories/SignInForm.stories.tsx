@@ -5,6 +5,7 @@ import { action } from '@storybook/addon-actions';
 import { SignInFormDisplay } from '../components/presentation/SignInFormDisplay';
 import { ThemeProvider } from '@material-ui/styles';
 import { theme } from '../styles/style'
+import { BrowserRouter } from 'react-router-dom';
 
 export const actions = {
 	onEmailChange: action('onEmailChange'),
@@ -23,7 +24,10 @@ export const invalidRegistrationProps = {
 }
 
 storiesOf('SignInForm', module)
-	.add('default', () => ((<ThemeProvider theme={theme}>
+	.add('default', () => ((
+		<BrowserRouter>
+		<ThemeProvider theme={theme}>
 			<SignInFormDisplay {...defaultRegistrationProps} {...actions} />
-		</ThemeProvider>)))
+		</ThemeProvider>
+		</BrowserRouter>)))
 	.add('invalid', () => (<ThemeProvider theme={theme}><SignInFormDisplay {...invalidRegistrationProps} {...actions} /></ThemeProvider>))

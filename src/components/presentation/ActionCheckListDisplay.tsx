@@ -29,8 +29,8 @@ export function ActionCheckListDisplay(props: ActionListDisplayPropsCheck) {
                     action={action}
                     done={props.doneActions.includes(action.id)}
                     onActionDoneChange={props.onActionDoneChange}
-					count={count}
-					canCheck={!props.canSubmit}
+                    count={count}
+                    canCheck={!props.canSubmit}
                   />
                 <Divider/>
               </Box>

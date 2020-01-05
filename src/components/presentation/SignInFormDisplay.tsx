@@ -1,8 +1,10 @@
 import React, { ChangeEvent } from 'react';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import { Typography, Grid } from '@material-ui/core';
+import { Typography, Grid, Box } from '@material-ui/core';
 import { GoogleLogin } from 'react-google-login';
+import { useStyles } from '../../styles/style';
+import { Link, useLocation } from 'react-router-dom';
 
 type SignInFormDisplayProps = {
 	email: string,
@@ -13,7 +15,8 @@ type SignInFormDisplayProps = {
 }
 
 export function SignInFormDisplay(props: SignInFormDisplayProps) {
-	//const classes = useStyles();
+	const classes = useStyles();
+	const location = useLocation();
 
 	function onEmailChange(event: ChangeEvent<HTMLInputElement|HTMLTextAreaElement>): void {
 		props.onEmailChange(event.target.value);
@@ -28,7 +31,10 @@ export function SignInFormDisplay(props: SignInFormDisplayProps) {
 	}
 
 	return (
-		<React.Fragment>
+		<Box>
+				<Grid item>
+					<Typography className={classes.registrationTitle}>Sign In</Typography>
+				</Grid>
 				<Grid
 					container
 					direction="column"
@@ -37,20 +43,22 @@ export function SignInFormDisplay(props: SignInFormDisplayProps) {
 				>
 				<Grid item>
 					<TextField required
-						id="registration-email"
+						id="sign-in-email"
 						label="Email"
 						value={props.email}
 						onChange={onEmailChange}
+						className={classes.registrationItem}
 					/>
 				</Grid>
 				<Grid item>
 					<TextField required
-						id="registration-password"
+						id="sign-in-password"
 						//class="registration-text"
 						label="Password"
 						type="password"
 						value={props.password}
 						onChange={onPasswordChange}
+						className={classes.registrationItem}
 					/>
 				</Grid>
 				<Grid item>
@@ -60,6 +68,7 @@ export function SignInFormDisplay(props: SignInFormDisplayProps) {
 					onSuccess={onGoogleResponse}
 					onFailure={onGoogleResponse}
 					cookiePolicy={'single_host_origin'}
+					className={classes.registrationItem}
 					/>
 				</Grid>
 				<Grid item>
@@ -67,7 +76,20 @@ export function SignInFormDisplay(props: SignInFormDisplayProps) {
         			Submit
       			</Button>
 				</Grid>
+				<Grid item>
+					<Typography className={classes.registrationItem}>Don't have an account? </Typography>
+					<Link
+						to={{
+							pathname: `/register`,
+							// This is the trick! This link sets
+							// the `background` in location state.
+							state: { background: location }
+						}}
+					>
+						<Typography>Register</Typography>
+        			</Link>
+				</Grid>
 			</Grid>
-		</React.Fragment>
+		</Box>
 		);
 }

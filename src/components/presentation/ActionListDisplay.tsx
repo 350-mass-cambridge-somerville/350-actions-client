@@ -1,6 +1,6 @@
 import React from 'react';
 import { useStyles } from '../../styles/style';
-import { List, ListItem, Divider } from '@material-ui/core';
+import { List, ListItem, Divider, Box } from '@material-ui/core';
 import { ActionDisplay } from './ActionDisplay';
 import { Action } from '../../interfaces/Action';
 import { SurveyResponse } from '../../interfaces/SurveyResponse';
@@ -21,14 +21,14 @@ export function ActionListDisplay(props: ActionListDisplayPropsNoCheck) {
         props.surveyResponses.map(response => {
           count = count + response.doneActions.filter(id => id === action.id).length
         })
-        return (
-              <ListItem>
+        return (//todo this should use listitem
+                <Box>
                   <ActionDisplay
                     action={action}
                     count={count}
                   />
                 <Divider/>
-              </ListItem>
+              </Box>
         );
       })}
     </List>

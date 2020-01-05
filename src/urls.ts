@@ -6,4 +6,5 @@ export const ACTION_URL=`${baseUrl}/actions/`;
 export const SURVEY_RESPONSE_URL=`${baseUrl}/surveyresponses/`;
 export const USER_SURVEY_RESPONSE_URL=`${baseUrl}/surveyresponses/user/`;
 export const SIGN_IN_URL=`${baseUrl}/rest-auth/login/`;
+export const SIGN_OUT_URL=`${baseUrl}/rest-auth/louout/`;
 export const CURRENT_USER_URL=`${baseUrl}/user/`;
