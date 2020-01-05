@@ -6,7 +6,7 @@ import { UserData } from '../../interfaces/UserData';
 type AuthContextType = {
 	userData: UserData,
 	token: string,
-	login: (email: string, password: string) => void,
+	login: (email: string, password: string) => Promise<boolean>,
 	logout: () => void,
 	register: (req: any) => Promise<boolean>
 }
@@ -20,7 +20,7 @@ const defaultUserData: UserData = {
 const AuthContext = React.createContext({
 	userData: defaultUserData,
 	token: '', 
-	login: (email: string, password: string) => {}, 
+	login: (email: string, password: string) => {return Promise.resolve(false);}, 
 	logout: () => {},
 	register: (req: any) => {return Promise.resolve(false)}
 });
@@ -53,11 +53,11 @@ function AuthProvider(props: AuthProviderProps) {
 		  })
 		  .catch((error) => {
 			  console.log(`submit failed with error: ${error}`);
-			  //this.setState({showSnackbar: true, snackbarIsError: true, snackbarMessage: 'Something went wrong. Try again later.'})
+			  return false;
 		  })
 	} // make a login request
 
-	function fetchUserProfile() : Promise<void> {
+	function fetchUserProfile() : Promise<boolean> {
 		return fetch(CURRENT_USER_URL, {
 			method: 'GET',
 			//withCredentials: true,
@@ -75,6 +75,7 @@ function AuthProvider(props: AuthProviderProps) {
 			console.log(`Got user json: ${JSON.stringify(json)}`)
 			// todo how to set admin perms
 			setUserData({isAuthorized: true, email: json.email, name: json.username, isAdmin: json.is_superuser});
+			return true;
 		})
 	}
 

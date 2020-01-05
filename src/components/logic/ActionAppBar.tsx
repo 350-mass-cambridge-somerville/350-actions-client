@@ -41,8 +41,8 @@ export function ActionAppBar(props: ActionAppBarProps) {
 		<AppBar 
 		className={classes.appBar}
 		position="sticky">
-		<Toolbar>
-			<Tabs value={false} aria-label="nav" centered>
+		<Toolbar className={classes.appBar}>
+			<Tabs value={false} aria-label="nav">
 				<Tab label="About" component={Link} to="/"/>
 				<Tab label="Current" component={Link} to="/"/>
 				<Tab label="Past"    component={Link} to="/past"/>

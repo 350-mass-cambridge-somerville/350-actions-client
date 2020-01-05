@@ -110,7 +110,8 @@ export const useStyles = makeStyles((theme: Theme) =>
         textAlign: 'center'
       },
       appBar: {
-        color: 'primary'
+        color: 'primary',
+        justifyContent: 'center',
       },
       actionExpansionPanels: {
 
