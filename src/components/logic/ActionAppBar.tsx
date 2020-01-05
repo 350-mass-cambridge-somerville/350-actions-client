@@ -17,11 +17,19 @@ export function ActionAppBar(props: ActionAppBarProps) {
 	function generateLogoutLogin(): ReactNode {
 		if (authContext.userData.isAuthorized) {
 			return (<React.Fragment>
-				<Button onClick={() => authContext.logout()}>Logout</Button>
+				<Button
+				variant="contained"
+				color="secondary" 
+				onClick={() => authContext.logout()}
+				>Logout</Button>
 			</React.Fragment>);
 		} else {
 			return 	(<React.Fragment>
-			<Button onClick={() => console.log('click')}>Login</Button>
+			<Button 
+			 variant="contained"
+			 color="secondary" 
+			 component={Link} 
+			 to={'/sign-in'}>Login</Button>
 			</React.Fragment>);
 		}
 	}
@@ -39,7 +47,7 @@ export function ActionAppBar(props: ActionAppBarProps) {
 				<Tab label="Current" component={Link} to="/"/>
 				<Tab label="Past"    component={Link} to="/past"/>
 				<Tab label="Create"  component={Link} to={{
-            			pathname: `/sign-in`,
+            			pathname: `/create`,
             			// This is the trick! This link sets
             			// the `background` in location state.
            				// state: { background: location }

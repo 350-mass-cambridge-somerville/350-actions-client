@@ -121,10 +121,6 @@ function ActionRoutes() {
         <Route path="/sign-in" children={<SignInView />} />
         <Route path="/register" children={<RegisterView />} />
       </Switch>
-
-      {/* Show the modal when a background page is set */}
-      {background && <Route path="/sign-in" children={<SignInModal />} />}
-      {background && <Route path="/register" children={<RegisterModal />} />}
     </div>
   );
 }
