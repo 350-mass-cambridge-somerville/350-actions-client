@@ -78,14 +78,7 @@ export function SignInFormDisplay(props: SignInFormDisplayProps) {
 				</Grid>
 				<Grid item>
 					<Typography className={classes.registrationItem}>Don't have an account? </Typography>
-					<Link
-						to={{
-							pathname: `/register`,
-							// This is the trick! This link sets
-							// the `background` in location state.
-							state: { background: location }
-						}}
-					>
+					<Link to='/register'>
 						<Typography>Register</Typography>
         			</Link>
 				</Grid>

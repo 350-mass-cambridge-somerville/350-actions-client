@@ -46,12 +46,17 @@ export function ActionAppBar(props: ActionAppBarProps) {
 				<Tab label="About" component={Link} to="/"/>
 				<Tab label="Current" component={Link} to="/"/>
 				<Tab label="Past"    component={Link} to="/past"/>
-				<Tab label="Create"  component={Link} to={{
-            			pathname: `/create`,
-            			// This is the trick! This link sets
-            			// the `background` in location state.
-           				// state: { background: location }
-         		 }}/>
+				{authContext.userData.isAuthorized && 
+				<React.Fragment>
+					<Tab label="Create"  component={Link} to={{
+							pathname: `/create`,
+							// This is the trick! This link sets
+							// the `background` in location state.
+							// state: { background: location }
+					}}/>
+					<Tab label="Export" component={Link} to="/export" />
+				</React.Fragment>
+				}
 			</Tabs>
 			{generateLogoutLogin()}
 		</Toolbar>

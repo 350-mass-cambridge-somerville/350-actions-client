@@ -8,20 +8,21 @@ type AuthContextType = {
 	token: string,
 	login: (email: string, password: string) => void,
 	logout: () => void,
-	register: (req: any) => void
+	register: (req: any) => Promise<boolean>
 }
 
 const defaultUserData: UserData = {
 	name: '',
 	email: '',
-	isAuthorized: false
+	isAuthorized: false,
+	isAdmin: false
 }
 const AuthContext = React.createContext({
 	userData: defaultUserData,
 	token: '', 
 	login: (email: string, password: string) => {}, 
 	logout: () => {},
-	register: (req: any) => {}
+	register: (req: any) => {return Promise.resolve(false)}
 });
 
 type AuthProviderProps = {children: any};
@@ -72,18 +73,22 @@ function AuthProvider(props: AuthProviderProps) {
 		})
 		.then((json) => {
 			console.log(`Got user json: ${JSON.stringify(json)}`)
-			setUserData({isAuthorized: true, email: json.email, name: json.username});
+			// todo how to set admin perms
+			setUserData({isAuthorized: true, email: json.email, name: json.username, isAdmin: json.is_superuser});
 		})
 	}
 
-	const register = (req: any) => { console.log(`Making register request ${req}`)} // register the user
+	const register = (req: any) => { 
+		console.log(`Making register request ${req}`);
+		return Promise.resolve(true);
+	} // register the user
 	
 	const logout = () => { 
 		console.log(`Making logout request ${logout}`)
 		fetch(SIGN_OUT_URL, {
 			method: 'POST'
 		}).then(() => {
-			setUserData({isAuthorized: false, email: '', name: ''});
+			setUserData({isAuthorized: false, isAdmin: false, email: '', name: ''});
 			setToken('');
 		});
 	} // clear the token in localStorage and the user data

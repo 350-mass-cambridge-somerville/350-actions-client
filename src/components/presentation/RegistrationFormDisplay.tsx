@@ -3,6 +3,7 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import { Typography, Grid } from '@material-ui/core';
 import {useStyles} from '../../styles/style';
+import {Link} from 'react-router-dom';
 type RegistrationFormDisplayProps = {
 	email: string,
 	name: string,
@@ -97,8 +98,11 @@ export function RegistrationFormDisplay(props: RegistrationFormDisplayProps) {
 					</Button>
 					</Grid>
 					<Grid item>
-						<Typography>Already have an account? Sign In</Typography>
-					</Grid>
+					<Typography className={classes.registrationItem}>Already have an account? </Typography>
+					<Link to='/sign-in'>
+						<Typography>Sign In</Typography>
+        			</Link>
+				</Grid>
 				</Grid>
 		</React.Fragment>
 		);

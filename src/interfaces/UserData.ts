@@ -1,5 +1,6 @@
 export type UserData = {
 	name: string,
 	email: string,
-	isAuthorized: boolean
+	isAuthorized: boolean,
+	isAdmin: boolean
 }

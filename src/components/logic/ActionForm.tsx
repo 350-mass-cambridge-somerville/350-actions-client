@@ -9,7 +9,7 @@ import { ActionCardForm } from './ActionCardForm';
 import { DateType } from '../../interfaces/DateType';
 import { ActionCard } from '../../interfaces/ActionCard';
 import SimpleSnackbar from '../presentation/SimpleSnackbar';
-
+import { AuthContext } from '../providers/AuthProvider';
 import {ACTION_CARD_URL, ACTION_URL} from '../../urls';
 
 type ActionFormState = {
@@ -120,7 +120,8 @@ export class ActionForm extends Component<ActionFormProps, ActionFormState> {
 				method: 'POST',
 				mode: 'cors',
 				headers: {
-					'Content-Type': 'application/json'
+					'Content-Type': 'application/json',
+					'Authorization': 'Bearer '+ this.context.token,
 					// 'Content-Type': 'application/x-www-form-urlencoded',
 				  },
 				  body: JSON.stringify({
@@ -128,8 +129,10 @@ export class ActionForm extends Component<ActionFormProps, ActionFormState> {
 					  number: this.state.actionCardNumber
 				  }) // body data type must match "Content-Type" header
 			}).then((response: Response) => {
+				if(!response.ok) {
+					throw(response.text);
+				}
 				return response.json();
-				console.log(`response ok ${response.ok} status ${response.status} text ${response.statusText}`)
 			}).then((responseJson: any) => {
 				const actionCardId = responseJson.id;
 				return this.submitAction(actionCardId);
@@ -146,7 +149,8 @@ export class ActionForm extends Component<ActionFormProps, ActionFormState> {
 		return fetch(ACTION_URL, {
 			method: 'POST', // *GET, POST, PUT, DELETE, etc.
 			headers: {
-			  'Content-Type': 'application/json'
+			  'Content-Type': 'application/json',
+			  'Authorization': 'Bearer '+ this.context.token,
 			  // 'Content-Type': 'application/x-www-form-urlencoded',
 			},
 			body: JSON.stringify({
@@ -160,15 +164,18 @@ export class ActionForm extends Component<ActionFormProps, ActionFormState> {
 				geographyType: this.state.geographyType
 			}) // body data type must match "Content-Type" header
 		  }).then((response) => {
-			return response.json()
 			console.log(`response ok ${response.ok} status ${response.status} text ${response.statusText}`)
+			if(!response.ok) {
+				throw(response.text);
+			}
+			return response.json();
 		  }).then((json) => {
 			  console.log(`got response json: ${JSON.stringify(json)}`);
 			  this.setState({showSnackbar: true, snackbarIsError: false, snackbarMessage: `Success! ${JSON.stringify(json)}`})
 		  })
 		  .catch((error) => {
 			  console.log(`submit failed with error: ${error}`);
-			  this.setState({showSnackbar: true, snackbarIsError: true, snackbarMessage: 'Something went wrong. Try again later.'})
+			  this.setState({showSnackbar: true, snackbarIsError: true, snackbarMessage: `Something went wrong. Try again later. Error: ${error.message}`})
 		  })
 	}
 
@@ -215,3 +222,4 @@ export class ActionForm extends Component<ActionFormProps, ActionFormState> {
 		);
 	}
 }
+ActionForm.contextType = AuthContext;

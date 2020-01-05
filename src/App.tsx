@@ -120,6 +120,7 @@ function ActionRoutes() {
         <Route path="/past" children={<Past />} />
         <Route path="/sign-in" children={<SignInView />} />
         <Route path="/register" children={<RegisterView />} />
+        <Route path="/create" children={<CreateActionView/>} />
       </Switch>
     </div>
   );
