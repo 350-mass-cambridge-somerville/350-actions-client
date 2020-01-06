@@ -29,7 +29,9 @@ type AuthProviderProps = {children: any};
 
 function AuthProvider(props: AuthProviderProps) {
 	const [token, setToken] = useState('');
+	const [refresh, setRefresh] = useState('');
 	const [userData, setUserData] = useState(defaultUserData);
+
 	const login = (email: string, password: string) => { 
 		console.log(`Making login request for ${email}`)
 		return fetch(SIGN_IN_URL, {
@@ -39,20 +41,23 @@ function AuthProvider(props: AuthProviderProps) {
 			  // 'Content-Type': 'application/x-www-form-urlencoded',
 			},
 			body: JSON.stringify({
-				email: email,
+				username: email,
 				password: password
 			}) // body data type must match "Content-Type" header
 		  }).then((response) => {
+			if(!response.ok) {
+				throw(response.text);
+			}
 			return response.json()
-			console.log(`response ok ${response.ok} status ${response.status} text ${response.statusText}`)
 		  }).then((json) => {
 			  console.log(`got response json: ${JSON.stringify(json)}`);
-			  setToken(json.key); 
+			  setToken(json.access); 
+			  setRefresh(json.refresh);
 			  return fetchUserProfile();
 			  //setUserData({isAuthorized: true, email: email, name: 'todo'})
 		  })
 		  .catch((error) => {
-			  console.log(`submit failed with error: ${error}`);
+			  console.log(`submit failed with error: ${error.message}`);
 			  return false;
 		  })
 	} // make a login request
