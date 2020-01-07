@@ -63,7 +63,7 @@ export function SignInFormDisplay(props: SignInFormDisplayProps) {
 				</Grid>
 				<Grid item>
 					<GoogleLogin
-					clientId="658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com"
+					clientId="897886632433-fpbc11m225n7csskqrqqb3k5m1l114qa.apps.googleusercontent.com"
 					buttonText="Login with Google"
 					onSuccess={onGoogleResponse}
 					onFailure={onGoogleResponse}

@@ -19,7 +19,7 @@ export function ActionCheckDisplay(props: {action: Action,
 }) 
 {
 	const classes = useStyles(theme);
-	console.log(`rendering action ${JSON.stringify(props.action)}`);
+	//console.log(`rendering action ${JSON.stringify(props.action)}`);
 	
 	function onCheck(event: any) {
 		props.onActionDoneChange(props.action.id, event.target.checked)

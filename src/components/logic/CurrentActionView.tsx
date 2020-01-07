@@ -5,6 +5,7 @@ import { SurveyResponse } from '../../interfaces/SurveyResponse';
 import { ACTION_URL, ACTION_CARD_URL, SURVEY_RESPONSE_URL, LATEST_ACTION_CARD_URL } from '../../urls';
 import { AuthContext} from '../providers/AuthProvider';
 import { CurrentActionDisplay } from '../presentation/CurrentActionDisplay';
+import moment from 'moment';
 
 export class CurrentActionView extends Component {
 	state: {
@@ -64,12 +65,14 @@ export class CurrentActionView extends Component {
 				'Content-Type': 'application/json'
 			},
 			body: JSON.stringify({
-			    responderName: this.state.responderName, 
-				doneActions: this.state.doneActions,
-				actionCardId: this.state.actionCardId
+				name: this.state.responderName,
+				date: moment().format('YYYY-MM-DD'), 
+				actions: this.state.doneActions,
+				action_card: this.state.actionCardId
 			}) 
 		}).then(() => {
-			this.setState({canSubmit: false})
+			this.setState({canSubmit: false});
+			this.getServerState();
 		})
 	}
 

@@ -6,5 +6,11 @@ export interface SurveyResponse {
 }
 
 export function surveyResponseFromJson(json: any) {
-	return json;
+	console.log(`converting survey response json ${json}`);
+	return {
+		responderName: json.name ? json.name : '',
+		id: json.id,
+		actionCardId: json.action_card,
+		doneActions: json.actions
+	};
 }

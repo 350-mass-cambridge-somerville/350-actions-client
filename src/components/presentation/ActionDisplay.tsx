@@ -19,7 +19,7 @@ export function ActionDisplay(props: {action: Action,
 }) 
 {
 	const classes = useStyles(theme);
-	console.log(`rendering action ${JSON.stringify(props.action)}`);
+	//console.log(`rendering action ${JSON.stringify(props.action)}`);
 
 	return (
 	<Box>

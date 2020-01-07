@@ -1,3 +1,4 @@
+import moment from 'moment';
 import React, { Component, ChangeEvent, ReactNode } from 'react';
 import { Paper, Button } from '@material-ui/core';
 import { ActionGeographyForm } from './ActionGeographyForm';
@@ -145,7 +146,21 @@ export class ActionForm extends Component<ActionFormProps, ActionFormState> {
 		}
 	}
 
+	formatDate(date: Date) {
+		return moment(date).format('YYYY-MM-DD');
+	}
+
 	submitAction(actionCardId: number): Promise<any> {
+		console.log(`request body: ${JSON.stringify({
+			actionCardId: actionCardId,
+			description: this.state.description,
+			date: this.formatDate(this.state.date),
+			dateStart: this.formatDate(this.state.dateStart),
+			dateEnd: this.formatDate(this.state.dateEnd),
+			tags: this.state.tags,
+			dateType: this.state.dateType,
+			geographyType: this.state.geographyType
+		})}`);
 		return fetch(ACTION_URL, {
 			method: 'POST', // *GET, POST, PUT, DELETE, etc.
 			headers: {
@@ -154,14 +169,14 @@ export class ActionForm extends Component<ActionFormProps, ActionFormState> {
 			  // 'Content-Type': 'application/x-www-form-urlencoded',
 			},
 			body: JSON.stringify({
-				actionCardId: actionCardId,
+				//actionCardId: actionCardId,
 				description: this.state.description,
-				date: this.state.date,
-				dateStart: this.state.dateStart,
-				dateEnd: this.state.dateEnd,
-				tags: this.state.tags,
-				dateType: this.state.dateType,
-				geographyType: this.state.geographyType
+				date: this.formatDate(this.state.date),
+				date_start: this.formatDate(this.state.dateStart),
+				date_end: this.formatDate(this.state.dateEnd),
+				taggit: this.state.tags,
+				date_type: this.state.dateType,
+				geography_type: this.state.geographyType
 			}) // body data type must match "Content-Type" header
 		  }).then((response) => {
 			console.log(`response ok ${response.ok} status ${response.status} text ${response.statusText}`)
