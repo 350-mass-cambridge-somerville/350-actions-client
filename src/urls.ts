@@ -1,5 +1,6 @@
 //const baseUrl: string = 'https://server-dot-actions-server-260415.appspot.com';
-const baseUrl: string = 'http://localhost:8000';
+//const baseUrl: string = 'http://localhost:8000';
+const baseUrl: string = 'http://159.89.54.69:8000';
 export const ACTION_CARD_URL=`${baseUrl}/actioncards/`;
 export const LATEST_ACTION_CARD_URL=`${baseUrl}/actioncards/latest/`
 export const ACTION_URL=`${baseUrl}/actions/`;

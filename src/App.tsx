@@ -72,19 +72,25 @@ function SignInModal() {
 
 function SignInView() {
   const classes = useStyles(theme);
-	return (<div>
+	/**return (<div>
 		<Paper className={classes.contentMain}>
-			<MainContentHeader mainTitle={"Past Actions"} />
+			<MainContentHeader mainTitle={""} />
 			<SignInForm />
 		</Paper>
-	</div>);
+  </div>);**/
+  return (<div>
+		<Paper className={classes.contentMain}>
+			<MainContentHeader mainTitle={""} />
+			Coming soon!
+		</Paper>
+  </div>)
 }
 
 function RegisterView() {
   const classes = useStyles(theme);
 	return (<div>
 		<Paper className={classes.contentMain}>
-			<MainContentHeader mainTitle={"Past Actions"} />
+			<MainContentHeader mainTitle={""} />
 			<RegistrationForm />
 		</Paper>
 	</div>);

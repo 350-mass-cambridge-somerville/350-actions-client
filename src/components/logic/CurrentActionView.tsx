@@ -81,28 +81,29 @@ export class CurrentActionView extends Component {
 	}
 
 	onActionDoneChange(id: number, done: boolean): void {
-		console.log(`done actions: ${JSON.stringify(this.state.doneActions)}`)
+		//console.log(`done actions: ${JSON.stringify(this.state.doneActions)}`)
 		if (done && !this.state.doneActions.includes(id)) {
 			const newDoneActions = this.state.doneActions.slice()
 			newDoneActions.push(id);
-			console.log(`1. newDoneActions: ${this.state.doneActions.slice()} ${JSON.stringify(newDoneActions)}`)
+			//console.log(`1. newDoneActions: ${this.state.doneActions.slice()} ${JSON.stringify(newDoneActions)}`)
 			this.setState({doneActions: newDoneActions});
 		}
 		if (!done && this.state.doneActions.includes(id)) {
 			const newDoneActions = this.state.doneActions.slice().filter(i => i !== id)
-			console.log(`2. newDoneActions: ${this.state.doneActions.slice()} ${JSON.stringify(newDoneActions)}`)
+			//console.log(`2. newDoneActions: ${this.state.doneActions.slice()} ${JSON.stringify(newDoneActions)}`)
 			this.setState({doneActions: newDoneActions});
 		}
 
 	}
 	
 	render(): ReactNode {
+		console.log(`context userdata: ${JSON.stringify(this.context.userData)}`)
 		return (
 			<CurrentActionDisplay 
 				actionCard={this.state.actionCard}
 				responderName={this.state.responderName}
 				onResponderNameChange={this.onResponderNameChange}
-				username={this.context.userData.username}
+				username={this.context.userData.name}
 				isAuthorized={this.context.userData.isAuthorized}
 				canSubmit={this.state.canSubmit}
 				onSubmit={this.onSubmit}

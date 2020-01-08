@@ -50,10 +50,10 @@ function AuthProvider(props: AuthProviderProps) {
 			}
 			return response.json()
 		  }).then((json) => {
-			  console.log(`got response json: ${JSON.stringify(json)}`);
+			  //console.log(`got response json: ${JSON.stringify(json)}`);
 			  setToken(json.access); 
 			  setRefresh(json.refresh);
-			  return fetchUserProfile();
+			  return fetchUserProfile(json.access);
 			  //setUserData({isAuthorized: true, email: email, name: 'todo'})
 		  })
 		  .catch((error) => {
@@ -62,13 +62,14 @@ function AuthProvider(props: AuthProviderProps) {
 		  })
 	} // make a login request
 
-	function fetchUserProfile() : Promise<boolean> {
+	function fetchUserProfile(tok: string) : Promise<boolean> {
+		console.log(`fetching user profile!`);
 		return fetch(CURRENT_USER_URL, {
 			method: 'GET',
 			//withCredentials: true,
 			credentials: 'include',
 			headers: {
-				'Authorization': 'Bearer '+ token,
+				'Authorization': 'Bearer '+ tok,
 				//'X-FP-API-KEY': 'iphone', //it can be iPhone or your any other attribute
 				'Content-Type': 'application/json'
 			}})

@@ -46,7 +46,7 @@ export function ActionAppBar(props: ActionAppBarProps) {
 				<Tab label="About" component={Link} to="/"/>
 				<Tab label="Current" component={Link} to="/"/>
 				<Tab label="Past"    component={Link} to="/past"/>
-				{authContext.userData.isAuthorized && 
+				{authContext.userData.isAuthorized && authContext.userData.isAdmin &&
 				<React.Fragment>
 					<Tab label="Create"  component={Link} to={{
 							pathname: `/create`,

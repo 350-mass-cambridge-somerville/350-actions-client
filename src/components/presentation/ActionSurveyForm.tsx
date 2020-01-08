@@ -20,7 +20,7 @@ export function ActionSurveyForm(props: ActionSurveyFormProps) {
 					<Grid item>
 						<TextField
 							id="standard-basic"
-							label="Name"
+							label="Name (optional)"
 							margin="normal"
 							value={props.responderName}
 							onChange={onResponderNameChange}

@@ -126,7 +126,7 @@ export class ActionForm extends Component<ActionFormProps, ActionFormState> {
 					// 'Content-Type': 'application/x-www-form-urlencoded',
 				  },
 				  body: JSON.stringify({
-					  date: this.state.actionCardDate, 
+					  date: this.formatDate(this.state.actionCardDate), 
 					  number: this.state.actionCardNumber
 				  }) // body data type must match "Content-Type" header
 			}).then((response: Response) => {
