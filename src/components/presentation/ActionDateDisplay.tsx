@@ -2,6 +2,7 @@ import React, { ReactNode} from "react";
 import { Typography, Grid } from '@material-ui/core';
 import { DateType } from '../../interfaces/DateType';
 import { useStyles } from '../../styles/style';
+import moment from 'moment';
 
 export type DateDisplayProps = {
 	dateType: DateType,
@@ -10,26 +11,32 @@ export type DateDisplayProps = {
 	dateEnd: Date,
 };
 
+function formatDate(date: Date): string {
+	// todo fix timezone on server...
+	return moment(date).add(6, 'hours').format('MMMM Do YYYY');
+}
+
 export function ActionDateDisplay(props: DateDisplayProps) 
 {
 	const classes = useStyles();
+	console.log(`rendering date display with date ${props.date} ${JSON.stringify(props.date)} ${props.date.toDateString()}`)
 	switch(props.dateType) {
 		case DateType.ON:
 			return (<Grid container>
 						<Typography className={classes.dateDisplayDescription}>do on</Typography>
-						<Typography className={classes.dateDisplayDate}>{props.date.toDateString()}</Typography>
+						<Typography className={classes.dateDisplayDate}>{formatDate(props.date)}</Typography>
 					</Grid>);
 		case DateType.BEFORE:
 			return (<Grid container>
 						<Typography className={classes.dateDisplayDescription}>do before</Typography>
-						<Typography className={classes.dateDisplayDate}>{props.date.toDateString()}</Typography>
+						<Typography className={classes.dateDisplayDate}>{formatDate(props.date)}</Typography>
 					</Grid>);
 		case DateType.RANGE:
 			return (<Grid container>
 						<Typography className={classes.dateDisplayDescription}>do between</Typography>
-						<Typography className={classes.dateDisplayDate}>{props.dateStart.toDateString()}</Typography>
+						<Typography className={classes.dateDisplayDate}>{formatDate(props.dateStart)}</Typography>
 						<Typography className={classes.dateDisplayDescription}>and</Typography>
-						<Typography className={classes.dateDisplayDate}>{props.dateEnd.toDateString()}</Typography>
+						<Typography className={classes.dateDisplayDate}>{formatDate(props.dateEnd)}</Typography>
 					</Grid>);
 		default:
 			return <span></span>
