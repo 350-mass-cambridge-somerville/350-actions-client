@@ -12,7 +12,8 @@ import { ActionCard } from '../../interfaces/ActionCard';
 import SimpleSnackbar from '../presentation/SimpleSnackbar';
 import { AuthContext } from '../providers/AuthProvider';
 import {ACTION_CARD_URL, ACTION_URL} from '../../urls';
-
+import {updateActionCard, createActionCard} from '../../commands/actionCardCommands';
+ 
 type ActionFormState = {
 	geographyType: GeographyType, 
 	dateType: DateType, 
@@ -30,7 +31,8 @@ type ActionFormState = {
 };
 
 type ActionFormProps = {
-	cards: ActionCard[]
+	cards: ActionCard[],
+	onSubmit: () => void
 }
 export class ActionForm extends Component<ActionFormProps, ActionFormState> {
 	state: ActionFormState = {
@@ -42,15 +44,16 @@ export class ActionForm extends Component<ActionFormProps, ActionFormState> {
 		description: '',
 		tags: [],
 		actionCardDate: new Date(),
-		actionCardId: 1,
+		actionCardId: -1,
 		actionCardNumber: 0,
 		showSnackbar: false,
 		snackbarMessage: '',
-		snackbarIsError: false
+		snackbarIsError: false,
 	};
 
 	constructor(props: ActionFormProps) {
-		super({cards: []});
+		super(props);
+		//super({cards: [], onSubmit: props.onSubmit});
 
 		this.onGeographyTypeChange = this.onGeographyTypeChange.bind(this);
 		this.onDateTypeChange = this.onDateTypeChange.bind(this);
@@ -151,16 +154,6 @@ export class ActionForm extends Component<ActionFormProps, ActionFormState> {
 	}
 
 	submitAction(actionCardId: number): Promise<any> {
-		console.log(`request body: ${JSON.stringify({
-			actionCardId: actionCardId,
-			description: this.state.description,
-			date: this.formatDate(this.state.date),
-			dateStart: this.formatDate(this.state.dateStart),
-			dateEnd: this.formatDate(this.state.dateEnd),
-			tags: this.state.tags,
-			dateType: this.state.dateType,
-			geographyType: this.state.geographyType
-		})}`);
 		return fetch(ACTION_URL, {
 			method: 'POST', // *GET, POST, PUT, DELETE, etc.
 			headers: {
@@ -187,11 +180,31 @@ export class ActionForm extends Component<ActionFormProps, ActionFormState> {
 		  }).then((json) => {
 			  console.log(`got response json: ${JSON.stringify(json)}`);
 			  this.setState({showSnackbar: true, snackbarIsError: false, snackbarMessage: `Success! ${JSON.stringify(json)}`})
+			  return json.id;
+		  })
+		  .then((id: number) => {
+			  // find the current actions on the action card
+			  const cards: ActionCard[] = this.props.cards.filter((card) => {return card.id === actionCardId});
+			  let newActions: number[] = [];
+			  if (cards.length > 0) {
+				newActions = cards[0].actions.map((action) => {return action.id}); 
+			  }
+			  //let newActions: number[] = c.actions.map((action) => {return action.id});
+			  newActions.push(id);
+			  updateActionCard(actionCardId, newActions, this.context.token);
+		  })
+		  .then(() => {
+			  this.props.onSubmit();
+			  this.clearFormState();
 		  })
 		  .catch((error) => {
 			  console.log(`submit failed with error: ${error}`);
 			  this.setState({showSnackbar: true, snackbarIsError: true, snackbarMessage: `Something went wrong. Try again later. Error: ${error.message}`})
 		  })
+	}
+
+	clearFormState() {
+		this.setState({actionCardId: -1});
 	}
 
 	render() {

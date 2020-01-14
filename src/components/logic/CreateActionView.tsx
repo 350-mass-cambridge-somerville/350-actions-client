@@ -12,13 +12,28 @@ export class CreateActionView extends Component {
 		cards: []
 	};
 
+	constructor(props: any) {
+		super(props);
+
+		this.onSubmit = this.onSubmit.bind(this);
+	}
+
 	componentDidMount() {
-		Promise.all([this.fetchActionCards()])
-		.then((vals) => {
-			console.log(`got value`, vals)
-			const actionCards = vals[0];
+		this.fetchActionCards();
+	}
+
+	fetchActionCards(): Promise<any> {
+		return fetch(ACTION_CARD_URL, {method: 'GET'})
+		.then((data: Response) => {
+			const dj = data.json();
+			//console.log(`got data! ${JSON.stringify(dj)}`, dj);
+			return dj;
+		})
+		.then((actionCards) => {
+			//console.log(`got value`, vals)
+			//const actionCards = vals[0];
 			
-			console.log(`action cards are: ${JSON.stringify(actionCards)}`);
+			//console.log(`action cards are: ${JSON.stringify(actionCards)}`);
 			let cards: ActionCard[] = [];
 			actionCards.map((json: any) => {
 				cards.push(actionCardFromJson(json));
@@ -31,13 +46,8 @@ export class CreateActionView extends Component {
 		})
 	}
 
-	fetchActionCards(): Promise<Array<any>> {
-		return fetch(ACTION_CARD_URL, {method: 'GET'})
-		.then((data: Response) => {
-			const dj = data.json();
-			console.log(`got data! ${JSON.stringify(dj)}`, dj);
-			return dj;
-		  })
+	onSubmit(): void {
+		this.fetchActionCards();
 	}
 
 	render(): ReactNode {
@@ -47,6 +57,7 @@ export class CreateActionView extends Component {
 				<MainContentHeader mainTitle="Create an action"/>
 				<ActionForm
 					cards={this.state.cards}
+					onSubmit={this.onSubmit}
 				/>
 			</Paper>
 		</div>);
