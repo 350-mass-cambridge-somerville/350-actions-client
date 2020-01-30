@@ -6,14 +6,14 @@ type SnackbarContextType = {
 }
 
 const SnackbarContext = React.createContext({
-	queueMessage: (message: string, isError: boolean) => {return 0;}
+	queueMessage: (message: string, isError: boolean) => {return 0 as number;}
 });
 
 type SnackbarProviderProps = {children: any};
 
 function SnackbarProvider(props: SnackbarProviderProps) {
 	const [messageQueue, setMessageQueue] = useState([]);
-	const queueMessage = (message: string, isError: boolean) => { 
+	const queueMessage = (message: string, isError: boolean) => {
 		return 1;
 	} // add a snackbar
 
