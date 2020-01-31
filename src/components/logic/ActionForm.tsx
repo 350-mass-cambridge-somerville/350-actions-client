@@ -13,6 +13,7 @@ import SimpleSnackbar from '../presentation/SimpleSnackbar';
 import { AuthContext } from '../providers/AuthProvider';
 import {ACTION_CARD_URL, ACTION_URL} from '../../urls';
 import {updateActionCard, createActionCard} from '../../commands/actionCardCommands';
+import { createAction } from '../../commands/actionCommands';
  
 type ActionFormState = {
 	geographyType: GeographyType, 
@@ -114,97 +115,61 @@ export class ActionForm extends Component<ActionFormProps, ActionFormState> {
 	}
 
 	onSubmit(): void {
-		const stateString: string = JSON.stringify(this.state);
-		console.log(`state string: ${stateString}`)
+		Promise.all([
+		this.getOrCreateActionCard(), 
+		createAction(this.state.description, this.state.date, this.state.dateStart,
+				this.state.dateEnd, this.state.tags, this.state.dateType,
+				this.state.geographyType, this.context.token)])
+		.then((idAndJson: any[]) => {
+			const actionCardId = idAndJson[0];
+			const actionId = idAndJson[1].id;
+			return this.addActionToCard(actionCardId, actionId);
+		})
+		.then((json: any) => {
+			console.log(`got update response ${json}`)
+			this.props.onSubmit();
+			this.clearFormState(json.id);
+		})
+		.catch((error) => {
+			console.log(`submit failed with error: ${error}`);
+			this.setState({showSnackbar: true, snackbarIsError: true, snackbarMessage: `Something went wrong. Try again later. Error: ${error.message}`})
+		})
 
-		if(this.state.actionCardId === -1 ) {
-			console.log(`submitting action card with unknown id ${this.state.actionCardId}`)
-			// need to create new card before submitting action
-			fetch(ACTION_CARD_URL,{
-				method: 'POST',
-				mode: 'cors',
-				headers: {
-					'Content-Type': 'application/json',
-					'Authorization': 'Bearer '+ this.context.token,
-					// 'Content-Type': 'application/x-www-form-urlencoded',
-				  },
-				  body: JSON.stringify({
-					  date: this.formatDate(this.state.actionCardDate), 
-					  number: this.state.actionCardNumber
-				  }) // body data type must match "Content-Type" header
-			}).then((response: Response) => {
-				if(!response.ok) {
-					throw(response.text);
-				}
-				return response.json();
-			}).then((responseJson: any) => {
-				const actionCardId = responseJson.id;
-				return this.submitAction(actionCardId);
-			}).catch((error: any) => {
-				console.log(`action card submit failed with: ${error}`);
-			})
+	}
+
+	getOrCreateActionCard(): Promise<number> {
+		if (this.state.actionCardId !== -1) {
+			return Promise.resolve(this.state.actionCardId);
 		} else {
-			console.log(`submitting action with known id ${this.state.actionCardId}`);
-			this.submitAction(this.state.actionCardId);
+			return 	createActionCard(this.state.actionCardDate, 
+				this.state.actionCardNumber, 
+				[], 
+				this.context.token).then((json) => {
+					return json.id;
+				})
 		}
 	}
 
-	formatDate(date: Date) {
-		return moment(date).format('YYYY-MM-DD');
+	addActionToCard(actionCardId: number, actionId: number) {
+		// find the current actions on the action card
+		const cards: ActionCard[] = this.props.cards.filter((card) => {return card.id === actionCardId});
+		let newActions: number[] = [];
+		if (cards.length > 0) {
+			newActions = cards[0].actions.map((action) => {return action.id}); 
+		}
+		newActions.push(actionId);
+		return updateActionCard(actionCardId, newActions, this.context.token)
 	}
 
-	submitAction(actionCardId: number): Promise<any> {
-		return fetch(ACTION_URL, {
-			method: 'POST', // *GET, POST, PUT, DELETE, etc.
-			headers: {
-			  'Content-Type': 'application/json',
-			  'Authorization': 'Bearer '+ this.context.token,
-			  // 'Content-Type': 'application/x-www-form-urlencoded',
-			},
-			body: JSON.stringify({
-				//actionCardId: actionCardId,
-				description: this.state.description,
-				date: this.formatDate(this.state.date),
-				date_start: this.formatDate(this.state.dateStart),
-				date_end: this.formatDate(this.state.dateEnd),
-				taggit: this.state.tags,
-				date_type: this.state.dateType,
-				geography_type: this.state.geographyType
-			}) // body data type must match "Content-Type" header
-		  }).then((response) => {
-			console.log(`response ok ${response.ok} status ${response.status} text ${response.statusText}`)
-			if(!response.ok) {
-				throw(response.text);
-			}
-			return response.json();
-		  }).then((json) => {
-			  console.log(`got response json: ${JSON.stringify(json)}`);
-			  this.setState({showSnackbar: true, snackbarIsError: false, snackbarMessage: `Success! ${JSON.stringify(json)}`})
-			  return json.id;
-		  })
-		  .then((id: number) => {
-			  // find the current actions on the action card
-			  const cards: ActionCard[] = this.props.cards.filter((card) => {return card.id === actionCardId});
-			  let newActions: number[] = [];
-			  if (cards.length > 0) {
-				newActions = cards[0].actions.map((action) => {return action.id}); 
-			  }
-			  //let newActions: number[] = c.actions.map((action) => {return action.id});
-			  newActions.push(id);
-			  updateActionCard(actionCardId, newActions, this.context.token);
-		  })
-		  .then(() => {
-			  this.props.onSubmit();
-			  this.clearFormState();
-		  })
-		  .catch((error) => {
-			  console.log(`submit failed with error: ${error}`);
-			  this.setState({showSnackbar: true, snackbarIsError: true, snackbarMessage: `Something went wrong. Try again later. Error: ${error.message}`})
-		  })
-	}
-
-	clearFormState() {
-		this.setState({actionCardId: -1});
+	clearFormState(actionCardId?: number) {
+		// todo identify best ux for form state after submit
+		// todo add success message
+		this.setState({actionCardId: actionCardId ? actionCardId: -1,
+			 description: '', 
+			 tags: [],
+			 geographyType: GeographyType.LOCAL,
+			 dateType: DateType.ON
+			});
 	}
 
 	render() {

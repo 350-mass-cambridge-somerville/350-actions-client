@@ -1,9 +1,6 @@
-import moment from 'moment';
 import {ACTION_CARD_URL} from '../urls';
-
-function formatDate(date: Date) {
-	return moment(date).format('YYYY-MM-DD');
-}
+import {formatDate} from '../utils/dates';
+import {responseToJson} from '../utils/fetch';
 
 export function createActionCard(date: Date, number: number, actions: number[], token: string) {
 	return fetch(ACTION_CARD_URL, {
@@ -18,7 +15,7 @@ export function createActionCard(date: Date, number: number, actions: number[], 
 			  number: number,
 			  actions: actions
 		  })
-	});
+	}).then(responseToJson);
 }
 
 export function updateActionCard(id: number, actions: number[], token: string) {
@@ -32,5 +29,5 @@ export function updateActionCard(id: number, actions: number[], token: string) {
 		  body: JSON.stringify({
 			  actions: actions
 		  })
-	});
+	}).then(responseToJson);
 }

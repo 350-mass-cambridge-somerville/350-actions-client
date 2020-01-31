@@ -1,6 +1,7 @@
 import {SURVEY_RESPONSE_URL} from '../urls';
 import moment from 'moment';
 import { UserData } from '../interfaces/UserData';
+import { responseToJson } from '../utils/fetch';
 
 export function submitSurveyResponse(responderName: string, doneActions: number[], actionCardId: number, date?: Date, userData?: UserData): Promise<any> {
 	// todo check if user is defined
@@ -15,12 +16,7 @@ export function submitSurveyResponse(responderName: string, doneActions: number[
 			actions: doneActions,
 			action_card: actionCardId
 		})
-		}).then((response: Response) => {
-			if (!response.ok) {
-				throw(new Error(`Survey response not ok`));
-			}
-			return response.json();
-		});
+		}).then(responseToJson);
 };
 
 export function updateSurveyResponse(id: number, doneActions: number[], actionCardId: number): Promise<any> {
@@ -37,10 +33,5 @@ export function updateSurveyResponse(id: number, doneActions: number[], actionCa
 			actions: doneActions,
 			action_card: actionCardId
 		})
-		}).then((response: Response) => {
-			if (!response.ok) {
-				throw(new Error(`Survey response not ok`));
-			}
-			return response.json();
-		});
+		}).then(responseToJson);
 };
