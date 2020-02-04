@@ -6,6 +6,7 @@ import { AuthContext} from '../providers/AuthProvider';
 import { ActionSurveyFormAuth } from '../presentation/ActionSurveyFormAuth';
 import { ActionSurveyForm } from '../presentation/ActionSurveyForm';
 import { MainContentHeader } from '../presentation/MainContentHeader';
+import {ActionListDisplay} from '../presentation/ActionListDisplay';
 
 export class CurrentActionView extends Component {
 	state: {
@@ -36,7 +37,7 @@ export class CurrentActionView extends Component {
 		this.fetchLatestActionCard()
 		.then((actionCardJson) => {
 			let actionCard = actionCardFromJson(actionCardJson);
-			console.log(`action card is: ${actionCard}`);
+			console.log(`action card is:`, actionCard);
 			this.setState({actionCard: actionCard});
 		})
 		.catch((err) => {
@@ -50,7 +51,7 @@ export class CurrentActionView extends Component {
 			const dj = data.json();
 			//console.log(`got data! ${JSON.stringify(dj)}`, dj);
 			return dj;
-		  })
+		})
 	}
 
 	onChange(): void {
@@ -98,6 +99,11 @@ export class CurrentActionView extends Component {
 					<div>
 						<MainContentHeader mainTitle={`Action Card ${this.state.actionCard.number}`} date={this.state.actionCard.date}/>
 						{this.generateSurveyForm()}
+
+						<ActionListDisplay
+							actions={this.state.actionCard.actions}
+							surveyResponses={[]}
+						/>
 					</div>
 				}
 			</React.Fragment>

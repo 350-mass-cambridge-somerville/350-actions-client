@@ -28,11 +28,12 @@ Cypress.on('window:before:load', win => {
 describe('current action', () => {
   it('shows current actions', () => {
     cy.server()
-    cy.route('/actioncards/latest/', 'fixture:current')
+    cy.route('/actioncards/latest/', 'fixture:latest')
     cy.visit('/')
 
     // check the page - should have info from the stubbed response
-    // loaded from cypress/fixtures/current.json
+    // loaded from cypress/fixtures/latest.json
     cy.contains('Action Card 23').should('be.visible')
+    cy.get('[data-cy=action-display]').should('have.length', 6)
   })
 })

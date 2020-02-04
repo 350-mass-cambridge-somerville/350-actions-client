@@ -22,7 +22,7 @@ export function ActionListDisplay(props: ActionListDisplayPropsNoCheck) {
           count = count + response.doneActions.filter(id => id === action.id).length
         })
         return (
-              <ListItem>
+              <ListItem data-cy="action-display">
                   <ActionDisplay
                     action={action}
                     count={count}
