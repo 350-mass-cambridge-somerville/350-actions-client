@@ -76,6 +76,6 @@
     }
   },
   "lint-staged": {
-    "src/interfaces/*.ts": ["prettier --write", "git add"]
+    "src/interfaces/*.ts": ["prettier --write"]
   }
 }
