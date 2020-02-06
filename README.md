@@ -59,6 +59,15 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 
 See [CRA editor setup section](https://create-react-app.dev/docs/setting-up-your-editor), [dbaeumer ESLint extension](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint#overview) is recommended. I have added [.vscode](.vscode) folder to the repo, just to share good settings if you use this editor.
 
+## Prettier
+
+Code is formatted using Prettier, read [How to configure Prettier and VSCode](https://glebbahmutov.com/blog/configure-prettier-in-vscode/). Code can be formatted:
+
+- right from your editor (like VSCode)
+- by running `npm run format`
+- automatically on commit using Git hook
+- on CI using [.github/workflows/prettier.yml](.github/workflows/prettier.yml) GH Action
+
 ## Learn More
 
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).

@@ -1,0 +1,19 @@
+# this CI job runs Prettier and if there are any changed files
+# commits and pushes them back to the repository automatically
+name: prettier
+on: [push]
+jobs:
+  build:
+    name: Prettier
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: bahmutov/npm-install@v1
+      - run: npm run format
+      - run: git status
+      # commit any changed files
+      # https://github.com/mikeal/publish-to-github-action
+      - uses: mikeal/publish-to-github-action@master
+        env:
+          # github token is automatically injected by GH Action
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
