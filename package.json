@@ -39,7 +39,9 @@
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 9009 -s public",
     "build-storybook": "build-storybook -s public",
-    "gcp-build": "react-scripts build"
+    "gcp-build": "react-scripts build",
+    "local:dev": "start-test react:start 3000 cypress:open",
+    "cypress:open": "cypress open"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -62,6 +64,8 @@
     "@storybook/addons": "^5.2.6",
     "@storybook/react": "^5.2.6",
     "awesome-typescript-loader": "^5.2.1",
-    "react-docgen-typescript-loader": "^3.4.0"
+    "cypress": "3.8.3",
+    "react-docgen-typescript-loader": "^3.4.0",
+    "start-server-and-test": "1.10.8"
   }
 }

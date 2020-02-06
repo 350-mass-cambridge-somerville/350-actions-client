@@ -44,14 +44,14 @@ export class CurrentActionView extends Component {
 			console.log(`Error fetching actions: ${err}`, err);
 		})
 	}
-	
+
 	fetchLatestActionCard(): Promise<Array<any>> {
 		return fetch(LATEST_ACTION_CARD_URL, {method: 'GET'})
 		.then((data: Response) => {
 			const dj = data.json();
 			//console.log(`got data! ${JSON.stringify(dj)}`, dj);
 			return dj;
-		  })
+		})
 	}
 
 	onChange(): void {
@@ -97,7 +97,6 @@ export class CurrentActionView extends Component {
 	}
 	
 	render(): ReactNode {
-		console.log(`context userdata: ${JSON.stringify(this.context.userData)}`)
 		return (
 			<CurrentActionDisplay 
 				actionCard={this.state.actionCard}

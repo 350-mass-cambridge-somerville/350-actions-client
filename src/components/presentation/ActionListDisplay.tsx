@@ -21,14 +21,14 @@ export function ActionListDisplay(props: ActionListDisplayPropsNoCheck) {
         props.surveyResponses.map(response => {
           count = count + response.doneActions.filter(id => id === action.id).length
         })
-        return (//todo this should use listitem
-                <Box>
+        return (
+              <ListItem data-cy="action-display">
                   <ActionDisplay
                     action={action}
                     count={count}
                   />
                 <Divider/>
-              </Box>
+              </ListItem>
         );
       })}
     </List>
