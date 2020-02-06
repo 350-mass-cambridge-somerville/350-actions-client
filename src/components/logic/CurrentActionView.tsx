@@ -6,6 +6,7 @@ import { AuthContext} from '../providers/AuthProvider';
 import { ActionSurveyFormAuth } from '../presentation/ActionSurveyFormAuth';
 import { ActionSurveyForm } from '../presentation/ActionSurveyForm';
 import { MainContentHeader } from '../presentation/MainContentHeader';
+import {ActionListDisplay} from '../presentation/ActionListDisplay';
 
 export class CurrentActionView extends Component {
 	state: {
@@ -36,21 +37,21 @@ export class CurrentActionView extends Component {
 		this.fetchLatestActionCard()
 		.then((actionCardJson) => {
 			let actionCard = actionCardFromJson(actionCardJson);
-			console.log(`action card is: ${actionCard}`);
+			console.log(`action card is:`, actionCard);
 			this.setState({actionCard: actionCard});
 		})
 		.catch((err) => {
 			console.log(`Error fetching actions: ${err}`, err);
 		})
 	}
-	
+
 	fetchLatestActionCard(): Promise<Array<any>> {
 		return fetch(LATEST_ACTION_CARD_URL, {method: 'GET'})
 		.then((data: Response) => {
 			const dj = data.json();
 			//console.log(`got data! ${JSON.stringify(dj)}`, dj);
 			return dj;
-		  })
+		})
 	}
 
 	onChange(): void {
@@ -72,19 +73,19 @@ export class CurrentActionView extends Component {
 
 	generateSurveyForm() {
 		if(this.context.userData.isAuthorized) {
-			return <ActionSurveyFormAuth 
+			return <ActionSurveyFormAuth
 			responderName={this.context.userData.username}
 			onSubmit={this.onSubmit}
 			submitAllowed={this.state.canSubmit}
 			/>
 		} else if (!this.state.canSubmit) {
-			return <ActionSurveyFormAuth 
+			return <ActionSurveyFormAuth
 			responderName={this.state.nextSurveyResponse.responderName}
 			onSubmit={this.onSubmit}
 			submitAllowed={this.state.canSubmit}
 			/>
 		} else {
-			return <ActionSurveyForm 
+			return <ActionSurveyForm
 				responderName={this.state.nextSurveyResponse.responderName}
 				onSubmit={this.onSubmit}
 				onResponderNameChange={this.onResponderNameChange}
@@ -94,10 +95,15 @@ export class CurrentActionView extends Component {
 	render(): ReactNode {
 		return (
 			<React.Fragment>
-				{this.state.actionCard && 
+				{this.state.actionCard &&
 					<div>
 						<MainContentHeader mainTitle={`Action Card ${this.state.actionCard.number}`} date={this.state.actionCard.date}/>
 						{this.generateSurveyForm()}
+
+						<ActionListDisplay
+							actions={this.state.actionCard.actions}
+							surveyResponses={[]}
+						/>
 					</div>
 				}
 			</React.Fragment>

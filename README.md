@@ -17,6 +17,22 @@ You will also see any lint errors in the console.
 Launches the test runner in the interactive watch mode.<br />
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
+### end-to-end tests
+
+Full tests are written using [Cypress.io](https://github.com/cypress-io/cypress) test runner. See tests in [cypress/integration](cypress/integration) folder and its global settings in [cypress.json](cypress.json) file.
+
+To start local client and open Cypress
+
+```shell
+npm run local:dev
+```
+
+Then click on a spec filename to open browser running tests.
+
+![Current card test](images/current-card-test.png)
+
+Note: API responses might be stubbed during E2E tests using JSON fixtures in [cypress/fixtures](cypress/fixtures) folder.
+
 ### `npm run build`
 
 Builds the app for production to the `build` folder.<br />

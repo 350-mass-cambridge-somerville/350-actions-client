@@ -1,0 +1,293 @@
+{
+  "id": 4,
+  "survey_responses": [
+    {
+      "id": 46,
+      "date": "2020-01-22",
+      "action_card": 4,
+      "actions": [
+        8,
+        10
+      ]
+    },
+    {
+      "id": 47,
+      "date": "2020-01-22",
+      "action_card": 4,
+      "actions": [
+        6,
+        7,
+        8,
+        9
+      ]
+    },
+    {
+      "id": 48,
+      "date": "2020-01-22",
+      "action_card": 4,
+      "actions": []
+    },
+    {
+      "id": 49,
+      "date": "2020-01-22",
+      "action_card": 4,
+      "actions": [
+        7,
+        8
+      ]
+    },
+    {
+      "id": 50,
+      "date": "2020-01-22",
+      "action_card": 4,
+      "actions": [
+        10
+      ]
+    },
+    {
+      "id": 51,
+      "date": "2020-01-22",
+      "action_card": 4,
+      "actions": [
+        8
+      ]
+    },
+    {
+      "id": 52,
+      "date": "2020-01-23",
+      "action_card": 4,
+      "actions": [
+        7,
+        8
+      ]
+    },
+    {
+      "id": 53,
+      "date": "2020-01-24",
+      "action_card": 4,
+      "actions": [
+        8
+      ]
+    },
+    {
+      "id": 54,
+      "date": "2020-01-24",
+      "action_card": 4,
+      "actions": [
+        6,
+        7,
+        8
+      ]
+    },
+    {
+      "id": 55,
+      "date": "2020-01-25",
+      "action_card": 4,
+      "actions": [
+        8
+      ]
+    },
+    {
+      "id": 56,
+      "date": "2020-01-26",
+      "action_card": 4,
+      "actions": [
+        8
+      ]
+    },
+    {
+      "id": 57,
+      "date": "2020-01-28",
+      "action_card": 4,
+      "actions": [
+        8
+      ]
+    },
+    {
+      "id": 58,
+      "date": "2020-01-28",
+      "action_card": 4,
+      "actions": [
+        6,
+        9
+      ]
+    },
+    {
+      "id": 59,
+      "date": "2020-01-28",
+      "action_card": 4,
+      "actions": [
+        6,
+        7,
+        8,
+        9
+      ]
+    },
+    {
+      "id": 60,
+      "date": "2020-01-29",
+      "action_card": 4,
+      "actions": [
+        7
+      ]
+    },
+    {
+      "id": 61,
+      "date": "2020-01-29",
+      "action_card": 4,
+      "actions": [
+        6,
+        7,
+        8
+      ]
+    },
+    {
+      "id": 62,
+      "date": "2020-01-29",
+      "action_card": 4,
+      "actions": [
+        5,
+        6,
+        7,
+        8,
+        9
+      ]
+    },
+    {
+      "id": 63,
+      "date": "2020-01-29",
+      "action_card": 4,
+      "actions": [
+        6,
+        7,
+        8,
+        9
+      ]
+    },
+    {
+      "id": 64,
+      "date": "2020-01-29",
+      "action_card": 4,
+      "actions": [
+        7,
+        8
+      ]
+    },
+    {
+      "id": 65,
+      "date": "2020-01-29",
+      "action_card": 4,
+      "actions": [
+        6,
+        7
+      ]
+    },
+    {
+      "id": 66,
+      "date": "2020-02-02",
+      "action_card": 4,
+      "actions": [
+        7,
+        8
+      ]
+    },
+    {
+      "id": 67,
+      "date": "2020-02-02",
+      "action_card": 4,
+      "actions": [
+        7,
+        8
+      ]
+    },
+    {
+      "id": 68,
+      "date": "2020-02-02",
+      "action_card": 4,
+      "actions": [
+        7
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "id": 5,
+      "date": "2020-01-25",
+      "description": "<p>Participate in a direct <span class=\"il\">action</span> protest against the Chase Bank branch in Jamaica Plain (701 Centre St. in Boston) on Saturday January 25th from 10am-12pm.&nbsp; The theme of the <span class=\"il\">action</span> is &ldquo;Chase earns while Australia Burns&rdquo; and we&rsquo;ll highlight their continued fueling of the climate crisis with massive ongoing financing of the fossil fuel industry. Expect a peaceful, lawful, but energized protest.&nbsp; Please <a href=\"https://docs.google.com/forms/d/18VdFCr9eTtGT1dNsjT4eTmSBAqoD23qjLzAS0OE0il0/viewform?edit_requested=true\" target=\"_blank\" rel=\"noopener\" data-saferedirecturl=\"https://www.google.com/url?q=https://docs.google.com/forms/d/18VdFCr9eTtGT1dNsjT4eTmSBAqoD23qjLzAS0OE0il0/viewform?edit_requested%3Dtrue&amp;source=gmail&amp;ust=1579753682598000&amp;usg=AFQjCNHuSc--XzugKUtvMtPpkFz7gtY_Nw\">RSVP here</a> if you can...or just show up!&nbsp;&nbsp;</p>",
+      "date_type": "ON",
+      "taggit": [
+        "chase"
+      ],
+      "geography_type": "NATIONAL",
+      "start_date": "2020-01-22",
+      "end_date": "2020-01-22"
+    },
+    {
+      "id": 6,
+      "date": "2020-01-21",
+      "description": "<p>Contact your <a href=\"https://malegislature.gov/Search/FindMyLegislator\" target=\"_blank\" rel=\"noopener\" data-saferedirecturl=\"https://www.google.com/url?q=https://malegislature.gov/Search/FindMyLegislator&amp;source=gmail&amp;ust=1579753682598000&amp;usg=AFQjCNFnKqhHor6PG99-DSwepq0QRa9K5Q\">State legislators </a>and ask them to support the &ldquo;Roadmap&rdquo; Bills because we need time lines and accountability to be carbon neutral.&nbsp; <a href=\"https://malegislature.gov/Bills/191/H3983\" target=\"_blank\" rel=\"noopener\" data-saferedirecturl=\"https://www.google.com/url?q=https://malegislature.gov/Bills/191/H3983&amp;source=gmail&amp;ust=1579753682598000&amp;usg=AFQjCNEFuPJxW0Mgkf0H-9Ot3eeATG6ZCg\">H.3983</a> - An Act to Create a 2050 Roadmap to a Clean and Thriving Commonwealth and <a href=\"https://malegislature.gov/Bills/191/S524\" target=\"_blank\" rel=\"noopener\" data-saferedirecturl=\"https://www.google.com/url?q=https://malegislature.gov/Bills/191/S524&amp;source=gmail&amp;ust=1579753682598000&amp;usg=AFQjCNEIdWVoU_PHcLDRKdTLKSC6p4210A\">&nbsp;S.524</a> - An Act Relative to 2030, 2040, and 2050 Emissions Limits have been in their respective Ways and Means committees since July 2019.&nbsp; Please ask your representatives to urge their colleagues to vote them favorably out of committee.&nbsp;</p>",
+      "date_type": "NONE",
+      "taggit": [
+        "H-3983",
+        "legistlation",
+        "roadmap-bill"
+      ],
+      "geography_type": "STATE",
+      "start_date": "2020-01-22",
+      "end_date": "2020-01-22"
+    },
+    {
+      "id": 7,
+      "date": "2020-01-21",
+      "description": "<p>Tell <a href=\"https://malegislature.gov/search/findmylegislator\" target=\"_blank\" rel=\"noopener\" data-saferedirecturl=\"https://www.google.com/url?q=https://malegislature.gov/search/findmylegislator&amp;source=gmail&amp;ust=1579753682598000&amp;usg=AFQjCNHK3YU-WwSMIVx51AdYJsJBBz_w9g\">your senators</a> to ask Senate President Karen Spilka to include equitable and effective carbon pricing in the upcoming Senate climate bill.&nbsp; Especially if your senator is <a href=\"https://malegislature.gov/Legislators/Profile/PDJ0\" target=\"_blank\" rel=\"noopener\" data-saferedirecturl=\"https://www.google.com/url?q=https://malegislature.gov/Legislators/Profile/PDJ0&amp;source=gmail&amp;ust=1579753682598000&amp;usg=AFQjCNGblZxNMxcjwDnZlegHIwdOz6ZeWA\">Pat Jehlen</a> or <a href=\"https://malegislature.gov/Legislators/Profile/SND0\" target=\"_blank\" rel=\"noopener\" data-saferedirecturl=\"https://www.google.com/url?q=https://malegislature.gov/Legislators/Profile/SND0&amp;source=gmail&amp;ust=1579753682598000&amp;usg=AFQjCNHBR5GRbiCMVWKcXdknQWkIJZXqcg\">Sal DiDomenico</a> (who co-sponsored the original carbon pricing bill).&nbsp; Equitable carbon pricing reduces emissions but also includes worker protections, rebates for low income households, and investments that help low income access to clean energy and transportation.&nbsp; Effective carbon pricing is making sure the price is at least $50/ton CO2. We want both!&nbsp; Here&rsquo;s a <a href=\"https://docs.google.com/document/d/1i8RN0BwIRr3pVrEQKmVdZO3xSaAmlwOVyoxDww2Goa8/edit\" target=\"_blank\" rel=\"noopener\" data-saferedirecturl=\"https://www.google.com/url?q=https://docs.google.com/document/d/1i8RN0BwIRr3pVrEQKmVdZO3xSaAmlwOVyoxDww2Goa8/edit&amp;source=gmail&amp;ust=1579753682598000&amp;usg=AFQjCNGmPQuFKpOb7SR3KnWIeI0SnmFkVQ\">sample script</a>.&nbsp;</p>",
+      "date_type": "NONE",
+      "taggit": [
+        "legislation",
+        "carbon-pricing"
+      ],
+      "geography_type": "STATE",
+      "start_date": "2020-01-22",
+      "end_date": "2020-01-22"
+    },
+    {
+      "id": 8,
+      "date": "2020-01-21",
+      "description": "<p><a href=\"https://www.mass.gov/forms/sign-the-petition-shape-massachusetts-clean-energy-future\" target=\"_blank\" rel=\"noopener\" data-saferedirecturl=\"https://www.google.com/url?q=https://www.mass.gov/forms/sign-the-petition-shape-massachusetts-clean-energy-future&amp;source=gmail&amp;ust=1579753682598000&amp;usg=AFQjCNFVBepjSgHqmmtEGumHYkNPU3mIVw\">Sign the Petition:</a> Shape MA&rsquo;s clean energy future.&nbsp; <a href=\"https://www.iso-ne.com/\" target=\"_blank\" rel=\"noopener\" data-saferedirecturl=\"https://www.google.com/url?q=https://www.iso-ne.com/&amp;source=gmail&amp;ust=1579753682598000&amp;usg=AFQjCNEbIHlcduo51z2ZEP7fe6PZemZ2og\">ISO New England </a>is an independent agency responsible for keeping electricity flowing and ensuring competitively priced wholesale electricity now and in the future.&nbsp; They make the rules for buying and selling energy in our region. Support State Attorney General Maura Healey in calling on ISO New England to adopt energy market rules that promote affordable clean energy, healthy communities, and climate protection.&nbsp;&nbsp;</p>",
+      "date_type": "NONE",
+      "taggit": [
+        "electricity",
+        "other"
+      ],
+      "geography_type": "STATE",
+      "start_date": "2020-01-22",
+      "end_date": "2020-01-22"
+    },
+    {
+      "id": 9,
+      "date": "2020-01-21",
+      "description": "<p>Senate bill <a href=\"https://malegislature.gov/Bills/191/S2422\" target=\"_blank\" rel=\"noopener\" data-saferedirecturl=\"https://www.google.com/url?q=https://malegislature.gov/Bills/191/S2422&amp;source=gmail&amp;ust=1579753682598000&amp;usg=AFQjCNGEKOuaIimH0P6FMK5c0XHePtz-eQ\">S2422: An Act Relative to Plastic Bag Reduction</a> has been referred to the committee on <a href=\"https://malegislature.gov/Committees/Detail/H33/191\" target=\"_blank\" rel=\"noopener\" data-saferedirecturl=\"https://www.google.com/url?q=https://malegislature.gov/Committees/Detail/H33/191&amp;source=gmail&amp;ust=1579753682598000&amp;usg=AFQjCNH_a3aq5iKSdGi1FclCFFkb9Z3dXQ\">House Rules.</a>&nbsp; If your legislature is on the <a href=\"https://malegislature.gov/Committees/Detail/H33/191\" target=\"_blank\" rel=\"noopener\" data-saferedirecturl=\"https://www.google.com/url?q=https://malegislature.gov/Committees/Detail/H33/191&amp;source=gmail&amp;ust=1579753682598000&amp;usg=AFQjCNH_a3aq5iKSdGi1FclCFFkb9Z3dXQ\">House Rules</a> committee, please ask them to quickly and favorably pass the bill out of committee.&nbsp; Otherwise, please ask your legislators to urge the House Rules committee to support this bill.&nbsp;&nbsp;&nbsp;</p>",
+      "date_type": "NONE",
+      "taggit": [
+        "legislation"
+      ],
+      "geography_type": "STATE",
+      "start_date": "2020-01-22",
+      "end_date": "2020-01-22"
+    },
+    {
+      "id": 10,
+      "date": "2020-01-21",
+      "description": "<p>Provide your comments on \"<a href=\"https://www.somervision2040.com/\" target=\"_blank\" rel=\"noopener\" data-saferedirecturl=\"https://www.google.com/url?q=https://www.somervision2040.com/&amp;source=gmail&amp;ust=1579753682598000&amp;usg=AFQjCNFRvqYwyw9KfTYYWCOtb8q-hxrH7Q\">SomerVision 2040</a>.\" Last year, the Mayor's office convened a large task force to update Somerville&rsquo;s \"comprehensive vision document\" that outlines large-scale priorities. Their draft plan isn&rsquo;t binding in a legal sense but is frequently used as a reference when the city is prioritizing and pushing initiatives. Read it and send your comments to the <a href=\"mailto:Planning@SomervilleMA.gov\" target=\"_blank\" rel=\"noopener\">Administration</a> on things you agree with and things you believe are missing and/or should be improved.</p>",
+      "date_type": "NONE",
+      "taggit": [
+        "somervision",
+        "somerville"
+      ],
+      "geography_type": "LOCAL",
+      "start_date": "2020-01-22",
+      "end_date": "2020-01-22"
+    }
+  ],
+  "date": "2020-01-21",
+  "number": 23
+}
