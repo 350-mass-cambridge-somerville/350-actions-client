@@ -1,4 +1,4 @@
-import React, { ReactNode} from "react";
+import React from "react";
 import { Typography, Grid } from '@material-ui/core';
 import { DateType } from '../../interfaces/DateType';
 import { useStyles } from '../../styles/style';
@@ -16,28 +16,27 @@ function formatDate(date: Date): string {
 	return moment(date).add(6, 'hours').format('MMMM Do YYYY');
 }
 
-export function ActionDateDisplay(props: DateDisplayProps) 
-{
+export function ActionDateDisplay(props: DateDisplayProps) {
 	const classes = useStyles();
 	console.log(`rendering date display with date ${props.date} ${JSON.stringify(props.date)} ${props.date.toDateString()}`)
-	switch(props.dateType) {
+	switch (props.dateType) {
 		case DateType.ON:
 			return (<Grid container>
-						<Typography className={classes.dateDisplayDescription}>do on</Typography>
-						<Typography className={classes.dateDisplayDate}>{formatDate(props.date)}</Typography>
-					</Grid>);
+				<Typography className={classes.dateDisplayDescription}>do on</Typography>
+				<Typography className={classes.dateDisplayDate}>{formatDate(props.date)}</Typography>
+			</Grid>);
 		case DateType.BEFORE:
 			return (<Grid container>
-						<Typography className={classes.dateDisplayDescription}>do before</Typography>
-						<Typography className={classes.dateDisplayDate}>{formatDate(props.date)}</Typography>
-					</Grid>);
+				<Typography className={classes.dateDisplayDescription}>do before</Typography>
+				<Typography className={classes.dateDisplayDate}>{formatDate(props.date)}</Typography>
+			</Grid>);
 		case DateType.RANGE:
 			return (<Grid container>
-						<Typography className={classes.dateDisplayDescription}>do between</Typography>
-						<Typography className={classes.dateDisplayDate}>{formatDate(props.dateStart)}</Typography>
-						<Typography className={classes.dateDisplayDescription}>and</Typography>
-						<Typography className={classes.dateDisplayDate}>{formatDate(props.dateEnd)}</Typography>
-					</Grid>);
+				<Typography className={classes.dateDisplayDescription}>do between</Typography>
+				<Typography className={classes.dateDisplayDate}>{formatDate(props.dateStart)}</Typography>
+				<Typography className={classes.dateDisplayDescription}>and</Typography>
+				<Typography className={classes.dateDisplayDate}>{formatDate(props.dateEnd)}</Typography>
+			</Grid>);
 		default:
 			return <span></span>
 	}

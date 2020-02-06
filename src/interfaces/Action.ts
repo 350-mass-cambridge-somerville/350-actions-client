@@ -1,22 +1,22 @@
-import {DateType} from './DateType';
-import {GeographyType} from './GeographyType'
+import { DateType } from './DateType'
+import { GeographyType } from './GeographyType'
 
 export interface Tag {
-	id: number,
+	id: number
 	tag: string
 }
 
 export interface Action {
-	id: number;
-	description: string;
-	tags: string[];
-	date: Date;
-	dateType: DateType;
-	geographyType: GeographyType;
-	[x: string]: any;
+	id: number
+	description: string
+	tags: string[]
+	date: Date
+	dateType: DateType
+	geographyType: GeographyType
+	[x: string]: any
 }
 
-export function actionFromJson(json: any) : Action {
+export function actionFromJson(json: any): Action {
 	return {
 		id: json.id,
 		description: json.description,

@@ -1,9 +1,5 @@
-import React, { Component, } from 'react';
-import { Grid, TextField, Button, Typography } from '@material-ui/core';
-
-type ActionSurveyFormState = {
-
-};
+import React from 'react';
+import { Grid, Button, Typography } from '@material-ui/core';
 
 type ActionSurveyFormAuthProps = {
 	responderName: string,

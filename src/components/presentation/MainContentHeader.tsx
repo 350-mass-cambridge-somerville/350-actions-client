@@ -1,4 +1,4 @@
-import React, { Component, ChangeEvent, ReactNode} from "react";
+import React from "react";
 import { Typography } from "@material-ui/core";
 import { useStyles } from '../../styles/style';
 
@@ -16,11 +16,11 @@ export function MainContentHeader(props: MainContentHeaderProps) {
 			</Typography>
 			<Typography className={classes.contentTitleItalic} variant="h2">
 				Sustained, Coordinated, Relentless, Collective Climate Action
-	  		</Typography>
+	  	</Typography>
 			<Typography className={classes.contentTitle} variant="h3" >
 				  {props.mainTitle}
 			</Typography>
-			{props.date && 
+			{props.date &&
 			  <Typography variant="subtitle1" className={classes.contentTitleDate}>{props.date.toDateString()}</Typography>
 	  		}
 		</React.Fragment>

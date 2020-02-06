@@ -1,12 +1,12 @@
-import React, { ReactNode} from "react";
+import React from "react";
 import { Typography } from '@material-ui/core';
 import { GeographyType } from '../../interfaces/GeographyType';
 import { useStyles } from '../../styles/style';
 
-export function ActionGeographyDisplay(props: {geographyType: GeographyType}) 
+export function ActionGeographyDisplay(props: {geographyType: GeographyType})
 {
 	const classes = useStyles();
-	return ( 
+	return (
 		<Typography className={classes.geography}>{props.geographyType}</Typography>
 	);
 }

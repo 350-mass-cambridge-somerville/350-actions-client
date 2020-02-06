@@ -1,12 +1,12 @@
 import {Grid, Typography} from '@material-ui/core';
-import React, {ReactNode} from 'react';
+import React from 'react';
 import { useStyles, theme } from '../../styles/style';
 
 export type CountDisplayProps = {
 	count: number
 };
 
-export function ActionCountDisplay(props: CountDisplayProps) 
+export function ActionCountDisplay(props: CountDisplayProps)
 {
 	const classes = useStyles(theme);
 	return (<Grid className={classes.countDisplayBox}>
