@@ -24,7 +24,7 @@ export function ActionCheckListDisplay(props: ActionListDisplayPropsCheck) {
           count = count + response.doneActions.filter(id => id === action.id).length
         })
         return (
-              <Box>
+              <Box data-cy="action-check-display">
                   <ActionCheckDisplay
                     action={action}
                     done={props.doneActions.includes(action.id)}

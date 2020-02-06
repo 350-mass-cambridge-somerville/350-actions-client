@@ -18,7 +18,8 @@ export function ActionCardListDisplay(props: ActionCardListDisplayProps) {
 
   return (<div className={classes.actionExpansionPanels}>
       {props.actionCards.map(actionCard => {
-        return (<ExpansionPanel>
+        const expansionPanelData = `expansion-panel-${actionCard.id}`
+        return (<ExpansionPanel data-cy={expansionPanelData}>
                   <ExpansionPanelSummary
                     expandIcon={<ExpandMoreIcon />}
                     aria-controls="panel1a-content"

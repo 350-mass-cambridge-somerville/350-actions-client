@@ -25,15 +25,19 @@ Cypress.on('window:before:load', win => {
   win.fetch = win.unfetch
 })
 
-describe('current action', () => {
-  it('shows current actions', () => {
+describe('past actions', () => {
+  it('shows past actions', () => {
     cy.server()
-    cy.route('/actioncards/latest/', 'fixture:latest')
-    cy.visit('/')
+    cy.route('/actioncards/', 'fixture:actioncards')
+    cy.visit('/past')
 
     // check the page - should have info from the stubbed response
     // loaded from cypress/fixtures/latest.json
-    cy.contains('Action Card 23').should('be.visible')
-    cy.get('[data-cy=action-check-display]').should('have.length', 6)
+	cy.contains('Past Actions').should('be.visible')
+	cy.contains('Action Card #22').should('be.visible')
+	cy.get('[data-cy=expansion-panel-2]').click()
+
+	// todo need to figure out how to count only visible ones
+    cy.get('[data-cy=action-display]').should('have.length', 15)
   })
 })
