@@ -1,3 +1,5 @@
+# 350-actions-client ![tests](https://github.com/350-mass-cambridge-somerville/350-actions-client/workflows/tests/badge.svg?branch=master)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
