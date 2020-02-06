@@ -18,8 +18,8 @@ const defaultUserData: UserData = {
 }
 const AuthContext = React.createContext({
 	userData: defaultUserData,
-	token: '', 
-	login: (email: string, password: string) => {}, 
+	token: '',
+	login: (email: string, password: string) => {},
 	logout: (req: any) => {},
 	register: (req: any) => {}
 });
@@ -29,7 +29,7 @@ type AuthProviderProps = {children: any};
 function AuthProvider(props: AuthProviderProps) {
 	const [token, setToken] = useState('');
 	const [userData, setUserData] = useState(defaultUserData);
-	const login = (email: string, password: string) => { 
+	const login = (email: string, password: string) => {
 		console.log(`Making login request for ${email}`)
 		return fetch(SIGN_IN_URL, {
 			method: 'POST', // *GET, POST, PUT, DELETE, etc.
@@ -46,7 +46,7 @@ function AuthProvider(props: AuthProviderProps) {
 			console.log(`response ok ${response.ok} status ${response.status} text ${response.statusText}`)
 		  }).then((json) => {
 			  console.log(`got response json: ${JSON.stringify(json)}`);
-			  setToken(json.key); 
+			  setToken(json.key);
 			  return fetchUserProfile();
 			  //setUserData({isAuthorized: true, email: email, name: 'todo'})
 		  })
@@ -77,9 +77,9 @@ function AuthProvider(props: AuthProviderProps) {
 	}
 
 	const register = (req: any) => { console.log(`Making register request ${req}`)} // register the user
-	
+
 	const logout = (req: any) => { console.log(`Making logout request ${logout}`)} // clear the token in localStorage and the user data
-	
+
 	// todo provide token??
 	return <AuthContext.Provider value={{login, register, logout, userData, token}} {...props}/>;
 }

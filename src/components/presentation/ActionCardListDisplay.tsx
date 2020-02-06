@@ -1,7 +1,6 @@
 import React from 'react';
 import { useStyles } from '../../styles/style';
-import { ExpansionPanel, 
-  ExpansionPanelDetails, 
+import { ExpansionPanel,
   ExpansionPanelSummary,
   Typography
  } from '@material-ui/core';

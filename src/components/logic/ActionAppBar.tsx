@@ -15,7 +15,7 @@ export function ActionAppBar(props: ActionAppBarProps) {
 	const classes = useStyles(theme);
 	const authContext = useAuth();
 	const [popoverOpen, setPopoverOpen] = useState(true);
-	
+
 	function generateLogoutLogin(): ReactNode {
 		if (authContext.userData.isAuthorized) {
 			return (<React.Fragment>
@@ -41,7 +41,7 @@ export function ActionAppBar(props: ActionAppBarProps) {
 
 	return (
 		<BrowserRouter>
-		<AppBar 
+		<AppBar
 		className={classes.appBar}
 		position="sticky">
 		<Tabs value={false} aria-label="nav" centered>
@@ -51,7 +51,7 @@ export function ActionAppBar(props: ActionAppBarProps) {
 		  <Tab label="Create"  component={Link} to="/create" disabled/>
 		</Tabs>
 		{generateLogoutLogin()}
-		<Popover 
+		<Popover
 			open={popoverOpen}
 			onClose={handleClose}
 		>

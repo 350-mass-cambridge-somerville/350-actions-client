@@ -1,4 +1,4 @@
-import React, { ReactNode} from "react";
+import React from "react";
 import { Typography, Grid } from '@material-ui/core';
 import { DateType } from '../../interfaces/DateType';
 import { useStyles } from '../../styles/style';
@@ -10,7 +10,7 @@ export type DateDisplayProps = {
 	dateEnd: Date,
 };
 
-export function ActionDateDisplay(props: DateDisplayProps) 
+export function ActionDateDisplay(props: DateDisplayProps)
 {
 	const classes = useStyles();
 	switch(props.dateType) {

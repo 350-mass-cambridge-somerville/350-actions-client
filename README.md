@@ -55,6 +55,10 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
+## VSCode setup
+
+See [CRA editor setup section](https://create-react-app.dev/docs/setting-up-your-editor), [dbaeumer ESLint extension](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint#overview) is recommended. I have added [.vscode](.vscode) folder to the repo, just to share good settings if you use this editor.
+
 ## Learn More
 
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).

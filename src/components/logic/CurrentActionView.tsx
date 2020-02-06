@@ -1,7 +1,7 @@
 import React, { Component, ReactNode } from 'react';
 import { ActionCard, actionCardFromJson } from '../../interfaces/ActionCard';
 import { SurveyResponse } from '../../interfaces/SurveyResponse';
-import { ACTION_URL, ACTION_CARD_URL, SURVEY_RESPONSE_URL, LATEST_ACTION_CARD_URL } from '../../urls';
+import { LATEST_ACTION_CARD_URL } from '../../urls';
 import { AuthContext} from '../providers/AuthProvider';
 import { ActionSurveyFormAuth } from '../presentation/ActionSurveyFormAuth';
 import { ActionSurveyForm } from '../presentation/ActionSurveyForm';

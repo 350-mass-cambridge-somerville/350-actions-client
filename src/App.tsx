@@ -2,23 +2,18 @@ import React from "react";
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
-  Link
+  Route
 } from "react-router-dom";
 
-import {AppBar, Tabs, Tab, Typography} from '@material-ui/core';
 import {ActionAppBar} from './components/logic/ActionAppBar';
 import {CurrentActionView} from './components/logic/CurrentActionView';
-import {CreateActionView} from './components/logic/CreateActionView';
 import {PastActionView} from './components/logic/PastActionView';
 import {AuthProvider} from './components/providers/AuthProvider';
 import 'typeface-roboto';
-//import { classes } from "istanbul-lib-coverage";
 import { useStyles, theme } from './styles/style'
-import { useTheme, ThemeProvider } from '@material-ui/styles';
+import { ThemeProvider } from '@material-ui/styles';
 
 export default function App() {
-  //const theTheme = useTheme();
   const classes = useStyles();
 
   //todo add state for logged in, pass logged in state
@@ -49,7 +44,7 @@ export default function App() {
         </ThemeProvider>
       </Router>
     </AuthProvider>
-    
+
   );
 }
 
