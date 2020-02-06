@@ -9,6 +9,9 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - uses: bahmutov/npm-install@v1
+        env:
+          # skip installing Cypress binary for speed
+          CYPRESS_INSTALL_BINARY: 0
       - run: npm run format
       - run: git status
       # commit any changed files
