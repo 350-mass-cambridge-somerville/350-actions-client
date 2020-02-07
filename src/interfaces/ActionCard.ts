@@ -18,8 +18,8 @@ export function actionCardFromJson(json: any) {
 				return actionFromJson(actionJson)
 			})
 			: [],
-		surveyResponses: json.surveyResponses
-			? json.surveyResponses.map((surveyJson: any) => {
+		surveyResponses: json.survey_responses
+			? json.survey_responses.map((surveyJson: any) => {
 				return surveyResponseFromJson(surveyJson)
 			})
 			: [],

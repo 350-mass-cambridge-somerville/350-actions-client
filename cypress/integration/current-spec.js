@@ -12,9 +12,9 @@ before(() => {
   const polyfillUrl = 'https://unpkg.com/unfetch/dist/unfetch.umd.js'
 
   cy.request(polyfillUrl)
-  .then((response) => {
-    polyfill = response.body
-  })
+    .then((response) => {
+      polyfill = response.body
+    })
 })
 
 Cypress.on('window:before:load', win => {
@@ -35,5 +35,8 @@ describe('current action', () => {
     // loaded from cypress/fixtures/latest.json
     cy.contains('Action Card 23').should('be.visible')
     cy.get('[data-cy=action-check-display]').should('have.length', 6)
+
+    // todo figure out how to make this check actual number
+    cy.get('[data-cy=action-count]').should('have.length', 6)
   })
 })
