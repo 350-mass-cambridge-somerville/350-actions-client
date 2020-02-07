@@ -37,7 +37,6 @@ export class CurrentActionView extends Component {
 		this.fetchLatestActionCard()
 			.then((actionCardJson) => {
 				let actionCard = actionCardFromJson(actionCardJson);
-				console.log(`action card is: ${actionCard}`);
 				this.setState({ actionCard: actionCard, actionCardId: actionCard.id });
 			})
 			.catch((err) => {
@@ -49,7 +48,6 @@ export class CurrentActionView extends Component {
 		return fetch(LATEST_ACTION_CARD_URL, { method: 'GET' })
 			.then((data: Response) => {
 				const dj = data.json();
-				//console.log(`got data! ${JSON.stringify(dj)}`, dj);
 				return dj;
 			})
 	}
@@ -81,16 +79,13 @@ export class CurrentActionView extends Component {
 	}
 
 	onActionDoneChange(id: number, done: boolean): void {
-		//console.log(`done actions: ${JSON.stringify(this.state.doneActions)}`)
 		if (done && !this.state.doneActions.includes(id)) {
 			const newDoneActions = this.state.doneActions.slice()
 			newDoneActions.push(id);
-			//console.log(`1. newDoneActions: ${this.state.doneActions.slice()} ${JSON.stringify(newDoneActions)}`)
 			this.setState({ doneActions: newDoneActions });
 		}
 		if (!done && this.state.doneActions.includes(id)) {
 			const newDoneActions = this.state.doneActions.slice().filter(i => i !== id)
-			//console.log(`2. newDoneActions: ${this.state.doneActions.slice()} ${JSON.stringify(newDoneActions)}`)
 			this.setState({ doneActions: newDoneActions });
 		}
 

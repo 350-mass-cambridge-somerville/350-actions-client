@@ -1,14 +1,14 @@
 import React, { Component, ChangeEvent, ReactNode } from "react";
-import { 
-	Select, 
+import {
+	Select,
 	MenuItem,
 	Typography,
 	FormControl,
 	Grid,
 	FormHelperText
- } from "@material-ui/core";
+} from "@material-ui/core";
 
- import { 
+import {
 	KeyboardDatePicker,
 	MuiPickersUtilsProvider
 } from '@material-ui/pickers';
@@ -35,63 +35,62 @@ const DateTypeDisplay: Record<DateType, string> = {
 	[DateType.NONE]: "none"
 }
 
-export function ActionDateForm(props: DateFormProps) 
-{
+export function ActionDateForm(props: DateFormProps) {
 	const classes = useStyles();
 	function generateDatePickers(props: DateFormProps): ReactNode {
-		switch(props.dateType) {
+		switch (props.dateType) {
 			case DateType.ON:
 			case DateType.BEFORE:
 				return (
 					<Grid item xs={3} className={classes.gridItem}>
 						<FormControl>
-							<KeyboardDatePicker 
+							<KeyboardDatePicker
 								disableToolbar
 								variant="inline"
 								format="MM/dd/yyyy"
 								margin="normal"
 								id="date-picker-inline"
-								value={props.date ? props.date : new Date()} 
+								value={props.date ? props.date : new Date()}
 								onChange={props.onDateChange}
 							/>
 						</FormControl>
 						<FormHelperText>date</FormHelperText>
 					</Grid>)
 			case DateType.RANGE:
-					return (
-						<Grid item className={classes.gridItem}>
-							<Grid container alignItems='flex-start'>
-								<Grid className={classes.gridItem}>
-									<FormControl>
-										<KeyboardDatePicker 
-											disableToolbar
-											variant="inline"
-											format="MM/dd/yyyy"
-											margin="normal"
-											id="date-picker-inline"
-											value={props.dateStart ? props.dateStart : new Date()} 
-											onChange={props.onDateStartChange}
-										/>
-										<FormHelperText>start date</FormHelperText>
-									</FormControl>
-								</Grid>
-								<Grid item className={classes.gridItem}>
-									<FormControl>
-										<KeyboardDatePicker
-											disableToolbar
-											variant="inline"
-											format="MM/dd/yyyy"
-											margin="normal"
-											id="date-picker-inline"
-											value={props.dateEnd ? props.dateEnd : new Date()} 
-											onChange={props.onDateEndChange}
-										/>
-										<FormHelperText>end date</FormHelperText>
-									</FormControl>
-								</Grid>
+				return (
+					<Grid item className={classes.gridItem}>
+						<Grid container alignItems='flex-start'>
+							<Grid className={classes.gridItem}>
+								<FormControl>
+									<KeyboardDatePicker
+										disableToolbar
+										variant="inline"
+										format="MM/dd/yyyy"
+										margin="normal"
+										id="date-picker-inline"
+										value={props.dateStart ? props.dateStart : new Date()}
+										onChange={props.onDateStartChange}
+									/>
+									<FormHelperText>start date</FormHelperText>
+								</FormControl>
+							</Grid>
+							<Grid item className={classes.gridItem}>
+								<FormControl>
+									<KeyboardDatePicker
+										disableToolbar
+										variant="inline"
+										format="MM/dd/yyyy"
+										margin="normal"
+										id="date-picker-inline"
+										value={props.dateEnd ? props.dateEnd : new Date()}
+										onChange={props.onDateEndChange}
+									/>
+									<FormHelperText>end date</FormHelperText>
+								</FormControl>
 							</Grid>
 						</Grid>
-					);
+					</Grid>
+				);
 			default:
 				return (
 					<Grid item xs={3} className={classes.gridItem}>
@@ -106,7 +105,6 @@ export function ActionDateForm(props: DateFormProps)
 				<FormControl className={classes.formControl} variant="outlined">
 					<Select onChange={props.onDateTypeChange} value={props.dateType}>
 						{Object.values(DateType).map((value) => {
-							//console.log(`DT value is ${value}`);
 							return <MenuItem value={value}>{DateTypeDisplay[value as DateType]}</MenuItem>;
 						})}
 					</Select>

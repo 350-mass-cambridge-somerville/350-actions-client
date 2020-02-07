@@ -3,7 +3,7 @@ import { Editor } from '@tinymce/tinymce-react'
 
 export class ActionTextInput extends Component {
 	handleEditorChange(content: any, editor: any) {
-		console.log(`Editor changed!`)
+		//console.log(`Editor changed!`)
 	}
 	render() {
 		return (

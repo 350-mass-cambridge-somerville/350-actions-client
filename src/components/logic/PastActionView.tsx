@@ -51,7 +51,6 @@ export class PastActionView extends Component {
 	}
 
 	render(): ReactNode {
-		//console.log(`Rendering with state: ${JSON.stringify(this.state)}`);
 		return (<PastActionDisplay actionCards={this.state.actionCards} />);
 	}
 }

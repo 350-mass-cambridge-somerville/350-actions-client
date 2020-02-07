@@ -40,7 +40,6 @@ function AuthProvider(props: AuthProviderProps) {
 	const [refresh, setRefresh] = useState('');
 	const [userData, setUserData] = useState(defaultUserData);
 	const login = (email: string, password: string) => {
-		console.log(`Making login request for ${email}`)
 		return fetch(SIGN_IN_URL, {
 			method: 'POST', // *GET, POST, PUT, DELETE, etc.
 			headers: {
@@ -68,7 +67,6 @@ function AuthProvider(props: AuthProviderProps) {
 	} // make a login request
 
 	function fetchUserProfile(tok: string): Promise<boolean> {
-		console.log(`fetching user profile!`);
 		return fetch(CURRENT_USER_URL, {
 			method: 'GET',
 			//withCredentials: true,
@@ -84,7 +82,6 @@ function AuthProvider(props: AuthProviderProps) {
 				return response.json()
 			})
 			.then((json) => {
-				console.log(`Got user json: ${JSON.stringify(json)}`)
 				// todo how to set admin perms
 				setUserData({ isAuthorized: true, email: json.email, name: json.username, isAdmin: json.is_superuser });
 				return true;
@@ -92,12 +89,10 @@ function AuthProvider(props: AuthProviderProps) {
 	}
 
 	const register = (req: any) => {
-		console.log(`Making register request ${req}`);
 		return Promise.resolve(true);
 	} // register the user
 
 	const logout = () => {
-		console.log(`Making logout request ${logout}`)
 		fetch(SIGN_OUT_URL, {
 			method: 'POST'
 		}).then(() => {

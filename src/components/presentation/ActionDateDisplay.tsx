@@ -18,7 +18,7 @@ function formatDate(date: Date): string {
 
 export function ActionDateDisplay(props: DateDisplayProps) {
 	const classes = useStyles();
-	console.log(`rendering date display with date ${props.date} ${JSON.stringify(props.date)} ${props.date.toDateString()}`)
+
 	switch (props.dateType) {
 		case DateType.ON:
 			return (<Grid container>
