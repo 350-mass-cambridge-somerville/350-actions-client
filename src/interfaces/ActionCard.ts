@@ -15,13 +15,13 @@ export function actionCardFromJson(json: any) {
 		number: json.number,
 		actions: json.actions
 			? json.actions.map((actionJson: any) => {
-				return actionFromJson(actionJson)
-			})
+					return actionFromJson(actionJson)
+			  })
 			: [],
 		surveyResponses: json.survey_responses
 			? json.survey_responses.map((surveyJson: any) => {
-				return surveyResponseFromJson(surveyJson)
-			})
+					return surveyResponseFromJson(surveyJson)
+			  })
 			: [],
 	}
 }

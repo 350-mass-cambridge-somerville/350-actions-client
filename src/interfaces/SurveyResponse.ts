@@ -10,6 +10,6 @@ export function surveyResponseFromJson(json: any) {
 		responderName: json.name ? json.name : '',
 		id: json.id,
 		actionCardId: json.action_card,
-		doneActions: json.actions
-	};
+		doneActions: json.actions,
+	}
 }
