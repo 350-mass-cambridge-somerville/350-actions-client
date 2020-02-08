@@ -27,7 +27,12 @@ export function ActionSurveyForm(props: ActionSurveyFormProps) {
 					/>
 				</Grid>
 				<Grid item>
-					<Button variant="contained" color="primary" onClick={props.onSubmit}>
+					<Button
+						data-cy="track-my-actions"
+						variant="contained"
+						color="primary"
+						onClick={props.onSubmit}
+					>
 						Track my actions!
 					</Button>
 				</Grid>
