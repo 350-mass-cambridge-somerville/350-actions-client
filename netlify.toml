@@ -1,4 +1,7 @@
 [build]
-base = "myapp/"
-publish = "myapp/build/"
-command = "yarn build"
+base = "./"
+publish = "build/"
+command = "npm run build"
+
+[build.environment]
+  BASE_URL = "http://159.89.54.69:8000"
