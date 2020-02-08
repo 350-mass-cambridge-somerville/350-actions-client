@@ -13,8 +13,28 @@
 // https://on.cypress.io/configuration
 // ***********************************************************
 
-// Import commands.js using ES2015 syntax:
-import './commands'
+/// <reference types="cypress" />
 
-// Alternatively you can use CommonJS syntax:
-// require('./commands')
+// replace window.fetch with XMLHttpRequest polyfill
+// to allow Cypress spying / stubbing Ajax requests
+// from the application to the API
+// see "Stubbing window.fetch" recipe in
+// https://github.com/cypress-io/cypress-example-recipes
+let polyfill
+
+// grab fetch polyfill from remote URL, could be also from a local package
+before(() => {
+	const polyfillUrl = 'https://unpkg.com/unfetch/dist/unfetch.umd.js'
+
+	cy.request(polyfillUrl).then(response => {
+		polyfill = response.body
+	})
+})
+
+Cypress.on('window:before:load', win => {
+	delete win.fetch
+	// since the application code does not ship with a polyfill
+	// load a polyfilled "fetch" from the test
+	win.eval(polyfill)
+	win.fetch = win.unfetch
+})
