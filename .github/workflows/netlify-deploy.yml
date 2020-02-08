@@ -11,7 +11,8 @@ jobs:
         with:
           # just perform install
           runTests: false
-      - run: npm run build
+      # unset CI environment variable so warnings are not treated as errors
+      - run: CI= npm run build
       - name: Deploy to Netlify
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
