@@ -3,13 +3,13 @@ import { useStyles } from '../../styles/style';
 import { Chip, Box } from '@material-ui/core';
 
 export type TagsDisplayProps = {
-	tags: string[]
+  tags: string[]
 }
 export default function ActionTagsDisplay(props: TagsDisplayProps) {
   const classes = useStyles();
 
   return (
-    <Box className={classes.chipBox}>
+    <Box className={classes.chipBox} data-cy={`action-tags`}>
       {props.tags.map(tag => {
         return (
           <Chip

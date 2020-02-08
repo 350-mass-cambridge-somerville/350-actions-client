@@ -36,7 +36,15 @@ describe('current action', () => {
     cy.contains('Action Card 23').should('be.visible')
     cy.get('[data-cy=action-check-display]').should('have.length', 6)
 
-    // todo figure out how to make this check actual number
-    cy.get('[data-cy=action-count]').should('have.length', 6)
+    // check that we are displaying the correct count for a card
+    // also test tags
+    cy.get('[data-cy=action-display-6]').within((display) => {
+      cy.get('[data-cy=action-count]').contains('8')
+
+      // test tags length
+      cy.get('[data-cy=action-tags]').children().should('have.length', 3)
+      cy.get('[data-cy=action-tags]').contains('roadmap-bill')
+    })
+
   })
 })

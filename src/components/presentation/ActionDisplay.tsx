@@ -15,7 +15,7 @@ export function ActionDisplay(props: {
 	count: number
 }) {
 	return (
-		<Box>
+		<Box data-cy={`action-display-${props.action.id}`}>
 			<Grid container direction='column' alignItems='stretch'>
 				<Grid item>
 					<Grid container justify='space-between'>
