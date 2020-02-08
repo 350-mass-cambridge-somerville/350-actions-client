@@ -1,7 +1,7 @@
 name: Netlify
-on: [deployment, deployment_status]
+on: repository_dispatch
 jobs:
   netlify-preview:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "Event"
+      - run: echo "repository_dispatch"
