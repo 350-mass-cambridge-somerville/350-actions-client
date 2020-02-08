@@ -68,6 +68,9 @@ Code is formatted using Prettier, read [How to configure Prettier and VSCode](ht
 - automatically on commit using Git hook
 - on CI using [.github/workflows/prettier.yml](.github/workflows/prettier.yml) GH Action
 
+## Storybook
+
+Storybook (https://storybook.js.org/) is enabled for development of UI components. To start storybook, run `npm run storybook`.
 ## Learn More
 
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
