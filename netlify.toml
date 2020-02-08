@@ -4,4 +4,4 @@ publish = "build/"
 command = "npm run build"
 
 [build.environment]
-  BASE_URL = "http://159.89.54.69:8000"
+  REACT_APP_BASE_URL = "http://159.89.54.69:8000"
