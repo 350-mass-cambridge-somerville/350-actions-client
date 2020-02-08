@@ -1,5 +1,12 @@
 /// <reference types="cypress" />
 describe('past actions', () => {
+	const noActionsAreVisible = () => {
+		cy.log('no actions are visible yet')
+		cy.get('[data-cy=action-display]').should('not.be.visible')
+		// but there are N actions behind 3 cards
+		cy.get('[data-cy=action-display]').should('have.length', 15)
+	}
+
 	it('shows past actions', () => {
 		cy.server()
 		cy.route('/actioncards/', 'fixture:actioncards')
@@ -13,10 +20,23 @@ describe('past actions', () => {
 		// user cannot change past actions
 		cy.get('[data-cy=track-action-form]').should('not.exist')
 
-		cy.log('looking at a particular action card')
-		cy.get('[data-cy=expansion-panel-2]').click()
+		cy.log('there are 3 past cards')
+		cy.get('[data-test-id=expansion-panel]').should('have.length', 3)
 
-		// todo need to figure out how to count only visible ones
-		cy.get('[data-cy=action-display]').should('have.length', 15)
+		noActionsAreVisible()
+
+		cy.log('looking at a particular action card')
+		cy.get('[data-cy=expansion-panel-2]')
+			.find('[data-cy=close-open-card]')
+			.click()
+
+		cy.log('only visible actions from the card')
+		cy.get('[data-cy=action-display]:visible').should('have.length', 4)
+
+		cy.log('closing card')
+		cy.get('[data-cy=expansion-panel-2]')
+			.find('[data-cy=close-open-card]')
+			.click()
+		noActionsAreVisible()
 	})
 })

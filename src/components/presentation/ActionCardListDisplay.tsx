@@ -21,11 +21,15 @@ export function ActionCardListDisplay(props: ActionCardListDisplayProps) {
 			{props.actionCards.map(actionCard => {
 				const expansionPanelData = `expansion-panel-${actionCard.id}`
 				return (
-					<ExpansionPanel data-cy={expansionPanelData}>
+					<ExpansionPanel
+						data-cy={expansionPanelData}
+						data-test-id="expansion-panel"
+					>
 						<ExpansionPanelSummary
 							expandIcon={<ExpandMoreIcon />}
 							aria-controls="panel1a-content"
 							id="panel1a-header"
+							data-cy="close-open-card"
 						>
 							<Typography>Action Card #{actionCard.number}</Typography>
 						</ExpansionPanelSummary>
