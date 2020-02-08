@@ -1,7 +1,0 @@
-name: Netlify
-on: repository_dispatch
-jobs:
-  netlify-preview:
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo "repository_dispatch"
