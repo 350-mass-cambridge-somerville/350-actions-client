@@ -2,9 +2,10 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
-import {RegistrationFormDisplay} from '../components/presentation/RegistrationFormDisplay';
+import { RegistrationFormDisplay } from '../components/presentation/RegistrationFormDisplay';
 import { ThemeProvider } from '@material-ui/styles';
 import { theme } from '../styles/style'
+import { BrowserRouter } from 'react-router-dom';
 
 export const actions = {
 	onEmailChange: action('onEmailChange'),
@@ -40,7 +41,15 @@ export const invalidRegistrationProps = {
 }
 
 storiesOf('RegistrationForm', module)
-	.add('default', () => ((<ThemeProvider theme={theme}>
-			<RegistrationFormDisplay {...defaultRegistrationProps} {...actions} />
-		</ThemeProvider>)))
-	.add('invalid', () => (<ThemeProvider theme={theme}><RegistrationFormDisplay {...invalidRegistrationProps} {...actions} /></ThemeProvider>))
+	.add('default', () => ((
+		<BrowserRouter>
+			<ThemeProvider theme={theme}>
+				<RegistrationFormDisplay {...defaultRegistrationProps} {...actions} />
+			</ThemeProvider>
+		</BrowserRouter>)))
+	.add('invalid', () => (
+		<BrowserRouter>
+			<ThemeProvider theme={theme}>
+				<RegistrationFormDisplay {...invalidRegistrationProps} {...actions} />
+			</ThemeProvider>
+		</BrowserRouter>))

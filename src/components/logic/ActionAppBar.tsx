@@ -1,6 +1,6 @@
 import React, { ReactNode, useState } from 'react';
 import { AppBar, Toolbar, Tab, Tabs, Button, Popover } from '@material-ui/core';
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useStyles, theme } from '../../styles/style';
 import { SignInForm } from './SignInForm';
 import { useAuth } from '../providers/AuthProvider';
@@ -11,7 +11,6 @@ type ActionAppBarProps = {
 export function ActionAppBar(props: ActionAppBarProps) {
 	const classes = useStyles(theme);
 	const authContext = useAuth();
-	const location = useLocation();
 	//const [popoverOpen, setPopoverOpen] = useState(true);
 
 	function generateLogoutLogin(): ReactNode {

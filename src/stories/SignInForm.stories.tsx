@@ -26,8 +26,13 @@ export const invalidRegistrationProps = {
 storiesOf('SignInForm', module)
 	.add('default', () => ((
 		<BrowserRouter>
-		<ThemeProvider theme={theme}>
-			<SignInFormDisplay {...defaultRegistrationProps} {...actions} />
-		</ThemeProvider>
+			<ThemeProvider theme={theme}>
+				<SignInFormDisplay {...defaultRegistrationProps} {...actions} />
+			</ThemeProvider>
 		</BrowserRouter>)))
-	.add('invalid', () => (<ThemeProvider theme={theme}><SignInFormDisplay {...invalidRegistrationProps} {...actions} /></ThemeProvider>))
+	.add('invalid', () => (
+		<BrowserRouter>
+			<ThemeProvider theme={theme}>
+				<SignInFormDisplay {...invalidRegistrationProps} {...actions} />
+			</ThemeProvider>
+		</BrowserRouter>))

@@ -16,7 +16,6 @@ type SignInFormDisplayProps = {
 
 export function SignInFormDisplay(props: SignInFormDisplayProps) {
 	const classes = useStyles();
-	const location = useLocation();
 
 	function onEmailChange(event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void {
 		props.onEmailChange(event.target.value);
