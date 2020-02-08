@@ -1,0 +1,7 @@
+name: Netlify
+on: [deployment, deployment_status]
+jobs:
+  netlify-preview:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Event"
