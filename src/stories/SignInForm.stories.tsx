@@ -1,17 +1,17 @@
-import React from 'react';
-import { storiesOf } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
+import React from 'react'
+import { storiesOf } from '@storybook/react'
+import { action } from '@storybook/addon-actions'
 
-import { SignInFormDisplay } from '../components/presentation/SignInFormDisplay';
-import { ThemeProvider } from '@material-ui/styles';
+import { SignInFormDisplay } from '../components/presentation/SignInFormDisplay'
+import { ThemeProvider } from '@material-ui/styles'
 import { theme } from '../styles/style'
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom'
 
 export const actions = {
 	onEmailChange: action('onEmailChange'),
 	onPasswordChange: action('onPasswordChange'),
-	onSubmit: action('onSubmit')
-};
+	onSubmit: action('onSubmit'),
+}
 
 export const defaultRegistrationProps = {
 	email: 'katy@katy.com',
@@ -24,15 +24,17 @@ export const invalidRegistrationProps = {
 }
 
 storiesOf('SignInForm', module)
-	.add('default', () => ((
+	.add('default', () => (
 		<BrowserRouter>
 			<ThemeProvider theme={theme}>
 				<SignInFormDisplay {...defaultRegistrationProps} {...actions} />
 			</ThemeProvider>
-		</BrowserRouter>)))
+		</BrowserRouter>
+	))
 	.add('invalid', () => (
 		<BrowserRouter>
 			<ThemeProvider theme={theme}>
 				<SignInFormDisplay {...invalidRegistrationProps} {...actions} />
 			</ThemeProvider>
-		</BrowserRouter>))
+		</BrowserRouter>
+	))

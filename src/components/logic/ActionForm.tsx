@@ -1,33 +1,33 @@
-import moment from 'moment';
-import React, { Component, ChangeEvent, ReactNode } from 'react';
-import { Paper, Button } from '@material-ui/core';
-import { ActionGeographyForm } from './ActionGeographyForm';
-import { GeographyType } from '../../interfaces/GeographyType';
-import { ActionDateForm } from './ActionDateForm';
-import { ActionDescriptionForm } from './ActionDescriptionForm';
-import { ActionTagsForm } from './ActionTagsForm';
-import { ActionCardForm } from './ActionCardForm';
-import { DateType } from '../../interfaces/DateType';
-import { ActionCard } from '../../interfaces/ActionCard';
-import SimpleSnackbar from '../presentation/SimpleSnackbar';
-import { AuthContext } from '../providers/AuthProvider';
-import { ACTION_CARD_URL, ACTION_URL } from '../../urls';
+import moment from 'moment'
+import React, { Component, ChangeEvent, ReactNode } from 'react'
+import { Paper, Button } from '@material-ui/core'
+import { ActionGeographyForm } from './ActionGeographyForm'
+import { GeographyType } from '../../interfaces/GeographyType'
+import { ActionDateForm } from './ActionDateForm'
+import { ActionDescriptionForm } from './ActionDescriptionForm'
+import { ActionTagsForm } from './ActionTagsForm'
+import { ActionCardForm } from './ActionCardForm'
+import { DateType } from '../../interfaces/DateType'
+import { ActionCard } from '../../interfaces/ActionCard'
+import SimpleSnackbar from '../presentation/SimpleSnackbar'
+import { AuthContext } from '../providers/AuthProvider'
+import { ACTION_CARD_URL, ACTION_URL } from '../../urls'
 
 type ActionFormState = {
-	geographyType: GeographyType,
-	dateType: DateType,
-	date: Date,
-	dateStart: Date,
-	dateEnd: Date,
-	description: string,
-	tags: string[],
-	actionCardDate: Date,
-	actionCardId: number,
-	actionCardNumber: number,
-	showSnackbar: boolean,
-	snackbarMessage: string,
+	geographyType: GeographyType
+	dateType: DateType
+	date: Date
+	dateStart: Date
+	dateEnd: Date
+	description: string
+	tags: string[]
+	actionCardDate: Date
+	actionCardId: number
+	actionCardNumber: number
+	showSnackbar: boolean
+	snackbarMessage: string
 	snackbarIsError: boolean
-};
+}
 
 type ActionFormProps = {
 	cards: ActionCard[]
@@ -46,52 +46,58 @@ export class ActionForm extends Component<ActionFormProps, ActionFormState> {
 		actionCardNumber: 0,
 		showSnackbar: false,
 		snackbarMessage: '',
-		snackbarIsError: false
-	};
+		snackbarIsError: false,
+	}
 
 	constructor(props: ActionFormProps) {
-		super({ cards: [] });
+		super({ cards: [] })
 
-		this.onGeographyTypeChange = this.onGeographyTypeChange.bind(this);
-		this.onDateTypeChange = this.onDateTypeChange.bind(this);
-		this.onDateChange = this.onDateChange.bind(this);
-		this.onDateStartChange = this.onDateStartChange.bind(this);
-		this.onDateEndChange = this.onDateEndChange.bind(this);
-		this.onDescriptionChange = this.onDescriptionChange.bind(this);
-		this.onTagsChange = this.onTagsChange.bind(this);
-		this.onSubmit = this.onSubmit.bind(this);
-		this.onActionCardDateChange = this.onActionCardDateChange.bind(this);
-		this.onActionCardIdChange = this.onActionCardIdChange.bind(this);
-		this.onActionCardNumberChange = this.onActionCardNumberChange.bind(this);
-		this.handleSnackbarClose = this.handleSnackbarClose.bind(this);
+		this.onGeographyTypeChange = this.onGeographyTypeChange.bind(this)
+		this.onDateTypeChange = this.onDateTypeChange.bind(this)
+		this.onDateChange = this.onDateChange.bind(this)
+		this.onDateStartChange = this.onDateStartChange.bind(this)
+		this.onDateEndChange = this.onDateEndChange.bind(this)
+		this.onDescriptionChange = this.onDescriptionChange.bind(this)
+		this.onTagsChange = this.onTagsChange.bind(this)
+		this.onSubmit = this.onSubmit.bind(this)
+		this.onActionCardDateChange = this.onActionCardDateChange.bind(this)
+		this.onActionCardIdChange = this.onActionCardIdChange.bind(this)
+		this.onActionCardNumberChange = this.onActionCardNumberChange.bind(this)
+		this.handleSnackbarClose = this.handleSnackbarClose.bind(this)
 	}
 
-	onGeographyTypeChange(event: ChangeEvent<{ name?: string | undefined; value: unknown; }>, child: ReactNode) {
-		this.setState({ geographyType: event.target.value as GeographyType });
+	onGeographyTypeChange(
+		event: ChangeEvent<{ name?: string | undefined; value: unknown }>,
+		child: ReactNode,
+	) {
+		this.setState({ geographyType: event.target.value as GeographyType })
 	}
 
-	onDateTypeChange(event: ChangeEvent<{ name?: string | undefined; value: unknown; }>, child: ReactNode) {
-		this.setState({ dateType: event.target.value as DateType });
+	onDateTypeChange(
+		event: ChangeEvent<{ name?: string | undefined; value: unknown }>,
+		child: ReactNode,
+	) {
+		this.setState({ dateType: event.target.value as DateType })
 	}
 
 	onDateChange(date: Date): void {
-		this.setState({ date: date });
+		this.setState({ date: date })
 	}
 
 	onDateStartChange(date: Date): void {
-		this.setState({ dateStart: date });
+		this.setState({ dateStart: date })
 	}
 
 	onDateEndChange(date: Date): void {
-		this.setState({ dateEnd: date });
+		this.setState({ dateEnd: date })
 	}
 
 	onDescriptionChange(description: string): void {
-		this.setState({ description: description });
+		this.setState({ description: description })
 	}
 
 	onTagsChange(tags: string[]): void {
-		this.setState({ tags: tags });
+		this.setState({ tags: tags })
 	}
 
 	onActionCardDateChange(date: any): void {
@@ -107,7 +113,7 @@ export class ActionForm extends Component<ActionFormProps, ActionFormState> {
 	}
 
 	handleSnackbarClose(event: any): void {
-		this.setState({ showSnackbar: false });
+		this.setState({ showSnackbar: false })
 	}
 
 	onSubmit(): void {
@@ -118,31 +124,34 @@ export class ActionForm extends Component<ActionFormProps, ActionFormState> {
 				mode: 'cors',
 				headers: {
 					'Content-Type': 'application/json',
-					'Authorization': 'Bearer ' + this.context.token,
+					Authorization: 'Bearer ' + this.context.token,
 					// 'Content-Type': 'application/x-www-form-urlencoded',
 				},
 				body: JSON.stringify({
 					date: this.formatDate(this.state.actionCardDate),
-					number: this.state.actionCardNumber
-				}) // body data type must match "Content-Type" header
-			}).then((response: Response) => {
-				if (!response.ok) {
-					throw (response.text);
-				}
-				return response.json();
-			}).then((responseJson: any) => {
-				const actionCardId = responseJson.id;
-				return this.submitAction(actionCardId);
-			}).catch((error: any) => {
-				console.log(`action card submit failed with: ${error}`);
+					number: this.state.actionCardNumber,
+				}), // body data type must match "Content-Type" header
 			})
+				.then((response: Response) => {
+					if (!response.ok) {
+						throw response.text
+					}
+					return response.json()
+				})
+				.then((responseJson: any) => {
+					const actionCardId = responseJson.id
+					return this.submitAction(actionCardId)
+				})
+				.catch((error: any) => {
+					console.log(`action card submit failed with: ${error}`)
+				})
 		} else {
-			this.submitAction(this.state.actionCardId);
+			this.submitAction(this.state.actionCardId)
 		}
 	}
 
 	formatDate(date: Date) {
-		return moment(date).format('YYYY-MM-DD');
+		return moment(date).format('YYYY-MM-DD')
 	}
 
 	submitAction(actionCardId: number): Promise<any> {
@@ -150,7 +159,7 @@ export class ActionForm extends Component<ActionFormProps, ActionFormState> {
 			method: 'POST', // *GET, POST, PUT, DELETE, etc.
 			headers: {
 				'Content-Type': 'application/json',
-				'Authorization': 'Bearer ' + this.context.token,
+				Authorization: 'Bearer ' + this.context.token,
 				// 'Content-Type': 'application/x-www-form-urlencoded',
 			},
 			body: JSON.stringify({
@@ -161,26 +170,41 @@ export class ActionForm extends Component<ActionFormProps, ActionFormState> {
 				date_end: this.formatDate(this.state.dateEnd),
 				taggit: this.state.tags,
 				date_type: this.state.dateType,
-				geography_type: this.state.geographyType
-			}) // body data type must match "Content-Type" header
-		}).then((response) => {
-			if (!response.ok) {
-				throw (response.text);
-			}
-			return response.json();
-		}).then((json) => {
-			this.setState({ showSnackbar: true, snackbarIsError: false, snackbarMessage: `Success! ${JSON.stringify(json)}` })
+				geography_type: this.state.geographyType,
+			}), // body data type must match "Content-Type" header
 		})
-			.catch((error) => {
-				console.log(`submit failed with error: ${error}`);
-				this.setState({ showSnackbar: true, snackbarIsError: true, snackbarMessage: `Something went wrong. Try again later. Error: ${error.message}` })
+			.then(response => {
+				if (!response.ok) {
+					throw response.text
+				}
+				return response.json()
+			})
+			.then(json => {
+				this.setState({
+					showSnackbar: true,
+					snackbarIsError: false,
+					snackbarMessage: `Success! ${JSON.stringify(json)}`,
+				})
+			})
+			.catch(error => {
+				console.log(`submit failed with error: ${error}`)
+				this.setState({
+					showSnackbar: true,
+					snackbarIsError: true,
+					snackbarMessage: `Something went wrong. Try again later. Error: ${error.message}`,
+				})
 			})
 	}
 
 	render() {
 		return (
 			<Paper>
-				<SimpleSnackbar message={this.state.snackbarMessage} isError={this.state.snackbarIsError} open={this.state.showSnackbar} handleClose={this.handleSnackbarClose} />
+				<SimpleSnackbar
+					message={this.state.snackbarMessage}
+					isError={this.state.snackbarIsError}
+					open={this.state.showSnackbar}
+					handleClose={this.handleSnackbarClose}
+				/>
 				<form>
 					<ActionCardForm
 						onIdChange={this.onActionCardIdChange}
@@ -193,7 +217,8 @@ export class ActionForm extends Component<ActionFormProps, ActionFormState> {
 					/>
 					<ActionGeographyForm
 						onChange={this.onGeographyTypeChange}
-						selected={this.state.geographyType} />
+						selected={this.state.geographyType}
+					/>
 					<ActionDateForm
 						onDateTypeChange={this.onDateTypeChange}
 						dateType={this.state.dateType}
@@ -215,9 +240,9 @@ export class ActionForm extends Component<ActionFormProps, ActionFormState> {
 				</form>
 				<Button variant="contained" color="secondary" onClick={this.onSubmit}>
 					Submit
-      			</Button>
+				</Button>
 			</Paper>
-		);
+		)
 	}
 }
-ActionForm.contextType = AuthContext;
+ActionForm.contextType = AuthContext

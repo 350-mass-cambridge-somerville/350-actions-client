@@ -1,11 +1,11 @@
-import React from 'react';
-import { storiesOf } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
+import React from 'react'
+import { storiesOf } from '@storybook/react'
+import { action } from '@storybook/addon-actions'
 
-import { RegistrationFormDisplay } from '../components/presentation/RegistrationFormDisplay';
-import { ThemeProvider } from '@material-ui/styles';
+import { RegistrationFormDisplay } from '../components/presentation/RegistrationFormDisplay'
+import { ThemeProvider } from '@material-ui/styles'
 import { theme } from '../styles/style'
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom'
 
 export const actions = {
 	onEmailChange: action('onEmailChange'),
@@ -14,7 +14,7 @@ export const actions = {
 	onConfirmPasswordChange: action('onPasswordChange'),
 	onSubmit: action('onSubmit'),
 	onSignIn: action('onSignIn'),
-};
+}
 
 export const defaultRegistrationProps = {
 	name: 'Katy',
@@ -25,7 +25,7 @@ export const defaultRegistrationProps = {
 	nameValid: true,
 	passwordValid: true,
 	confirmPasswordValid: true,
-	validationMsg: ''
+	validationMsg: '',
 }
 
 export const invalidRegistrationProps = {
@@ -37,19 +37,21 @@ export const invalidRegistrationProps = {
 	nameValid: false,
 	passwordValid: false,
 	confirmPasswordValid: false,
-	validationMsg: 'everything sucks'
+	validationMsg: 'everything sucks',
 }
 
 storiesOf('RegistrationForm', module)
-	.add('default', () => ((
+	.add('default', () => (
 		<BrowserRouter>
 			<ThemeProvider theme={theme}>
 				<RegistrationFormDisplay {...defaultRegistrationProps} {...actions} />
 			</ThemeProvider>
-		</BrowserRouter>)))
+		</BrowserRouter>
+	))
 	.add('invalid', () => (
 		<BrowserRouter>
 			<ThemeProvider theme={theme}>
 				<RegistrationFormDisplay {...invalidRegistrationProps} {...actions} />
 			</ThemeProvider>
-		</BrowserRouter>))
+		</BrowserRouter>
+	))

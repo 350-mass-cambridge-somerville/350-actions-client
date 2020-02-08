@@ -42,7 +42,7 @@
 		"gcp-build": "react-scripts build",
 		"local:dev": "start-test react:start 3000 cypress:open",
 		"cypress:open": "cypress open",
-		"format": "prettier --write 'src/**/*.ts' 'cypress/**/*.js'"
+		"format": "prettier --write 'src/**/*.{ts,tsx}' 'cypress/**/*.js'"
 	},
 	"eslintConfig": {
 		"extends": "react-app"

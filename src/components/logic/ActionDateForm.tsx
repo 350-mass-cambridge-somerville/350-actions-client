@@ -1,42 +1,45 @@
-import React, { Component, ChangeEvent, ReactNode } from "react";
+import React, { Component, ChangeEvent, ReactNode } from 'react'
 import {
 	Select,
 	MenuItem,
 	Typography,
 	FormControl,
 	Grid,
-	FormHelperText
-} from "@material-ui/core";
+	FormHelperText,
+} from '@material-ui/core'
 
 import {
 	KeyboardDatePicker,
-	MuiPickersUtilsProvider
-} from '@material-ui/pickers';
-import 'date-fns';
-import DateFnsUtils from '@date-io/date-fns';
-import { DateType } from '../../interfaces/DateType';
-import { useStyles } from '../../styles/style';
+	MuiPickersUtilsProvider,
+} from '@material-ui/pickers'
+import 'date-fns'
+import DateFnsUtils from '@date-io/date-fns'
+import { DateType } from '../../interfaces/DateType'
+import { useStyles } from '../../styles/style'
 
 type DateFormProps = {
-	dateType: DateType,
-	date?: Date,
-	dateStart?: Date,
-	dateEnd?: Date,
-	onDateTypeChange: (event: ChangeEvent<{ name?: string | undefined; value: unknown; }>, child: ReactNode) => void
-	onDateChange: (date: any) => void,
-	onDateStartChange: (date: any) => void,
+	dateType: DateType
+	date?: Date
+	dateStart?: Date
+	dateEnd?: Date
+	onDateTypeChange: (
+		event: ChangeEvent<{ name?: string | undefined; value: unknown }>,
+		child: ReactNode,
+	) => void
+	onDateChange: (date: any) => void
+	onDateStartChange: (date: any) => void
 	onDateEndChange: (date: any) => void
-};
+}
 
 const DateTypeDisplay: Record<DateType, string> = {
-	[DateType.ON]: "on",
-	[DateType.BEFORE]: "before",
-	[DateType.RANGE]: "between",
-	[DateType.NONE]: "none"
+	[DateType.ON]: 'on',
+	[DateType.BEFORE]: 'before',
+	[DateType.RANGE]: 'between',
+	[DateType.NONE]: 'none',
 }
 
 export function ActionDateForm(props: DateFormProps) {
-	const classes = useStyles();
+	const classes = useStyles()
 	function generateDatePickers(props: DateFormProps): ReactNode {
 		switch (props.dateType) {
 			case DateType.ON:
@@ -55,11 +58,12 @@ export function ActionDateForm(props: DateFormProps) {
 							/>
 						</FormControl>
 						<FormHelperText>date</FormHelperText>
-					</Grid>)
+					</Grid>
+				)
 			case DateType.RANGE:
 				return (
 					<Grid item className={classes.gridItem}>
-						<Grid container alignItems='flex-start'>
+						<Grid container alignItems="flex-start">
 							<Grid className={classes.gridItem}>
 								<FormControl>
 									<KeyboardDatePicker
@@ -90,22 +94,28 @@ export function ActionDateForm(props: DateFormProps) {
 							</Grid>
 						</Grid>
 					</Grid>
-				);
+				)
 			default:
 				return (
 					<Grid item xs={3} className={classes.gridItem}>
-						<Typography align='center' variant='subtitle1'>No date set.</Typography>
+						<Typography align="center" variant="subtitle1">
+							No date set.
+						</Typography>
 					</Grid>
-				);
+				)
 		}
 	}
 	return (
-		<Grid container alignItems='center'>
+		<Grid container alignItems="center">
 			<Grid item xs={3} className={classes.gridItem}>
 				<FormControl className={classes.formControl} variant="outlined">
 					<Select onChange={props.onDateTypeChange} value={props.dateType}>
-						{Object.values(DateType).map((value) => {
-							return <MenuItem value={value}>{DateTypeDisplay[value as DateType]}</MenuItem>;
+						{Object.values(DateType).map(value => {
+							return (
+								<MenuItem value={value}>
+									{DateTypeDisplay[value as DateType]}
+								</MenuItem>
+							)
 						})}
 					</Select>
 					<FormHelperText>Action Date(s)</FormHelperText>
@@ -115,5 +125,5 @@ export function ActionDateForm(props: DateFormProps) {
 				{generateDatePickers(props)}
 			</MuiPickersUtilsProvider>
 		</Grid>
-	);
+	)
 }

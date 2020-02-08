@@ -1,20 +1,20 @@
-import React from 'react';
-import { storiesOf } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
+import React from 'react'
+import { storiesOf } from '@storybook/react'
+import { action } from '@storybook/addon-actions'
 
-import { ActionListDisplay } from '../components/presentation/ActionListDisplay';
+import { ActionListDisplay } from '../components/presentation/ActionListDisplay'
 
-import { Action } from '../interfaces/Action';
-import { DateType } from '../interfaces/DateType';
-import { GeographyType } from '../interfaces/GeographyType';
+import { Action } from '../interfaces/Action'
+import { DateType } from '../interfaces/DateType'
+import { GeographyType } from '../interfaces/GeographyType'
 
 export const actions = {
 	onActionDoneChange: action('onActionDoneChange'),
-};
+}
 
 export const actionShort: Action = {
 	id: 1,
-	description: 'Here\s a thing',
+	description: 'Heres a thing',
 	tags: ['tag1', 'tag2'],
 	date: new Date(),
 	dateType: DateType.ON,
@@ -23,17 +23,16 @@ export const actionShort: Action = {
 
 export const actionLong: Action = {
 	id: 2,
-	description: 'Here\s a thing. There are lots of words here! asknfaune;asnf;ksadfnadkllkj',
+	description:
+		'Heres a thing. There are lots of words here! asknfaune;asnf;ksadfnadkllkj',
 	tags: ['tag1', 'tag2'],
 	date: new Date(),
 	dateType: DateType.ON,
 	geographyType: GeographyType.LOCAL,
 }
 
-export const actionList = [actionShort, actionLong];
+export const actionList = [actionShort, actionLong]
 
-storiesOf('ActionListDisplay', module)
-	.add('default', () => (
-		<ActionListDisplay actions={actionList}
-			surveyResponses={[]}
-		/>))
+storiesOf('ActionListDisplay', module).add('default', () => (
+	<ActionListDisplay actions={actionList} surveyResponses={[]} />
+))
