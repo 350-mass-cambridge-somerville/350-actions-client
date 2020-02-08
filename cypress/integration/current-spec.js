@@ -28,7 +28,7 @@ describe('current action', () => {
 	})
 
 	it('tracks an action anonymously', () => {
-		// check  a couple of actions
+		// check a couple of actions
 		cy.get('[data-cy=action-check-display]')
 			.first() // same as .eq(0)
 			.find('input[type=checkbox]')
@@ -51,6 +51,36 @@ describe('current action', () => {
 				// so we can use same logic as our application
 				date: Cypress.moment().format('YYYY-MM-DD'),
 				name: '', // anonymous
+			})
+
+		cy.contains('button', 'Track my actions!').should('be.disabled')
+	})
+
+	it('tracks an action with name', () => {
+		cy.get('#standard-basic').type('Mo')
+		// check a couple of actions
+		cy.get('[data-cy=action-check-display]')
+			.first() // same as .eq(0)
+			.find('input[type=checkbox]')
+			.check()
+
+		cy.get('[data-cy=action-check-display]')
+			.eq(1)
+			.find('input[type=checkbox]')
+			.check()
+
+		cy.route('POST', '/surveyresponses/', {}).as('track')
+		cy.get('[data-cy=track-my-actions]').click()
+
+		cy.wait('@track')
+			.its('request.body')
+			.should('deep.equal', {
+				action_card: 4, // same as our fixture
+				actions: [5, 6], // ids of the actions from the fixture
+				// Cypress comes with moment.js bundled in
+				// so we can use same logic as our application
+				date: Cypress.moment().format('YYYY-MM-DD'),
+				name: 'Mo',
 			})
 
 		cy.contains('button', 'Track my actions!').should('be.disabled')
