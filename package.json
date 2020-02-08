@@ -78,7 +78,7 @@
     }
   },
   "lint-staged": {
-    "src/interfaces/*.ts": [
+    "*.{ts,json}": [
       "prettier --write"
     ]
   }
