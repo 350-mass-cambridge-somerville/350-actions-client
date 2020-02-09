@@ -18,6 +18,9 @@ jobs:
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+        # when deploying show the output from Netlify
+        # and redirect its results into a JSON file
         run: |
           npm install netlify-cli
-          npx netlify deploy --dir build
+          npx netlify deploy --dir build --json | tee deploy.json
+          cat deploy.json
