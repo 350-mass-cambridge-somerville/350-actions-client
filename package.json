@@ -61,6 +61,7 @@
 	},
 	"devDependencies": {
 		"@bahmutov/print-env": "1.2.0",
+		"@cypress/skip-test": "2.5.0",
 		"@storybook/addon-actions": "^5.2.6",
 		"@storybook/addon-links": "^5.2.6",
 		"@storybook/addons": "^5.2.6",
