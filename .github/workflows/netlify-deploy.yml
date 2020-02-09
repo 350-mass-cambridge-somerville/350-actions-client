@@ -23,4 +23,5 @@ jobs:
         run: |
           npm install netlify-cli
           npx netlify deploy --dir build --json | tee deploy.json
-          cat deploy.json
+      - name: Run Cypress tests against draft deploy
+        run: node ./scripts/test-draft-site.js
