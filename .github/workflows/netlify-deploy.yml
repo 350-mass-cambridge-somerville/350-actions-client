@@ -6,6 +6,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v1
+      - name: show GitHub info
+        run: |
+          npm install @bahmutov/print-env
+          npx print-env
       - name: Install dependencies
         uses: cypress-io/github-action@v1
         with:
