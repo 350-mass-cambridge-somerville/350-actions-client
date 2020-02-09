@@ -2,7 +2,10 @@
 // we save deploy results in `deploy.json` file (see Netlify GH workflow)
 // now we grab that file and run Cypress tests against it
 // see https://github.com/netlify/cli/blob/master/src/commands/deploy.js
-const deploy = require('deploy.json')
+const path = require('path')
+const filename = path.join(process.cwd(), 'deploy.json')
+console.log('loading Netlify deploy results from file %s', filename)
+const deploy = require(filename)
 console.log('will run Cypress tests against deployed url', deploy.deploy_url)
 
 const cypress = require('cypress')
