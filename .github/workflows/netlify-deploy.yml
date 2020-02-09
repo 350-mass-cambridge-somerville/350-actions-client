@@ -6,15 +6,13 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v1
-      - name: show GitHub info
-        run: |
-          npm install @bahmutov/print-env
-          npx print-env
-      - name: Install dependencies
+        - name: Install dependencies
         uses: cypress-io/github-action@v1
         with:
           # just perform install
           runTests: false
+      - name: show GitHub info
+        run: npx print-env GITHUB
       # unset CI environment variable so warnings are not treated as errors
       - run: CI= npm run build
       - name: Deploy to Netlify
