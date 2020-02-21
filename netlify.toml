@@ -4,4 +4,10 @@ publish = "build/"
 command = "npm run build"
 
 [build.environment]
-  REACT_APP_BASE_URL = "http://159.89.54.69:8000"
+  REACT_APP_BASE_URL = ""
+
+[[redirects]]
+  from = "/actioncards"
+  to = "http://159.89.54.69:8000/actioncards"
+  status = 200
+  force = false
