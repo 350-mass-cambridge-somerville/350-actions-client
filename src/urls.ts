@@ -1,4 +1,4 @@
-const baseUrl: string = process.env.REACT_APP_BASE_URL ? '' : 'http://localhost:8000';
+const baseUrl: string = process.env.REACT_APP_BASE_URL ? process.env.REACT_APP_BASE_URL : 'http://localhost:8000';
 
 export const ACTION_CARD_URL = `${baseUrl}/actioncards/`;
 export const LATEST_ACTION_CARD_URL = `${baseUrl}/actioncards/latest/`
