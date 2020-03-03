@@ -14,5 +14,5 @@ command = "npm run build"
 
 [[redirects]]
   from = "/api/actioncards"
-  to = "http://159.89.54.69:8000/actioncards"
+  to = "http://159.89.54.69:8000/actioncards/"
   status = 200
