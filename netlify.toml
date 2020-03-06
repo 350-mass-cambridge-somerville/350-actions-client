@@ -16,3 +16,8 @@ command = "npm run build"
   from = "/api/actioncards"
   to = "http://159.89.54.69:8000/actioncards/"
   status = 200
+
+[[redirects]]
+  from = "/api/surveyresponses/"
+  to = "http://159.89.54.69:8000/surveyresponses/"
+  status = 200
