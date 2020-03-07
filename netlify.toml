@@ -21,3 +21,28 @@ command = "npm run build"
   from = "/api/surveyresponses/"
   to = "http://159.89.54.69:8000/surveyresponses/"
   status = 200
+
+[[redirects]]
+  from = "/api/actions/"
+  to = "http://159.89.54.69:8000/actions/"
+  status = 200
+
+[[redirects]]
+  from = "/api/surveyresponses/user/"
+  to = "http://159.89.54.69:8000/surveyresponses/user/"
+  status = 200
+
+[[redirects]]
+  from = "/api/token/"
+  to = "http://159.89.54.69:8000/token/"
+  status = 200
+
+[[redirects]]
+  from = "/api/rest-auth/logout."
+  to = "http://159.89.54.69:8000/rest-auth/logout/"
+  status = 200
+
+[[redirects]]
+  from = "/api/user/"
+  to = "http://159.89.54.69:8000/user/"
+  status = 200
