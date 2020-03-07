@@ -6,5 +6,10 @@ export interface SurveyResponse {
 }
 
 export function surveyResponseFromJson(json: any) {
-	return json
+	return {
+		responderName: json.name ? json.name : '',
+		id: json.id,
+		actionCardId: json.action_card,
+		doneActions: json.actions,
+	}
 }

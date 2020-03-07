@@ -20,7 +20,7 @@ export function actionFromJson(json: any): Action {
 	return {
 		id: json.id,
 		description: json.description,
-		tags: json.tags ? json.tags.map((tag: Tag) => tag.tag) : [],
+		tags: json.taggit ? json.taggit : [],
 		date: new Date(json.date),
 		dateStart: json.start_date ? new Date(json.start_date) : undefined,
 		dateEnd: json.end_date ? new Date(json.end_date) : undefined,
