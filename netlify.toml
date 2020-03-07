@@ -38,7 +38,7 @@ command = "npm run build"
   status = 200
 
 [[redirects]]
-  from = "/api/rest-auth/logout."
+  from = "/api/rest-auth/logout/"
   to = "http://159.89.54.69:8000/rest-auth/logout/"
   status = 200
 
