@@ -1,4 +1,4 @@
-# 350-actions-client ![tests](https://github.com/350-mass-cambridge-somerville/350-actions-client/workflows/tests/badge.svg?branch=master) [![Netlify Status](https://api.netlify.com/api/v1/badges/93303526-bb7a-4a8f-a79b-f5d68a1843e9/deploy-status)](https://app.netlify.com/sites/determined-hawking-33ea48/deploys)
+# 350-actions-client ![tests](https://github.com/350-mass-cambridge-somerville/350-actions-client/workflows/tests/badge.svg?branch=master) [![Netlify Status](https://api.netlify.com/api/v1/badges/93303526-bb7a-4a8f-a79b-f5d68a1843e9/deploy-status)](https://app.netlify.com/sites/maclimateactions/deploys)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
