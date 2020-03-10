@@ -41,9 +41,22 @@ Cypress.on('window:before:load', win => {
 	win.fetch = win.unfetch
 })
 
-Cypress.Commands.add('stubRoute', function(methodName, endpoint, fixture) {
-	debugger
-	if (arguments.length === 2) {
+/**
+ * Locally, all API requests go to something like "localhost:3000/...",
+ * but deploy and production deploys forward API requests to "/api/...".
+ * This utility command adds "/api" to every "cy.route" when running
+ * in non-local environment
+ */
+Cypress.Commands.overwrite('route', function(
+	route,
+	methodName,
+	endpoint,
+	fixture,
+) {
+	// assume for now every request uses endpoint and fixture
+	// or method, endpoint and fixture
+	// (no common options signature like cy.route({method:, ...}))
+	if (arguments.length === 3) {
 		fixture = endpoint
 		endpoint = methodName
 		methodName = 'GET'
@@ -55,5 +68,5 @@ Cypress.Commands.add('stubRoute', function(methodName, endpoint, fixture) {
 		endpoint = '/api' + endpoint
 	}
 
-	cy.route(methodName, endpoint, fixture)
+	return route(methodName, endpoint, fixture)
 })

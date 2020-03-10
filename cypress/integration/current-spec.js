@@ -3,7 +3,7 @@
 describe('current action', () => {
 	beforeEach(() => {
 		cy.server()
-		cy.stubRoute('/actioncards/latest/', 'fixture:latest')
+		cy.route('/actioncards/latest/', 'fixture:latest')
 		cy.visit('/')
 		// check the page - should have info from the stubbed response
 		// loaded from cypress/fixtures/latest.json
@@ -39,7 +39,7 @@ describe('current action', () => {
 			.find('input[type=checkbox]')
 			.check()
 
-		cy.stubRoute('POST', '/surveyresponses/', {}).as('track')
+		cy.route('POST', '/surveyresponses/', {}).as('track')
 		cy.get('[data-cy=track-my-actions]').click()
 
 		cy.wait('@track')
@@ -69,7 +69,7 @@ describe('current action', () => {
 			.find('input[type=checkbox]')
 			.check()
 
-		cy.stubRoute('POST', '/surveyresponses/', {}).as('track')
+		cy.route('POST', '/surveyresponses/', {}).as('track')
 		cy.get('[data-cy=track-my-actions]').click()
 
 		cy.wait('@track')
