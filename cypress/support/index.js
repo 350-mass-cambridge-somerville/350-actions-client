@@ -13,6 +13,8 @@
 // https://on.cypress.io/configuration
 // ***********************************************************
 
+import { isOn } from '@cypress/skip-test'
+
 /// <reference types="cypress" />
 
 // replace window.fetch with XMLHttpRequest polyfill
@@ -37,4 +39,34 @@ Cypress.on('window:before:load', win => {
 	// load a polyfilled "fetch" from the test
 	win.eval(polyfill)
 	win.fetch = win.unfetch
+})
+
+/**
+ * Locally, all API requests go to something like "localhost:3000/...",
+ * but deploy and production deploys forward API requests to "/api/...".
+ * This utility command adds "/api" to every "cy.route" when running
+ * in non-local environment
+ */
+Cypress.Commands.overwrite('route', function(
+	route,
+	methodName,
+	endpoint,
+	fixture,
+) {
+	// assume for now every request uses endpoint and fixture
+	// or method, endpoint and fixture
+	// (no common options signature like cy.route({method:, ...}))
+	if (arguments.length === 3) {
+		fixture = endpoint
+		endpoint = methodName
+		methodName = 'GET'
+	}
+
+	if (!isOn('localhost')) {
+		// probably deployed to Netlify
+		// all requests should start with "/api"
+		endpoint = '/api' + endpoint
+	}
+
+	return route(methodName, endpoint, fixture)
 })

@@ -7,6 +7,7 @@ command = "npm run build"
   REACT_APP_BASE_URL = "/api"
 
 # https://docs.netlify.com/routing/redirects/
+# redirects for API calls
 [[redirects]]
   from = "/api/actioncards/latest/"
   to = "http://159.89.54.69:8000/actioncards/latest/"
@@ -45,4 +46,12 @@ command = "npm run build"
 [[redirects]]
   from = "/api/user/"
   to = "http://159.89.54.69:8000/user/"
+  status = 200
+
+[[redirects]]
+  # fallback redirect for all other pages
+  # to drive it back to the SPA index.html
+  # page that can do client-side routing
+  from = "/*"
+  to = "/index.html"
   status = 200
