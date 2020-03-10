@@ -1,6 +1,4 @@
 /// <reference types="cypress" />
-import { isOn } from '@cypress/skip-test'
-
 describe('past actions', () => {
 	const noActionsAreVisible = () => {
 		cy.log('no actions are visible yet')
@@ -9,9 +7,7 @@ describe('past actions', () => {
 		cy.get('[data-cy=action-display]').should('have.length', 15)
 	}
 
-	// skip this test for now when deployed to Netlify draft URL
-	// https://github.com/350-mass-cambridge-somerville/350-actions-client/issues/12
-	;(isOn('draft') ? it.skip : it)('shows past actions', () => {
+	it('shows past actions', () => {
 		cy.server()
 		cy.route('/actioncards/', 'fixture:actioncards')
 		cy.visit('/past')
