@@ -13,7 +13,7 @@ describe('past actions', () => {
 	// https://github.com/350-mass-cambridge-somerville/350-actions-client/issues/12
 	;(isOn('draft') ? it.skip : it)('shows past actions', () => {
 		cy.server()
-		cy.route('/actioncards/', 'fixture:actioncards')
+		cy.stubRoute('/actioncards/', 'fixture:actioncards')
 		cy.visit('/past')
 
 		// check the page - should have info from the stubbed response

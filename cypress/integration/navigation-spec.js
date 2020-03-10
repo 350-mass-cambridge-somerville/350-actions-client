@@ -3,8 +3,8 @@
 describe('navigation', () => {
 	it('goes from current to past and back', () => {
 		cy.server()
-		cy.route('/actioncards/latest/', 'fixture:latest')
-		cy.route('/actioncards/', 'fixture:actioncards')
+		cy.stubRoute('/actioncards/latest/', 'fixture:latest')
+		cy.stubRoute('/actioncards/', 'fixture:actioncards')
 
 		cy.visit('/')
 		cy.contains('Action Card 23').should('be.visible')

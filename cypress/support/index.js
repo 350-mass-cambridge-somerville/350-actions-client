@@ -13,6 +13,8 @@
 // https://on.cypress.io/configuration
 // ***********************************************************
 
+import { isOn } from '@cypress/skip-test'
+
 /// <reference types="cypress" />
 
 // replace window.fetch with XMLHttpRequest polyfill
@@ -37,4 +39,21 @@ Cypress.on('window:before:load', win => {
 	// load a polyfilled "fetch" from the test
 	win.eval(polyfill)
 	win.fetch = win.unfetch
+})
+
+Cypress.Commands.add('stubRoute', function(methodName, endpoint, fixture) {
+	debugger
+	if (arguments.length === 2) {
+		fixture = endpoint
+		endpoint = methodName
+		methodName = 'GET'
+	}
+
+	if (!isOn('localhost')) {
+		// probably deployed to Netlify
+		// all requests should start with "/api"
+		endpoint = '/api' + endpoint
+	}
+
+	cy.route(methodName, endpoint, fixture)
 })
