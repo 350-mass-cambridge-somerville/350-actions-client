@@ -1,7 +1,11 @@
 // minimal number of tests that are safe to run
 // against the production deploy
 /// <reference types="cypress" />
-describe('prod tests', () => {
+import { isOn } from '@cypress/skip-test'
+
+const describeOrSkip = isOn('localhost') ? describe.skip : describe
+
+describeOrSkip('prod tests', () => {
 	it('has the current card', () => {
 		cy.visit('/')
 		cy.contains('Action Card').should('be.visible')
