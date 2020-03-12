@@ -1,17 +1,25 @@
-name: netlify
-on: [pull_request]
+name: netlify-prod
+# production deploys only happens on pushes to the master branch
+on:
+  push:
+    branches:
+      - master
+
 jobs:
-  netlify-preview:
+  netlify-prod:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v1
-      - name: Install dependencies
+
+      # first, let's test the site locally
+      - name: Cypress run
         uses: cypress-io/github-action@v1
         with:
-          # just perform install
-          runTests: false
-      - run: npx print-env GITHUB
+          start: npm run react:start
+          wait-on: 'http://localhost:3000'
+
+      # if the tests pass, let's build production site
       - name: Build site
         run: npm run build
         env:
@@ -20,7 +28,8 @@ jobs:
           # point API calls to "/api" that will later be redirected
           # to the remote API host
           REACT_APP_BASE_URL: '/api'
-      - name: Deploy to Netlify
+
+      - name: Deploy to Netlify prod
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
@@ -28,11 +37,6 @@ jobs:
         # and redirect its results into a JSON file
         run: |
           npm install netlify-cli
-          npx netlify deploy --dir build --json | tee deploy.json
-
-      - name: Run Cypress tests against draft deploy
-        run: node ./scripts/test-draft-site.js
-
-      # only runs read-only tests without stubbing
-      - name: Run prod tests against draft deploy
+          npx netlify deploy --prod --dir build --json | tee deploy.json
+      - name: Run Cypress tests against prod deploy
         run: node ./scripts/test-prod-site.js
