@@ -29,18 +29,20 @@ jobs:
           # to the remote API host
           REACT_APP_BASE_URL: '/api'
 
+      - run: npm install netlify-cli
       - name: Deploy to Netlify prod
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
         # when deploying show the output from Netlify
         # and redirect its results into a JSON file
-        run: |
-          npm install netlify-cli
-          npx netlify deploy --dir build --json | tee deploy.json
+        run: npx netlify deploy --dir build --json | tee deploy.json
 
       - name: Run Cypress tests against prod deploy
         run: node ./scripts/test-prod-site.js
 
       - name: Make it live
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
         run: npx netlify deploy --prod
