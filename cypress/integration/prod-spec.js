@@ -20,8 +20,7 @@ describeOrSkip('prod tests', () => {
 		cy.get('[data-cy="close-open-card"]').should('have.length.gt', 2)
 	})
 
-	// TODO: enable after deploying the /past redirect
-	it.skip('has past cards', () => {
+	it('has past cards', () => {
 		cy.visit('/past')
 	})
 
