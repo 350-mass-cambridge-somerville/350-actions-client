@@ -24,4 +24,11 @@ describeOrSkip('prod tests', () => {
 	it.skip('has past cards', () => {
 		cy.visit('/past')
 	})
+
+	it('has baseUrl set on window', () => {
+		cy.visit('/')
+		cy.window()
+			.its('baseUrl')
+			.should('be.a', 'string')
+	})
 })

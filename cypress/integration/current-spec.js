@@ -11,6 +11,12 @@ describe('current action', () => {
 		cy.get('[data-cy=action-check-display]').should('have.length', 6)
 	})
 
+	it('has baseUrl set on window', () => {
+		cy.window()
+			.its('baseUrl')
+			.should('be.a', 'string')
+	})
+
 	it('shows current actions', () => {
 		// check that we are displaying the correct count for a card
 		// also test tags

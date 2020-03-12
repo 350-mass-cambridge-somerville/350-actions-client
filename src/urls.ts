@@ -4,6 +4,10 @@ const baseUrl: string = process.env.REACT_APP_BASE_URL
 	? process.env.REACT_APP_BASE_URL
 	: 'http://localhost:8000'
 
+// expose the url on "window" object for simple debugging (and testing)
+// @ts-ignore
+window.baseUrl = baseUrl
+
 export const ACTION_CARD_URL = `${baseUrl}/actioncards/`
 export const LATEST_ACTION_CARD_URL = `${baseUrl}/actioncards/latest/`
 export const ACTION_URL = `${baseUrl}/actions/`
