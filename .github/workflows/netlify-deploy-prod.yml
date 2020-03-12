@@ -38,5 +38,6 @@ jobs:
         run: |
           npm install netlify-cli
           npx netlify deploy --prod --dir build --json | tee deploy.json
+
       - name: Run Cypress tests against prod deploy
         run: node ./scripts/test-prod-site.js
