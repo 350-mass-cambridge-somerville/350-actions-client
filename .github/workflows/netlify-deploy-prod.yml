@@ -13,7 +13,7 @@ jobs:
         uses: actions/checkout@v1
 
       # first, let's test the site locally
-      - name: Cypress run
+      - name: Cypress run against local site
         uses: cypress-io/github-action@v1
         with:
           start: npm run react:start
