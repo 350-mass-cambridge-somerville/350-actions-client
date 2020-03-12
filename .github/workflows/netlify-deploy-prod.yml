@@ -38,11 +38,14 @@ jobs:
         # and redirect its results into a JSON file
         run: npx netlify deploy --dir build --json | tee deploy.json
 
-      - name: Run Cypress tests against prod deploy
+      - name: Run Cypress tests against draft deploy
         run: node ./scripts/test-prod-site.js
 
       - name: Make it live
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-        run: npx netlify deploy --prod
+        run: npx netlify deploy --prod --dir build --json | tee deploy.json
+
+      - name: Run Cypress tests against prod deploy
+        run: node ./scripts/test-prod-site.js

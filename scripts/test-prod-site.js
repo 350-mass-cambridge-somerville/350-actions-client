@@ -5,7 +5,9 @@ const path = require('path')
 const filename = path.join(process.cwd(), 'deploy.json')
 console.log('loading Netlify deploy results from file %s', filename)
 const deploy = require(filename)
-console.log('will run Cypress tests against deployed url', deploy.deploy_url)
+
+const baseUrl = deploy.url || deploy.deploy_url
+console.log('will run Cypress tests against deployed url: %s', baseUrl)
 
 const cypress = require('cypress')
 cypress
@@ -14,7 +16,7 @@ cypress
 		// and with minimal network stubbing
 		spec: 'cypress/integration/prod-spec.js',
 		config: {
-			baseUrl: deploy.deploy_url,
+			baseUrl,
 		},
 	})
 	.then(results => {
