@@ -10,3 +10,10 @@ ReactDOM.render(<App />, document.getElementById('root'))
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
 serviceWorker.unregister()
+
+// if we are building on CI and have the commit SHA available
+// attach it to the "window" object for simpler debugging
+if (process.env.REACT_APP_COMMIT_SHA) {
+	// @ts-ignore
+	window.sha = process.env.REACT_APP_COMMIT_SHA
+}

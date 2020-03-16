@@ -13,7 +13,7 @@ jobs:
           runTests: false
       - run: npx print-env GITHUB
       - name: Build site
-        run: npm run build
+        run: REACT_APP_COMMIT_SHA=$GITHUB_SHA npm run build
         env:
           # unset CI environment variable so warnings are not treated as errors
           CI:

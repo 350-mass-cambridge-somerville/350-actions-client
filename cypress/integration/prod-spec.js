@@ -30,4 +30,12 @@ describeOrSkip('prod tests', () => {
 			.its('baseUrl')
 			.should('be.a', 'string')
 	})
+
+	it('has commit SHA set on window', () => {
+		cy.visit('/')
+		cy.window()
+			.its('sha')
+			.should('be.a', 'string')
+			.and('match', /^[0-9a-f]{40}$/) // simple SHA regex
+	})
 })
