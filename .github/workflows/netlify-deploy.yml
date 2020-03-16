@@ -13,14 +13,13 @@ jobs:
           runTests: false
       - run: npx print-env GITHUB
       - name: Build site
-        run: npm run build
+        run: REACT_APP_COMMIT_SHA=$GITHUB_SHA npm run build
         env:
           # unset CI environment variable so warnings are not treated as errors
           CI:
           # point API calls to "/api" that will later be redirected
           # to the remote API host
           REACT_APP_BASE_URL: '/api'
-          REACT_APP_COMMIT_SHA: '$GITHUB_SHA'
       - name: Deploy to Netlify
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
