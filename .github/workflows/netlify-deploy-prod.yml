@@ -28,7 +28,7 @@ jobs:
           # point API calls to "/api" that will later be redirected
           # to the remote API host
           REACT_APP_BASE_URL: '/api'
-          REACT_APP_COMMIT_SHA: GITHUB_SHA
+          REACT_APP_COMMIT_SHA: $GITHUB_SHA
 
       - run: npm install netlify-cli
       - name: Deploy to Netlify prod
