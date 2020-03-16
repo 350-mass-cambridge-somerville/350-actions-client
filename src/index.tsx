@@ -13,7 +13,7 @@ serviceWorker.unregister()
 
 // if we are building on CI and have the commit SHA available
 // attach it to the "window" object for simpler debugging
-if (process.env.GITHUB_SHA) {
+if (process.env.REACT_APP_COMMIT_SHA) {
 	// @ts-ignore
-	window.sha = process.env.GITHUB_SHA
+	window.sha = process.env.REACT_APP_COMMIT_SHA
 }
