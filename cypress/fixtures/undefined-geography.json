@@ -1,0 +1,123 @@
+[
+	{
+		"id": 5,
+		"survey_responses": [
+			{
+				"id": 72,
+				"date": "2020-02-05",
+				"action_card": 5,
+				"actions": [12, 15]
+			},
+			{
+				"id": 73,
+				"date": "2020-02-05",
+				"action_card": 5,
+				"actions": []
+			},
+			{
+				"id": 74,
+				"date": "2020-02-05",
+				"action_card": 5,
+				"actions": [12, 15]
+			},
+			{
+				"id": 75,
+				"date": "2020-02-05",
+				"action_card": 5,
+				"actions": [15]
+			},
+			{
+				"id": 76,
+				"date": "2020-02-05",
+				"action_card": 5,
+				"actions": [12, 15]
+			},
+			{
+				"id": 77,
+				"date": "2020-02-05",
+				"action_card": 5,
+				"actions": [15]
+			},
+			{
+				"id": 78,
+				"date": "2020-02-05",
+				"action_card": 5,
+				"actions": [15]
+			},
+			{
+				"id": 79,
+				"date": "2020-02-05",
+				"action_card": 5,
+				"actions": [12]
+			},
+			{
+				"id": 80,
+				"date": "2020-02-05",
+				"action_card": 5,
+				"actions": [12, 15]
+			},
+			{
+				"id": 81,
+				"date": "2020-02-05",
+				"action_card": 5,
+				"actions": [12, 15]
+			},
+			{
+				"id": 82,
+				"date": "2020-02-05",
+				"action_card": 5,
+				"actions": [12, 15]
+			},
+			{
+				"id": 83,
+				"date": "2020-02-05",
+				"action_card": 5,
+				"actions": [15]
+			},
+			{
+				"id": 84,
+				"date": "2020-02-05",
+				"action_card": 5,
+				"actions": [12]
+			},
+			{
+				"id": 85,
+				"date": "2020-02-05",
+				"action_card": 5,
+				"actions": [12, 15]
+			},
+			{
+				"id": 86,
+				"date": "2020-02-05",
+				"action_card": 5,
+				"actions": [15]
+			},
+			{
+				"id": 87,
+				"date": "2020-02-05",
+				"action_card": 5,
+				"actions": [12]
+			},
+			{
+				"id": 88,
+				"date": "2020-02-05",
+				"action_card": 5,
+				"actions": [12, 15]
+			}
+		],
+		"actions": [
+			{
+				"id": 11,
+				"date": "2020-02-13",
+				"description": "<p><span style=\"font-weight: 400;\">Build the climate movement by </span><strong>bringing a friend</strong><span style=\"font-weight: 400;\"> to U.S. Senator Markey&rsquo;s town hall discussion on the Green New Deal at Somerville High School (81 Highland Ave.) on </span><strong>Thursday, Feb. 13th</strong><span style=\"font-weight: 400;\"> from 6:30-8:00.&nbsp; Doors open at 6:00 pm. </span><a href=\"https://www.facebook.com/events/2479015989080787/\"><span style=\"font-weight: 400;\">RSVP here</span></a><span style=\"font-weight: 400;\">!</span></p>",
+				"date_type": "ON",
+				"taggit": ["personal", "ed-markey"],
+				"geography_type": "UNDEFINED",
+				"start_date": "2020-02-05",
+				"end_date": "2020-02-05"
+			}
+		],
+		"date": "2020-02-04",
+		"number": 24
+	}
+]
