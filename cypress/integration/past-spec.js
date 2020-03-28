@@ -52,6 +52,10 @@ describe('past actions', () => {
 		cy.fixture(fixtureName)
 			.its('0.actions.0.geography_type')
 			.should('equal', 'UNDEFINED')
+		// the second action in that card has geography
+		cy.fixture(fixtureName)
+			.its('0.actions.1.geography_type')
+			.should('equal', 'STATE')
 
 		cy.server()
 		cy.route('/actioncards/', 'fixture:' + fixtureName)
@@ -65,5 +69,7 @@ describe('past actions', () => {
 		// even if the card has geography set to string "UNDEFINED"
 		// it should not show up in the UI
 		cy.contains('UNDEFINED').should('not.exist')
+		// geography for the second action is visible
+		cy.contains('[data-cy=geography-type]', 'STATE').should('be.visible')
 	})
 })
