@@ -1,0 +1,29 @@
+[
+	{
+		"id": 5,
+		"actions": [
+			{
+				"id": 11,
+				"date": "2020-02-13",
+				"description": "<p><span style=\"font-weight: 400;\">Build the climate movement by </span><strong>bringing a friend</strong><span style=\"font-weight: 400;\"> to U.S. Senator Markey&rsquo;s town hall discussion on the Green New Deal at Somerville High School (81 Highland Ave.) on </span><strong>Thursday, Feb. 13th</strong><span style=\"font-weight: 400;\"> from 6:30-8:00.&nbsp; Doors open at 6:00 pm. </span><a href=\"https://www.facebook.com/events/2479015989080787/\"><span style=\"font-weight: 400;\">RSVP here</span></a><span style=\"font-weight: 400;\">!</span></p>",
+				"date_type": "ON",
+				"taggit": ["personal", "ed-markey"],
+				"geography_type": "UNDEFINED",
+				"start_date": "2020-02-05",
+				"end_date": "2020-02-05"
+			},
+			{
+				"id": 15,
+				"date": "2020-02-05",
+				"description": "<p><span style=\"font-weight: 400;\">Wednesday Feb 5th</span><span style=\"font-weight: 400;\"> is the deadline for committees to report out bills and we need to make a final push in support of our legislative priorities!&nbsp; Please call before 5pm this Wednesday, Feb. 5th!</span></p>\n<ul>\n<li style=\"font-weight: 400;\"><strong>Call Telecom, Utilities &amp; Energy TUE Committee Chairs Rep. Thomas Golden</strong><span style=\"font-weight: 400;\"> 617-722-2263</span><strong> and Sen. Michael Barrett </strong><span style=\"font-weight: 400;\">617-722-1572 to urge them to pass</span><a href=\"https://malegislature.gov/Bills/191/h2810\"><span style=\"font-weight: 400;\"> H.2810</span></a><span style=\"font-weight: 400;\"> An Act to Promote Green Infrastructure and Reduce Carbon Emissions and </span><a href=\"https://malegislature.gov/Bills/191/h2836\"><span style=\"font-weight: 400;\">H.2836</span></a><span style=\"font-weight: 400;\"> / </span><a href=\"https://malegislature.gov/Bills/191/SD1625\"><span style=\"font-weight: 400;\">S.1958</span></a><span style=\"font-weight: 400;\"> An Act Re-Powering MA with 100% Renewable Energy out of committee by Feb. 5th!</span></li>\n<li style=\"font-weight: 400;\"><strong>Call your MA House representative</strong><span style=\"font-weight: 400;\"> and ask them to contact Rep. Thomas Golden and TUE Committee members and urge them to pass H.2810 and H.2836/S.1958.&nbsp;&nbsp;</span></li>\n<li style=\"font-weight: 400;\"><span style=\"font-weight: 400;\">Attend the Mass Power Forward </span><strong>Valentine&rsquo;s Day Action</strong><span style=\"font-weight: 400;\"> on Feb. 11th from 10am-12:30pm.&nbsp; </span><a href=\"https://docs.google.com/forms/d/e/1FAIpQLScD2O_QphT0EYDc9U0Tq14oUQNR7Zm3wlVcGKafkA3PEtjDag/viewform\"><span style=\"font-weight: 400;\">RSVP here</span></a><span style=\"font-weight: 400;\"> to join in and celebrate our climate champions!</span></li>\n</ul>",
+				"date_type": "BEFORE",
+				"taggit": ["legislature"],
+				"geography_type": "STATE",
+				"start_date": "2020-02-05",
+				"end_date": "2020-02-05"
+			}
+		],
+		"date": "2020-02-04",
+		"number": 24
+	}
+]

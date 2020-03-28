@@ -17,6 +17,8 @@ export interface Action {
 }
 
 export function actionFromJson(json: any): Action {
+	const geographyType =
+		json.geography_type === 'UNDEFINED' ? undefined : json.geography_type
 	return {
 		id: json.id,
 		description: json.description,
@@ -25,6 +27,6 @@ export function actionFromJson(json: any): Action {
 		dateStart: json.start_date ? new Date(json.start_date) : undefined,
 		dateEnd: json.end_date ? new Date(json.end_date) : undefined,
 		dateType: json.date_type,
-		geographyType: json.geography_type,
+		geographyType,
 	}
 }
