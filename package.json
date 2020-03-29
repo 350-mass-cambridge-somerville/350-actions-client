@@ -68,7 +68,7 @@
 		"@storybook/addons": "^5.2.6",
 		"@storybook/react": "^5.2.6",
 		"awesome-typescript-loader": "^5.2.1",
-		"cypress": "4.0.1",
+		"cypress": "4.2.0",
 		"husky": "4.2.1",
 		"lint-staged": "10.0.7",
 		"prettier": "1.19.1",
