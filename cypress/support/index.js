@@ -14,6 +14,7 @@
 // ***********************************************************
 
 import { isOn } from '@cypress/skip-test'
+import '@percy/cypress'
 
 /// <reference types="cypress" />
 
