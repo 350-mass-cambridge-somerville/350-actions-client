@@ -6,11 +6,18 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v1
+
       # Install NPM dependencies, cache them correctly
       # and run all Cypress tests
       # https://github.com/cypress-io/github-action
+
+      # Because we will be doing visual testing using Percy
+      # we need to inject Percy token and prefix the "normal" Cypress run command
       - name: Cypress run
         uses: cypress-io/github-action@v1
         with:
           start: npm run react:start
           wait-on: 'http://localhost:3000'
+          command-prefix: 'percy exec -- npx'
+        env:
+          PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
