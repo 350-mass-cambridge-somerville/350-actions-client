@@ -11,6 +11,37 @@ describe('current action', () => {
 		cy.get('[data-cy=action-check-display]').should('have.length', 6)
 	})
 
+	it.only('sends an error to Sentry', () => {
+		cy.route('POST', 'https://sentry.io/api/*/store/*', {
+			id: 'abc123',
+		}).as('sentry')
+
+		cy.on('uncaught:exception', e => {
+			// only ignore OUR test error message
+			return e.message === 'test error'
+		})
+
+		// create an error, as if application has thrown it
+		cy.window().invoke(
+			'setTimeout',
+			() => {
+				throw new Error('test error')
+			},
+			1000,
+		)
+		// confirm the call has happened
+		cy.wait('@sentry')
+			.its('requestBody')
+			.should(body => {
+				expect(body.level).to.equal('error')
+				expect(body.exception.values).to.have.length(1)
+				expect(body.exception.values[0]).to.deep.contain({
+					type: 'Error',
+					value: 'test error',
+				})
+			})
+	})
+
 	it('has baseUrl set on window', () => {
 		cy.window()
 			.its('baseUrl')
