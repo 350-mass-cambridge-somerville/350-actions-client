@@ -11,7 +11,7 @@ describe('current action', () => {
 		cy.get('[data-cy=action-check-display]').should('have.length', 6)
 	})
 
-	it.only('sends an error to Sentry', () => {
+	it('sends an error to Sentry', () => {
 		cy.route('POST', 'https://sentry.io/api/*/store/*', {
 			id: 'abc123',
 		}).as('sentry')
