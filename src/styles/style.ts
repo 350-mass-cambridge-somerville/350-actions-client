@@ -70,9 +70,7 @@ export const useStyles = makeStyles(
 			},
 			dateDisplayDate: {
 				fontStyle: 'bold',
-				fontSize: 'larger',
 				color: theme.palette.primary.dark,
-				padding: '3px 0 5px',
 				margin: '3px',
 			},
 			chipBox: {
