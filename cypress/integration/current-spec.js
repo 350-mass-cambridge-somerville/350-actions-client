@@ -31,6 +31,7 @@ describe('current action', () => {
 		})
 
 		cy.get('[data-cy=track-action-form]').should('be.visible')
+		cy.percySnapshot('current card')
 	})
 
 	it('tracks an action anonymously', () => {
