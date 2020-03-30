@@ -65,7 +65,10 @@ Cypress.Commands.overwrite('route', function(
 	if (!isOn('localhost')) {
 		// probably deployed to Netlify
 		// all requests should start with "/api"
-		endpoint = '/api' + endpoint
+		// unless they are to external services
+		if (!endpoint.startsWith('http')) {
+			endpoint = '/api' + endpoint
+		}
 	}
 
 	return route(methodName, endpoint, fixture)
