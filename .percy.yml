@@ -1,0 +1,6 @@
+# Percy visual testing configuration file
+# https://docs.percy.io/docs/sdk-configuration
+version: 1
+snapshot:
+  # for now only worry how the site looks on Desktop
+  widths: [1280]
