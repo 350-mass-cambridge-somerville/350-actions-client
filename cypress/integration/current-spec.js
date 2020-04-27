@@ -88,7 +88,9 @@ describe('current action', () => {
 				// Cypress comes with moment.js bundled in
 				// so we can use same logic as our application
 				date: Cypress.moment().format('YYYY-MM-DD'),
-				name: '', // anonymous
+				// front-end automatically sets the name
+				// so the string is not empty
+				name: 'anonymous',
 			})
 
 		cy.contains('button', 'Track my actions!').should('be.disabled')

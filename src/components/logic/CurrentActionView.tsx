@@ -64,7 +64,7 @@ export class CurrentActionView extends Component {
 				'Content-Type': 'application/json',
 			},
 			body: JSON.stringify({
-				name: this.state.responderName,
+				name: this.state.responderName || 'anonymous',
 				date: moment().format('YYYY-MM-DD'),
 				actions: this.state.doneActions,
 				action_card: this.state.actionCardId,
