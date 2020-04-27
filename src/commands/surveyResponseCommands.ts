@@ -9,14 +9,14 @@ export function submitSurveyResponse(
 	date?: Date,
 	userData?: UserData,
 ): Promise<any> {
-	// todo check if user is defined
+	const name = responderName || 'anonymous'
 	return fetch(SURVEY_RESPONSE_URL, {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json',
 		},
 		body: JSON.stringify({
-			name: responderName,
+			name,
 			date: moment().format('YYYY-MM-DD'),
 			actions: doneActions,
 			action_card: actionCardId,
