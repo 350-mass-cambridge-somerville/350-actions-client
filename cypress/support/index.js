@@ -13,6 +13,7 @@
 // https://on.cypress.io/configuration
 // ***********************************************************
 
+import '@cypress/code-coverage/support'
 import { isOn } from '@cypress/skip-test'
 import '@percy/cypress'
 
